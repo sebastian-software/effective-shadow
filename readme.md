@@ -10,6 +10,10 @@
 
 **Effective Shadow** is a powerful, framework-independent library designed to create rich, harmonious shadows for web interfaces. Utilizing a shadow factory based on Bézier curves, this library generates consistent shadow layers from minimal input parameters. It supports both CSS `box-shadow` and filter-based `drop-shadow`, ensuring nearly identical visual results across both techniques.
 
+## Demo
+
+Take a look at the shadows in our [Storybook Demo](https://effective-shadow.vercel.app/).
+
 ## Installation
 
 Install the npm package:
