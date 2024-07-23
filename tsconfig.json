@@ -1,19 +1,25 @@
 {
   "compilerOptions": {
-    /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "target": "ES2022",
-
-    /* Emit a declaration file (.d.ts) from a TypeScript or JavaScript file. */
-    "declaration": true,
-
     /* Specify what module code is generated. */
     "module": "ES2022",
 
     /* Specify how TypeScript looks up a file from a given module specifier. */
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
+
+    /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES2022",
 
     /* Specify an output folder for all emitted files. */
     "outDir": "./dist",
+
+    /* Emit a declaration file (.d.ts) from a TypeScript or JavaScript file. */
+    "declaration": true,
+
+    /* Enable pretty output. */
+    "pretty": true,
+
+    /* Use a specific end of line sequence. */
+    "newLine": "lf",
 
     /* Specify what JSX output is generated */
     "jsx": "react-jsx",
@@ -26,6 +32,9 @@
 
     /* Ensure that casing is correct in imports. */
     "forceConsistentCasingInFileNames": true,
+
+    /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    "allowSyntheticDefaultImports": true,
 
     /* Enable all strict type-checking options. */
     "strict": true,
