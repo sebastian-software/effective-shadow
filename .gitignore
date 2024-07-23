@@ -6,3 +6,5 @@ dist/
 build/
 public/
 coverage/
+
+*storybook.log

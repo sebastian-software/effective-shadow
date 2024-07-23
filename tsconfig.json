@@ -15,6 +15,9 @@
     /* Specify an output folder for all emitted files. */
     "outDir": "./dist",
 
+    /* Specify what JSX output is generated */
+    "jsx": "react-jsx",
+
     /* Ensure that each file can be safely transpiled without relying on other imports. */
     "isolatedModules": true,
 

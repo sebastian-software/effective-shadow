@@ -1,6 +1,6 @@
 import { buildShadow, toBoxShadow, toDropShadow } from "./factory";
 
-export const enhancedBoxShadow = [
+export const boxShadow = [
   "none",
 
   toBoxShadow(
@@ -39,7 +39,7 @@ export const enhancedBoxShadow = [
   ),
 ];
 
-export const enhancedDropShadow = [
+export const dropShadow = [
   "",
 
   toDropShadow(
