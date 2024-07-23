@@ -5,9 +5,17 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "check": "tsc --noEmit",
+    "clean:dist": "git clean -fXd",
+    "build": "rimraf dist && tsc",
+    "prepare": "npm run build",
+    "format": "prettier --write src",
+    "release": "release-it",
+    "dev": "storybook dev -p 7099",
+    "build-storybook": "storybook build",
+    "update:latest": "ncu --upgrade --interactive",
+    "update:minor": "ncu --upgrade --interactive --target minor",
+    "update:pnpm": "corepack up"
   },
   "keywords": [],
   "author": "",
