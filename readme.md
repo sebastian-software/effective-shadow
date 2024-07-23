@@ -1,4 +1,4 @@
-# Effective/Color
+# Effective/Shadow
 
 [![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm]
 
