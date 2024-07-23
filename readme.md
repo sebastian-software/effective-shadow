@@ -4,9 +4,9 @@
 
 [sponsor]: https://www.sebastian-software.de
 [sponsor-img]: https://badgen.net/badge/Sponsored%20by/Sebastian%20Software/c41e54
-[npm]: https://www.npmjs.com/package/@effective/color
-[npm-downloads-img]: https://badgen.net/npm/dm/@effective/color
-[npm-version-img]: https://badgen.net/npm/v/@effective/color
+[npm]: https://www.npmjs.com/package/@effective/shadow
+[npm-downloads-img]: https://badgen.net/npm/dm/@effective/shadow
+[npm-version-img]: https://badgen.net/npm/v/@effective/shadow
 
 **Effective Shadow** is a powerful, framework-independent library designed to create rich, harmonious shadows for web interfaces. Utilizing a shadow factory based on Bézier curves, this library generates consistent shadow layers from minimal input parameters. It supports both CSS `box-shadow` and filter-based `drop-shadow`, ensuring nearly identical visual results across both techniques.
 
@@ -40,15 +40,19 @@ const secondDropShadow: string = dropShadow[1]
 
 ### Example Usage
 
-You can directly use these predefined shadow values in your CSS or styled-components:
+You can directly use these predefined shadow values in your e.g. CSS-in-JS
 
-```css
-.my-element {
-  box-shadow: var(--boxShadow[2]);
+```js
+{
+  boxShadow: boxShadow[2]
 }
+```
 
-.my-other-element {
-  filter: drop-shadow(var(--dropShadow[2]));
+or
+
+```js
+{
+  filter: dropShadow[2]
 }
 ```
 
