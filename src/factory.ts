@@ -1,20 +1,20 @@
-import bezierEasing from "bezier-easing";
+import bezierEasing from "bezier-easing"
 
-export type EasingValue = [number, number, number, number];
+export type EasingValue = [number, number, number, number]
 
 export interface ShadowConfig {
-  shadowLayers: number;
+  shadowLayers: number
 
-  finalOffsetX: number;
-  finalOffsetY: number;
-  offsetEasing: EasingValue;
+  finalOffsetX: number
+  finalOffsetY: number
+  offsetEasing: EasingValue
 
-  finalBlur: number;
-  blurEasing: EasingValue;
+  finalBlur: number
+  blurEasing: EasingValue
 
-  finalAlpha: number;
-  alphaEasing: EasingValue;
-  reverseAlpha: boolean;
+  finalAlpha: number
+  alphaEasing: EasingValue
+  reverseAlpha: boolean
 }
 
 const defaults: ShadowConfig = {
@@ -29,46 +29,46 @@ const defaults: ShadowConfig = {
 
   finalAlpha: 0.2,
   reverseAlpha: false,
-  alphaEasing: [0.1, 0.5, 0.9, 0.5],
-};
+  alphaEasing: [0.1, 0.5, 0.9, 0.5]
+}
 
-export type ShadowValues = [number, number, number, number];
-export type ShadowSet = ShadowValues[];
+export type ShadowValues = [number, number, number, number]
+export type ShadowSet = ShadowValues[]
 
 export function buildShadow(config: Partial<ShadowConfig>): ShadowSet {
-  const cfg = { ...defaults, ...config };
+  const cfg = { ...defaults, ...config }
 
-  const alphaEasing = bezierEasing(...cfg.alphaEasing);
-  const offsetEasing = bezierEasing(...cfg.offsetEasing);
-  const blurEasing = bezierEasing(...cfg.blurEasing);
+  const alphaEasing = bezierEasing(...cfg.alphaEasing)
+  const offsetEasing = bezierEasing(...cfg.offsetEasing)
+  const blurEasing = bezierEasing(...cfg.blurEasing)
 
-  const easedAlphaValues = [];
-  const easedOffsetValues = [];
-  const easedBlurValues = [];
+  const easedAlphaValues = []
+  const easedOffsetValues = []
+  const easedBlurValues = []
 
   for (let i = 1; i <= cfg.shadowLayers; i++) {
-    const fraction = i / cfg.shadowLayers;
+    const fraction = i / cfg.shadowLayers
     if (cfg.reverseAlpha) {
-      easedAlphaValues.unshift(alphaEasing(fraction));
+      easedAlphaValues.unshift(alphaEasing(fraction))
     } else {
-      easedAlphaValues.push(alphaEasing(fraction));
+      easedAlphaValues.push(alphaEasing(fraction))
     }
 
-    easedOffsetValues.push(offsetEasing(fraction));
-    easedBlurValues.push(blurEasing(fraction));
+    easedOffsetValues.push(offsetEasing(fraction))
+    easedBlurValues.push(blurEasing(fraction))
   }
 
-  const boxShadowValues: ShadowSet = [];
+  const boxShadowValues: ShadowSet = []
   for (let i = 0; i < cfg.shadowLayers; i++) {
     boxShadowValues.push([
       easedOffsetValues[i] * cfg.finalOffsetX,
       easedOffsetValues[i] * cfg.finalOffsetY,
       easedBlurValues[i] * cfg.finalBlur,
-      easedAlphaValues[i] * cfg.finalAlpha,
-    ]);
+      easedAlphaValues[i] * cfg.finalAlpha
+    ])
   }
 
-  return boxShadowValues;
+  return boxShadowValues
 }
 
 export function toBoxShadow(shadowSet: ShadowSet, precision = 3): string {
@@ -81,7 +81,7 @@ export function toBoxShadow(shadowSet: ShadowSet, precision = 3): string {
           precision
         )})`
     )
-    .join(",");
+    .join(",")
 }
 
 export function toDropShadow(shadowSet: ShadowSet, precision = 3): string {
@@ -98,5 +98,5 @@ export function toDropShadow(shadowSet: ShadowSet, precision = 3): string {
           alpha * 1.1
         ).toFixed(precision)}))`
     )
-    .join(" ");
+    .join(" ")
 }
