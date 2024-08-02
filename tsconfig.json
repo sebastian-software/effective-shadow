@@ -1,4 +1,6 @@
 {
+  "include": ["src/**/*"],
+
   "compilerOptions": {
     /* Specify what module code is generated. */
     "module": "ES2022",
