@@ -24,9 +24,7 @@ npm install @effective/shadow
 
 ## Quick Start
 
-![Predefined Shadows](images/default-shadows.png)
-
-<img src="images/default-shadows.png" alt="Predefined Shadows" width="400"/>
+<img src="images/default-shadows.png" alt="Predefined Shadows" width="522"/>
 
 ### Using Predefined Shadows
 
