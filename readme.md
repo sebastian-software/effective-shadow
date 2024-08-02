@@ -26,6 +26,8 @@ npm install @effective/shadow
 
 ![Predefined Shadows](images/default-shadows.png)
 
+<img src="images/default-shadows.png" alt="Predefined Shadows" width="400"/>
+
 ### Using Predefined Shadows
 
 Effective Shadow provides a set of typical shadow values for quick and easy use. The index position in both arrays corresponds to the effective elevation.
