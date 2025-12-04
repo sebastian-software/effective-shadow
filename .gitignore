@@ -6,5 +6,6 @@ dist/
 build/
 public/
 coverage/
+storybook-static/
 
 *storybook.log
