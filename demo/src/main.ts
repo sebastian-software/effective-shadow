@@ -7,7 +7,6 @@ import {
 } from "@effective/shadow"
 
 // Declare external libraries
-declare const lucide: { createIcons: () => void }
 declare const hljs: { highlightAll: () => void }
 
 // =============================================================================
@@ -331,18 +330,16 @@ const filter = toDropShadow(shadow)`
   copyBtn.addEventListener("click", async () => {
     const text = output.textContent || ""
     await navigator.clipboard.writeText(text)
-    const icon = copyBtn.querySelector("i")
-    if (icon) {
-      icon.setAttribute("data-lucide", "check")
+    const useEl = copyBtn.querySelector("use")
+    if (useEl) {
+      useEl.setAttribute("href", "#icon-check")
     }
     copyBtn.classList.add("copied")
-    lucide.createIcons()
     setTimeout(() => {
-      if (icon) {
-        icon.setAttribute("data-lucide", "copy")
+      if (useEl) {
+        useEl.setAttribute("href", "#icon-copy")
       }
       copyBtn.classList.remove("copied")
-      lucide.createIcons()
     }, 2000)
   })
 
@@ -359,6 +356,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderShadowDemo()
   renderComparison()
   renderPlayground()
-  lucide.createIcons()
   hljs.highlightAll()
 })
