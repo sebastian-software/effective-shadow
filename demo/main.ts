@@ -1,7 +1,6 @@
 import { boxShadow, buildShadow, toBoxShadow, toDropShadow } from "../src"
 import { effectivePreset } from "../src/presets/effective"
 import { tailwindOriginal } from "../src/presets/tailwind-original"
-import { joshComeauShadows } from "../src/presets/josh-comeau"
 
 // Declare external libraries
 declare const lucide: { createIcons: () => void }
@@ -80,6 +79,7 @@ function renderComparison() {
   const columns = [
     {
       title: "Effective Shadow",
+      description: "4 layers, Bézier-curved",
       shadows: boxShadow.slice(1, 6).map((s, i) => ({
         name: `Level ${i + 1}`,
         value: s
@@ -87,14 +87,8 @@ function renderComparison() {
     },
     {
       title: "Tailwind CSS",
+      description: "1-2 layers, linear",
       shadows: tailwindOriginal.levels.slice(1, 6).map((l) => ({
-        name: l.name,
-        value: l.boxShadow
-      }))
-    },
-    {
-      title: "Josh Comeau",
-      shadows: joshComeauShadows.levels.slice(1).map((l) => ({
         name: l.name,
         value: l.boxShadow
       }))
@@ -104,7 +98,7 @@ function renderComparison() {
   columns.forEach((col) => {
     const column = document.createElement("div")
     column.className = "comparison-column"
-    column.innerHTML = `<h3>${col.title}</h3>`
+    column.innerHTML = `<h3>${col.title}</h3><p class="comparison-desc">${col.description}</p>`
 
     col.shadows.forEach(({ name, value }) => {
       const card = document.createElement("div")

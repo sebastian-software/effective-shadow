@@ -357,11 +357,11 @@ body {
 
 .comparison {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .comparison {
     grid-template-columns: 1fr;
   }
@@ -374,10 +374,17 @@ body {
 }
 
 .comparison-column h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--text);
-  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+
+.comparison-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  padding-bottom: 12px;
   border-bottom: 2px solid var(--accent);
 }
 
