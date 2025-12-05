@@ -10,6 +10,11 @@ import { CodeBlock } from "./components/CodeBlock"
 function Hero() {
   return (
     <header className="hero">
+      {/* Floating orbs for depth */}
+      <div className="hero-orb hero-orb-1" />
+      <div className="hero-orb hero-orb-2" />
+      <div className="hero-orb hero-orb-3" />
+
       <div className="hero-content">
         <div className="hero-icon">
           <Icon name="layers" size="xl" />
