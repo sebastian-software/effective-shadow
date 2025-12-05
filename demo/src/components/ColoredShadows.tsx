@@ -1,12 +1,19 @@
-import { getBoxShadow, getDropShadow } from "@effective/shadow"
+import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
 
 // Blue-500 for CTA
 const CTA_COLOR = { bg: "#3b82f6", rgb: "59, 130, 246" }
 
+// Custom glow shadow with higher alpha for colored CTAs
+const glowShadow = buildShadow({
+  shadowLayers: 5,
+  finalOffsetY: 8,
+  finalBlur: 24,
+  finalAlpha: 0.5 // Much higher than default for visible colored glow
+})
+
 export function ColoredShadows() {
-  // Use level 5 (Overlay) with color
-  const boxShadowValue = getBoxShadow(5, { color: CTA_COLOR.rgb })
-  const dropShadowValue = getDropShadow(5, { color: CTA_COLOR.rgb })
+  const boxShadowValue = toBoxShadow(glowShadow, 2, { color: CTA_COLOR.rgb })
+  const dropShadowValue = toDropShadow(glowShadow, 2, { color: CTA_COLOR.rgb })
 
   return (
     <div className="comparison comparison-narrow">
@@ -14,7 +21,7 @@ export function ColoredShadows() {
         <h3>Box Shadow</h3>
         <p className="comparison-desc">
           <code>
-            getBoxShadow(5, {"{"} color: "{CTA_COLOR.rgb}" {"}"})
+            toBoxShadow(shadow, 2, {"{"} color {"}"});
           </code>
         </p>
         <button
@@ -34,7 +41,7 @@ export function ColoredShadows() {
         <h3>Drop Shadow</h3>
         <p className="comparison-desc">
           <code>
-            getDropShadow(5, {"{"} color: "{CTA_COLOR.rgb}" {"}"})
+            toDropShadow(shadow, 2, {"{"} color {"}"});
           </code>
         </p>
         <button
