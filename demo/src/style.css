@@ -380,6 +380,16 @@ body {
   justify-content: center;
 }
 
+.shadow-demo-panel .demo-shape {
+  background: var(--accent);
+}
+
+.shadow-demo-panel .demo-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
 .shadow-demo-panel .demo-icon {
   display: block;
 }

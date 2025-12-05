@@ -138,13 +138,13 @@
       <section class="section">
         <div class="section-header">
           <i data-lucide="image" class="section-icon"></i>
-          <h2>The Problem with box-shadow</h2>
+          <h2>When to Use Which Shadow</h2>
         </div>
         <div class="prose">
           <p>
-            CSS <code>box-shadow</code> only works on rectangular boxes. For icons, PNGs with
-            transparency, or any non-rectangular element, it creates an ugly rectangular shadow
-            around the bounding box:
+            CSS <code>box-shadow</code> respects <code>border-radius</code> — circles and rounded 
+            rectangles get properly shaped shadows. But for SVG icons, PNGs with transparency, or 
+            elements with <code>clip-path</code>, it falls back to a rectangular bounding box:
           </p>
         </div>
         <div class="shadow-demo" id="shadow-demo">
@@ -153,8 +153,8 @@
         <div class="prose">
           <p>
             <strong>Effective Shadow</strong> generates both <code>box-shadow</code> and
-            <code>filter: drop-shadow()</code> variants. The filter version follows the actual
-            shape of your element — perfect for icons, logos, and images.
+            <code>filter: drop-shadow()</code> variants. Use <code>box-shadow</code> for cards, 
+            buttons, and rounded elements. Use <code>drop-shadow</code> for icons and images.
           </p>
           <p>
             We automatically compensate for the visual differences between these two CSS
