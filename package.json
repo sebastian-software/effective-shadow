@@ -12,10 +12,16 @@
     "./factory": {
       "types": "./dist/factory.d.ts",
       "import": "./dist/factory.js"
+    },
+    "./shadows.css": "./dist/shadows.css",
+    "./shadows.module.css": "./dist/shadows.module.css",
+    "./tailwind": {
+      "types": "./dist/tailwind.d.ts",
+      "import": "./dist/tailwind.js"
     }
   },
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc && cp src/*.css dist/",
     "check": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -52,9 +58,17 @@
   "dependencies": {
     "bezier-easing": "^2.1.0"
   },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
     "@eslint/js": "^9.39.1",
     "@storybook/addon-docs": "^10.1.4",
     "@storybook/addon-links": "^10.1.4",
@@ -77,6 +91,7 @@
     "release-it": "^19.0.6",
     "rimraf": "^6.1.2",
     "storybook": "^10.1.4",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1",
     "vite": "^7.2.6",

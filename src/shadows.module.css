@@ -1,0 +1,95 @@
+/**
+ * Effective Shadow - CSS Classes
+ *
+ * Usage:
+ *   import "@effective/shadow/shadows.css"
+ *   <div class="shadow-2">...</div>
+ *
+ * Box Shadow Classes: .shadow-0 through .shadow-5
+ * Drop Shadow Classes: .drop-shadow-0 through .drop-shadow-5
+ */
+
+/* Box Shadows */
+.shadow-0 {
+  box-shadow: none;
+}
+
+.shadow-1 {
+  box-shadow:
+    0px 0.289px 0.578px rgba(0, 0, 0, 0.052),
+    0px 0.513px 1.026px rgba(0, 0, 0, 0.077),
+    0px 0.752px 1.504px rgba(0, 0, 0, 0.105),
+    0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-2 {
+  box-shadow:
+    0px 0.868px 1.157px rgba(0, 0, 0, 0.052),
+    0px 1.54px 2.053px rgba(0, 0, 0, 0.077),
+    0px 2.255px 3.007px rgba(0, 0, 0, 0.105),
+    0px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-3 {
+  box-shadow:
+    0px 1.736px 2.893px rgba(0, 0, 0, 0.052),
+    0px 3.079px 5.132px rgba(0, 0, 0, 0.077),
+    0px 4.511px 7.518px rgba(0, 0, 0, 0.105),
+    0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-4 {
+  box-shadow:
+    0px 2.893px 4.628px rgba(0, 0, 0, 0.052),
+    0px 5.132px 8.211px rgba(0, 0, 0, 0.077),
+    0px 7.518px 12.029px rgba(0, 0, 0, 0.105),
+    0px 10px 16px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-5 {
+  box-shadow:
+    0px 4.05px 6.943px rgba(0, 0, 0, 0.052),
+    0px 7.185px 12.317px rgba(0, 0, 0, 0.077),
+    0px 10.525px 18.043px rgba(0, 0, 0, 0.105),
+    0px 14px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Drop Shadows (for filter property) */
+.drop-shadow-0 {
+  filter: none;
+}
+
+.drop-shadow-1 {
+  filter: drop-shadow(0px 0.289px 0.289px rgba(0, 0, 0, 0.057))
+    drop-shadow(0px 0.513px 0.513px rgba(0, 0, 0, 0.085))
+    drop-shadow(0px 0.752px 0.752px rgba(0, 0, 0, 0.116))
+    drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.22));
+}
+
+.drop-shadow-2 {
+  filter: drop-shadow(0px 0.868px 0.578px rgba(0, 0, 0, 0.057))
+    drop-shadow(0px 1.54px 1.026px rgba(0, 0, 0, 0.085))
+    drop-shadow(0px 2.255px 1.504px rgba(0, 0, 0, 0.116))
+    drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.22));
+}
+
+.drop-shadow-3 {
+  filter: drop-shadow(0px 1.736px 1.446px rgba(0, 0, 0, 0.057))
+    drop-shadow(0px 3.079px 2.566px rgba(0, 0, 0, 0.085))
+    drop-shadow(0px 4.511px 3.759px rgba(0, 0, 0, 0.116))
+    drop-shadow(0px 6px 5px rgba(0, 0, 0, 0.22));
+}
+
+.drop-shadow-4 {
+  filter: drop-shadow(0px 2.893px 2.314px rgba(0, 0, 0, 0.057))
+    drop-shadow(0px 5.132px 4.105px rgba(0, 0, 0, 0.085))
+    drop-shadow(0px 7.518px 6.014px rgba(0, 0, 0, 0.116))
+    drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.22));
+}
+
+.drop-shadow-5 {
+  filter: drop-shadow(0px 4.05px 3.471px rgba(0, 0, 0, 0.057))
+    drop-shadow(0px 7.185px 6.158px rgba(0, 0, 0, 0.085))
+    drop-shadow(0px 10.525px 9.021px rgba(0, 0, 0, 0.116))
+    drop-shadow(0px 14px 12px rgba(0, 0, 0, 0.22));
+}

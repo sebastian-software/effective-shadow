@@ -30,10 +30,10 @@
 
 Single-layer shadows look flat and artificial. Real-world shadows are complex — they're softer near the object and more diffuse further away. **Effective Shadow** generates multiple shadow layers with mathematically smooth transitions, creating depth that feels natural.
 
-✨ **Ready-to-use presets** — 5 elevation levels, zero configuration  
-🎨 **Fully customizable** — control layers, blur, offset, opacity with Bézier easing  
-🔄 **Two output formats** — `box-shadow` and `drop-shadow` with automatic visual matching  
-📦 **Tiny footprint** — ~1KB gzipped, single dependency  
+✨ **Ready-to-use presets** — 5 elevation levels, zero configuration
+🎨 **Fully customizable** — control layers, blur, offset, opacity with Bézier easing
+🔄 **Two output formats** — `box-shadow` and `drop-shadow` with automatic visual matching
+📦 **Tiny footprint** — ~1KB gzipped, single dependency
 🛠️ **Framework-agnostic** — works with React, Vue, Svelte, vanilla CSS-in-JS, or plain CSS
 
 ---
@@ -56,33 +56,66 @@ yarn add @effective/shadow
 
 ## Usage
 
-### Quick Start: Predefined Shadows
+Choose your preferred integration method:
 
-For most use cases, the built-in elevation presets are all you need:
+### Option 1: CSS Classes (Recommended)
+
+The simplest approach — import CSS and use class names:
+
+```tsx
+// Global CSS import
+import "@effective/shadow/shadows.css"
+
+<div className="shadow-3">Elevated card</div>
+<img className="drop-shadow-2" src="icon.svg" />
+```
+
+### Option 2: CSS Modules
+
+For scoped styles with automatic class name hashing:
+
+```tsx
+import shadows from "@effective/shadow/shadows.module.css"
+;<div className={shadows["shadow-3"]}>Elevated card</div>
+```
+
+Works great with `clsx`:
+
+```tsx
+import clsx from "clsx"
+import s from "@effective/shadow/shadows.module.css"
+;<div className={clsx("rounded-lg p-4", s["shadow-2"])}>Card</div>
+```
+
+### Option 3: Tailwind Plugin
+
+Native Tailwind integration with IDE autocomplete:
+
+```js
+// tailwind.config.js
+import effectiveShadow from "@effective/shadow/tailwind"
+
+export default {
+  plugins: [effectiveShadow]
+}
+```
+
+Then use the utilities:
+
+```tsx
+<div className="shadow-effective-3">Elevated card</div>
+<img className="drop-shadow-effective-2" src="icon.svg" />
+```
+
+### Option 4: JavaScript API
+
+For dynamic shadows or custom configurations:
 
 ```typescript
 import { boxShadow, dropShadow } from "@effective/shadow"
 
-// Apply to your elements (index = elevation level 0-5)
+// Apply inline (less recommended)
 element.style.boxShadow = boxShadow[2]
-element.style.filter = dropShadow[2]
-```
-
-**With React:**
-
-```tsx
-import { boxShadow } from "@effective/shadow"
-
-function Card({ elevation = 2 }) {
-  return <div style={{ boxShadow: boxShadow[elevation] }}>...</div>
-}
-```
-
-**With Tailwind (arbitrary values):**
-
-```tsx
-import { boxShadow } from "@effective/shadow"
-;<div className={`shadow-[${boxShadow[2]}]`}>...</div>
 ```
 
 ### Custom Shadows
@@ -205,6 +238,40 @@ type ShadowSet = ShadowValues[] // Array of shadow layers
 Explore all shadow levels and configurations in our interactive demo:
 
 **[📖 Storybook Demo →](https://sebastian-software.github.io/effective-shadow/)**
+
+---
+
+## Comparison with Tailwind
+
+Tailwind's built-in shadows use 1-2 layers with linear distribution:
+
+```css
+/* Tailwind's shadow-lg */
+box-shadow:
+  0 10px 15px -3px rgb(0 0 0 / 0.1),
+  0 4px 6px -4px rgb(0 0 0 / 0.1);
+```
+
+Effective Shadow generates 4+ layers with Bézier-curved transitions for more natural depth:
+
+| Feature           | Tailwind Shadows  | Effective Shadow     |
+| ----------------- | ----------------- | -------------------- |
+| **Layers**        | 1-2               | 4+ (configurable)    |
+| **Transitions**   | Linear            | Bézier curves        |
+| **Realism**       | Basic             | Natural depth        |
+| **Customization** | Presets or manual | Mathematical control |
+
+Use Tailwind's shadows for quick prototyping. Use Effective Shadow when you want that extra polish.
+
+---
+
+## Inspired By
+
+This library builds on ideas from the community:
+
+- [**Designing Beautiful Shadows in CSS**](https://www.joshwcomeau.com/css/designing-shadows/) by Josh W. Comeau — the foundational article on layered shadows
+- [**Smooth Shadow**](https://shadows.brumm.af/) by Philipp Brumm — smooth shadow generator tool
+- Material Design elevation system — standardized elevation levels
 
 ---
 
