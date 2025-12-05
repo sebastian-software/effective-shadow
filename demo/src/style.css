@@ -1301,7 +1301,7 @@ body {
 .glow-column h3 {
   font-size: 15px;
   font-weight: 600;
-  color: var(--text-light);
+  color: var(--text);
   margin-bottom: 0;
 }
 

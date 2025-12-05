@@ -346,7 +346,7 @@ function SectionComparisonTechniques() {
 
 function SectionColoredShadows() {
   return (
-    <section className="section section-dark" id="colored-shadows">
+    <section className="section section-glow" id="colored-shadows">
       <div className="section-header">
         <Icon name="paintbrush" size="lg" className="section-icon" />
         <h2>Add Some Color</h2>
