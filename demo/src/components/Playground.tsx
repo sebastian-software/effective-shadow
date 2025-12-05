@@ -1,14 +1,13 @@
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useCallback } from "react"
 import {
   buildShadow,
   toBoxShadow,
   toDropShadow,
   effectivePreset
 } from "@effective/shadow"
+import { HexColorPicker } from "react-colorful"
 import { Icon } from "./Icons"
-
-// Declare external highlight.js
-declare const hljs: { highlightAll: () => void }
+import { CodeBlock } from "./CodeBlock"
 
 interface PlaygroundState {
   layers: number
@@ -93,17 +92,28 @@ interface ColorControlProps {
 }
 
 function ColorControl({ value, onChange }: ColorControlProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <div className="control control-color">
       <label>
         <span>Color</span>
-        <span className="color-preview" style={{ background: value }} />
       </label>
-      <input
-        type="color"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+      <button
+        className="color-swatch"
+        style={{ background: value }}
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Pick color"
       />
+      {isOpen && (
+        <div className="color-popover">
+          <div
+            className="color-popover-backdrop"
+            onClick={() => setIsOpen(false)}
+          />
+          <HexColorPicker color={value} onChange={onChange} />
+        </div>
+      )}
     </div>
   )
 }
@@ -121,7 +131,6 @@ export function Playground() {
   const [outputTab, setOutputTab] = useState<OutputTab>("css")
   const [preset, setPreset] = useState("4")
   const [isCopied, setIsCopied] = useState(false)
-  const codeRef = useRef<HTMLElement>(null)
 
   // Generate shadow values
   const shadowSet = buildShadow({
@@ -169,14 +178,6 @@ const boxShadow = toBoxShadow(shadow${colorArg})
 const filter = toDropShadow(shadow${colorArg})`
 
   const output = outputTab === "css" ? cssOutput : jsOutput
-
-  // Re-highlight code when output changes
-  useEffect(() => {
-    if (codeRef.current) {
-      codeRef.current.removeAttribute("data-highlighted")
-      hljs.highlightAll()
-    }
-  }, [output])
 
   const updateState = useCallback(
     (key: keyof PlaygroundState, value: number | string) => {
@@ -321,9 +322,10 @@ const filter = toDropShadow(shadow${colorArg})`
             JavaScript
           </button>
         </div>
-        <pre className="output-code">
-          <code ref={codeRef}>{output}</code>
-        </pre>
+        <CodeBlock
+          code={output}
+          language={outputTab === "css" ? "css" : "tsx"}
+        />
         <button
           className={`copy-btn ${isCopied ? "copied" : ""}`}
           onClick={handleCopy}

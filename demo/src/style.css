@@ -885,38 +885,84 @@ body {
 .control-color {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  position: relative;
 }
 
 .control-color label {
   flex: 1;
 }
 
-.control-color input[type="color"] {
-  width: 40px;
+.color-swatch {
+  width: 36px;
   height: 28px;
-  border: 1px solid #e5e7eb;
+  border: 2px solid #e5e7eb;
   border-radius: var(--radius-sm);
-  padding: 2px;
   cursor: pointer;
-  background: white;
+  transition: border-color 0.15s ease;
 }
 
-.color-preview {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  vertical-align: middle;
+.color-swatch:hover {
+  border-color: var(--accent);
+}
+
+.color-popover {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  z-index: 100;
+}
+
+.color-popover-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* react-colorful overrides */
+.color-popover .react-colorful {
+  width: 180px;
+  height: 180px;
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.color-popover .react-colorful__saturation {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.color-popover .react-colorful__hue {
+  height: 16px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.color-popover .react-colorful__saturation-pointer,
+.color-popover .react-colorful__hue-pointer {
+  width: 18px;
+  height: 18px;
+  border: 2px solid white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .playground-output {
   grid-column: 1 / -1;
-  background: var(--code-bg);
-  border: 1px solid var(--code-border);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  position: relative;
+}
+
+/* Prism code block styling */
+.code-block {
+  margin: 0;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+  border-radius: 0;
 }
 
 .output-tabs {

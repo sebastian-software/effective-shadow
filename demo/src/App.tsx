@@ -5,6 +5,7 @@ import { ComparisonTechniques } from "./components/ComparisonTechniques"
 import { ColoredShadows } from "./components/ColoredShadows"
 import { Playground } from "./components/Playground"
 import { Icon } from "./components/Icons"
+import { CodeBlock } from "./components/CodeBlock"
 
 function Hero() {
   return (
@@ -385,12 +386,12 @@ function SectionQuickStart() {
         <p>
           The simplest approach — import our CSS and use class names directly:
         </p>
-        <pre>
-          <code className="language-javascript">{`import "@effective/shadow/shadows.css"
-···
+        <CodeBlock
+          code={`import "@effective/shadow/shadows.css"
+
 <div class="shadow-3">Elevated card</div>
-<img class="drop-shadow-2" src="icon.svg" />`}</code>
-        </pre>
+<img class="drop-shadow-2" src="icon.svg" />`}
+        />
       </div>
 
       <div className="usage-section">
@@ -399,11 +400,11 @@ function SectionQuickStart() {
           CSS Modules
         </h3>
         <p>For scoped styles with automatic class name hashing:</p>
-        <pre>
-          <code className="language-javascript">{`import shadows from "@effective/shadow/shadows.module.css"
-···
-<div className={shadows["shadow-3"]}>Elevated card</div>`}</code>
-        </pre>
+        <CodeBlock
+          code={`import shadows from "@effective/shadow/shadows.module.css"
+
+<div className={shadows["shadow-3"]}>Elevated card</div>`}
+        />
       </div>
 
       <div className="usage-section">
@@ -412,17 +413,17 @@ function SectionQuickStart() {
           Tailwind CSS Plugin
         </h3>
         <p>Extend Tailwind with our shadow utilities:</p>
-        <pre>
-          <code className="language-javascript">{`// tailwind.config.js
+        <CodeBlock
+          code={`// tailwind.config.js
 import effectiveShadow from "@effective/shadow/tailwind"
 
 export default {
   plugins: [effectiveShadow]
 }
-···
+
 <div class="shadow-effective-3">Card</div>
-<img class="drop-shadow-effective-2" src="icon.svg" />`}</code>
-        </pre>
+<img class="drop-shadow-effective-2" src="icon.svg" />`}
+        />
       </div>
 
       <div className="usage-section">
@@ -431,13 +432,13 @@ export default {
           JavaScript API
         </h3>
         <p>For full control, use the TypeScript/JavaScript API:</p>
-        <pre>
-          <code className="language-javascript">{`// Pre-generated shadows (levels 0-7)
+        <CodeBlock
+          code={`// Pre-generated shadows (levels 0-7)
 import { boxShadow, dropShadow } from "@effective/shadow"
 
 element.style.boxShadow = boxShadow[3]
 element.style.filter = dropShadow[2]
-···
+
 // Custom shadows with full control
 import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
 
@@ -449,8 +450,8 @@ const shadow = buildShadow({
 })
 
 const css = toBoxShadow(shadow)
-const filter = toDropShadow(shadow)`}</code>
-        </pre>
+const filter = toDropShadow(shadow)`}
+        />
       </div>
     </section>
   )
@@ -567,8 +568,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p>
-        <Icon name="heart" size="sm" className="footer-icon" />
-        Built by{" "}
+        <Icon name="heart" size="sm" className="footer-icon" /> Built by{" "}
         <a href="https://www.sebastian-software.de">Sebastian Software</a>
       </p>
       <div className="footer-links">
