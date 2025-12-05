@@ -540,14 +540,8 @@ function SectionInspiration() {
           — Interactive tool for creating coordinated shadow sets
         </li>
         <li>
-          <a
-            href="https://shadows.brumm.af/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Smooth Shadow Generator
-          </a>{" "}
-          — Philipp Brumm's smooth shadow tool with easing controls
+          <strong>Smooth Shadow Generator</strong> — Philipp Brumm's smooth
+          shadow tool with easing controls (site currently offline)
         </li>
         <li>
           <a

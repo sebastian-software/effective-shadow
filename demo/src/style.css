@@ -1349,7 +1349,8 @@ body {
 .inspiration-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 900px;
 }
 
 .inspiration-list li {
