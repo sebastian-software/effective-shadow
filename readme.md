@@ -267,11 +267,12 @@ Use Tailwind's shadows for quick prototyping. Use Effective Shadow when you want
 
 ## Inspired By
 
-This library builds on ideas from the community:
+This library builds on ideas and tools from the community:
 
-- [**Designing Beautiful Shadows in CSS**](https://www.joshwcomeau.com/css/designing-shadows/) by Josh W. Comeau — the foundational article on layered shadows
-- [**Smooth Shadow**](https://shadows.brumm.af/) by Philipp Brumm — smooth shadow generator tool
-- Material Design elevation system — standardized elevation levels
+- [**Designing Beautiful Shadows in CSS**](https://www.joshwcomeau.com/css/designing-shadows/) by Josh W. Comeau — foundational article on layered shadow techniques
+- [**Shadow Palette Generator**](https://www.joshwcomeau.com/shadow-palette/) by Josh W. Comeau — interactive tool for coordinated shadow sets
+- [**Smooth Shadow Generator**](https://shadows.brumm.af/) by Philipp Brumm — smooth easing-based shadow tool
+- [**Material Design 3 Elevation**](https://m3.material.io/styles/elevation/overview) — Google's elevation system and shadow principles
 
 ---
 

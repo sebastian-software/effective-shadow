@@ -44,15 +44,15 @@ export const effectivePreset: ShadowPreset = {
   elevations: [
     // Level 0: No shadow
     { finalOffsetY: 0, finalBlur: 0, finalAlpha: 0 },
-    // Level 1: Subtle
+    // Level 1: Subtle - gentle lift
     { finalOffsetY: 1, finalBlur: 2 },
-    // Level 2: Low
-    { finalOffsetY: 3, finalBlur: 4 },
-    // Level 3: Medium
-    { finalOffsetY: 6, finalBlur: 10 },
-    // Level 4: High
-    { finalOffsetY: 10, finalBlur: 16 },
-    // Level 5: Highest
-    { finalOffsetY: 14, finalBlur: 24 }
+    // Level 2: Low - cards at rest
+    { finalOffsetY: 3, finalBlur: 5 },
+    // Level 3: Medium - hovered elements
+    { finalOffsetY: 7, finalBlur: 12 },
+    // Level 4: High - dropdowns, popovers
+    { finalOffsetY: 14, finalBlur: 22 },
+    // Level 5: Highest - modals, dialogs
+    { finalOffsetY: 24, finalBlur: 38 }
   ]
 }
