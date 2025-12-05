@@ -40,6 +40,37 @@ function renderElevationGrid() {
 }
 
 // =============================================================================
+// Shadow Demo (box-shadow vs filter problem)
+// =============================================================================
+
+function renderShadowDemo() {
+  const container = document.getElementById("shadow-demo")!
+  const shadowValue = boxShadow[3]
+  const filterValue = `drop-shadow(0 4px 6px rgba(0,0,0,0.15)) drop-shadow(0 10px 20px rgba(0,0,0,0.1))`
+
+  container.innerHTML = `
+    <div class="shadow-demo-panel">
+      <div class="label">box-shadow on a star icon</div>
+      <div class="demo-icon" style="box-shadow: ${shadowValue};">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="verdict bad">❌ Shadow follows the bounding box</div>
+    </div>
+    <div class="shadow-demo-panel">
+      <div class="label">filter: drop-shadow on a star icon</div>
+      <div class="demo-icon" style="filter: ${filterValue};">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="verdict good">✓ Shadow follows the star shape</div>
+    </div>
+  `
+}
+
+// =============================================================================
 // Comparison (skip "none" entries)
 // =============================================================================
 
@@ -223,7 +254,6 @@ const filter = toDropShadow(shadow)`
         max="${config.max}"
         step="${config.step}"
         value="${value}"
-        data-key="${config.key}"
       />
     `
 
@@ -239,10 +269,7 @@ const filter = toDropShadow(shadow)`
       ;(state[stateKey] as number) = newValue
       const display = config.unit ? `${newValue}${config.unit}` : newValue
       valueSpan.textContent = String(display)
-
-      // Set preset to "Custom" when manually adjusting
       presetSelect.value = "custom"
-
       updateShadow()
     })
 
@@ -306,6 +333,7 @@ const filter = toDropShadow(shadow)`
 
 document.addEventListener("DOMContentLoaded", () => {
   renderElevationGrid()
+  renderShadowDemo()
   renderComparison()
   renderPlayground()
   lucide.createIcons()
