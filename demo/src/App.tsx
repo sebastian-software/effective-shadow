@@ -355,8 +355,7 @@ function SectionColoredShadows() {
       <p className="section-desc">
         Shadows don't have to be black. For CTAs and interactive elements,
         color-matched glows create visual emphasis and reinforce brand identity.
-        Pass an RGB value to <code>toBoxShadow()</code> or{" "}
-        <code>toDropShadow()</code> — both produce identical results.
+        Both techniques produce identical results.
       </p>
       <ColoredShadows />
     </section>
