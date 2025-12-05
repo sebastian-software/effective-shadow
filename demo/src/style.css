@@ -673,7 +673,9 @@ body {
 .glow-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
+  text-align: center;
 }
 
 .glow-column h3 {
@@ -683,25 +685,20 @@ body {
   margin-bottom: 0;
 }
 
-.glow-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .glow-btn {
-  padding: 14px 28px;
+  padding: 18px 48px;
   border: none;
   border-radius: var(--radius);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   color: white;
   cursor: pointer;
   transition: transform 0.15s ease;
+  margin-top: 12px;
 }
 
 .glow-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .comparison-card span {
@@ -858,6 +855,35 @@ body {
   border-radius: 50%;
   background: var(--accent);
   cursor: pointer;
+}
+
+.control-color {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-color label {
+  flex: 1;
+}
+
+.control-color input[type="color"] {
+  width: 40px;
+  height: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  cursor: pointer;
+  background: white;
+}
+
+.color-preview {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
 }
 
 .playground-output {

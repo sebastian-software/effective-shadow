@@ -82,7 +82,7 @@ export const effectivePreset: ShadowPreset = {
     // Level 0: No shadow
     { finalOffsetY: 0, finalBlur: 0, finalAlpha: 0 },
 
-    // Level 1: Subtle lift - hover feedback, subtle borders
+    // Level 1: Subtle - hover feedback, subtle borders
     { finalOffsetY: 1, finalBlur: 2, shadowLayers: 3, finalAlpha: 0.07 },
 
     // Level 2: Low - cards at rest, list items

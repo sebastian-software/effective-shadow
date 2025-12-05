@@ -57,15 +57,15 @@ Combined: Natural shadow with realistic depth
 
 Each elevation level follows a mathematical progression (~1.5-2× the previous), not arbitrary jumps:
 
-| Level | Name        | Offset | Blur | Layers |
-| ----- | ----------- | ------ | ---- | ------ |
-| 1     | Subtle lift | 1px    | 2px  | 3      |
-| 2     | Low         | 2px    | 4px  | 3      |
-| 3     | Raised      | 3px    | 6px  | 4      |
-| 4     | Floating    | 5px    | 10px | 4      |
-| 5     | Overlay     | 8px    | 16px | 5      |
-| 6     | Modal       | 14px   | 28px | 6      |
-| 7     | Peak        | 24px   | 48px | 7      |
+| Level | Name     | Offset | Blur | Layers |
+| ----- | -------- | ------ | ---- | ------ |
+| 1     | Subtle   | 1px    | 2px  | 3      |
+| 2     | Low      | 2px    | 4px  | 3      |
+| 3     | Raised   | 3px    | 6px  | 4      |
+| 4     | Floating | 5px    | 10px | 4      |
+| 5     | Overlay  | 8px    | 16px | 5      |
+| 6     | Modal    | 14px   | 28px | 6      |
+| 7     | Peak     | 24px   | 48px | 7      |
 
 ### Calibrated Cross-Technique Output
 

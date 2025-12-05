@@ -132,7 +132,7 @@ const PRESET_CONFIGS = effectivePreset.elevations.map((elev) => ({
 
 const LEVEL_DESCRIPTIONS = [
   "None",
-  "Subtle lift",
+  "Subtle",
   "Low",
   "Raised",
   "Floating",
@@ -292,71 +292,46 @@ function renderComparisonBoxDrop() {
 }
 
 // =============================================================================
-// Colored Glow CTAs
+// Colored Glow CTA
 // =============================================================================
 
-interface CtaColor {
-  name: string
-  bg: string
-  rgb: string // For shadow color
-}
-
-const CTA_COLORS: CtaColor[] = [
-  { name: "Indigo", bg: "#6366f1", rgb: "99, 102, 241" },
-  { name: "Cyan", bg: "#06b6d4", rgb: "6, 182, 212" },
-  { name: "Rose", bg: "#f43f5e", rgb: "244, 63, 94" },
-  { name: "Amber", bg: "#f59e0b", rgb: "245, 158, 11" }
-]
+const CTA_COLOR = { bg: "#2563eb", rgb: "37, 99, 235" } // Blue-600
 
 function renderColoredGlow() {
   const container = document.getElementById("colored-glow")!
 
-  // Generate colored shadows using our API
+  // Prominent glow shadow
   const glowShadow = buildShadow({
-    shadowLayers: 4,
-    finalOffsetY: 8,
-    finalBlur: 20,
-    finalAlpha: 0.5
+    shadowLayers: 5,
+    finalOffsetY: 12,
+    finalBlur: 32,
+    finalAlpha: 0.6
   })
 
-  // Box Shadow column
+  // Box Shadow
   const boxColumn = document.createElement("div")
   boxColumn.className = "glow-column"
-  boxColumn.innerHTML = `<h3>Box Shadow</h3><p class="comparison-desc">Colored glow using box-shadow</p>`
+  boxColumn.innerHTML = `<h3>Box Shadow</h3><p class="comparison-desc">box-shadow with color</p>`
 
-  const boxButtons = document.createElement("div")
-  boxButtons.className = "glow-buttons"
-
-  CTA_COLORS.forEach((color) => {
-    const btn = document.createElement("button")
-    btn.className = "glow-btn"
-    btn.style.backgroundColor = color.bg
-    btn.style.boxShadow = toBoxShadow(glowShadow, 2, { color: color.rgb })
-    btn.textContent = color.name
-    boxButtons.appendChild(btn)
-  })
-
-  boxColumn.appendChild(boxButtons)
+  const boxBtn = document.createElement("button")
+  boxBtn.className = "glow-btn"
+  boxBtn.style.backgroundColor = CTA_COLOR.bg
+  boxBtn.style.boxShadow = toBoxShadow(glowShadow, 2, { color: CTA_COLOR.rgb })
+  boxBtn.textContent = "Get Started"
+  boxColumn.appendChild(boxBtn)
   container.appendChild(boxColumn)
 
-  // Drop Shadow column
+  // Drop Shadow
   const dropColumn = document.createElement("div")
   dropColumn.className = "glow-column"
-  dropColumn.innerHTML = `<h3>Drop Shadow</h3><p class="comparison-desc">Colored glow using filter</p>`
+  dropColumn.innerHTML = `<h3>Drop Shadow</h3><p class="comparison-desc">filter: drop-shadow with color</p>`
 
-  const dropButtons = document.createElement("div")
-  dropButtons.className = "glow-buttons"
-
-  CTA_COLORS.forEach((color) => {
-    const btn = document.createElement("button")
-    btn.className = "glow-btn"
-    btn.style.backgroundColor = color.bg
-    btn.style.filter = toDropShadow(glowShadow, 2, { color: color.rgb })
-    btn.textContent = color.name
-    dropButtons.appendChild(btn)
-  })
-
-  dropColumn.appendChild(dropButtons)
+  const dropBtn = document.createElement("button")
+  dropBtn.className = "glow-btn"
+  dropBtn.style.backgroundColor = CTA_COLOR.bg
+  dropBtn.style.filter = toDropShadow(glowShadow, 2, { color: CTA_COLOR.rgb })
+  dropBtn.textContent = "Get Started"
+  dropColumn.appendChild(dropBtn)
   container.appendChild(dropColumn)
 }
 
@@ -370,7 +345,14 @@ interface PlaygroundState {
   offsetY: number
   blur: number
   alpha: number
+  color: string // hex color, empty = black
   outputTab: "css" | "js"
+}
+
+function hexToRgb(hex: string): string {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+  if (!result) return "0, 0, 0"
+  return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
 }
 
 function renderPlayground() {
@@ -392,6 +374,7 @@ function renderPlayground() {
     offsetY: level4.offsetY,
     blur: level4.blur,
     alpha: level4.alpha,
+    color: "#000000",
     outputTab: "css"
   }
 
@@ -422,14 +405,19 @@ function renderPlayground() {
       finalAlpha: state.alpha
     })
 
-    const boxShadowCSS = toBoxShadow(shadowSet, 2)
-    const dropShadowCSS = toDropShadow(shadowSet, 2)
+    const colorOption =
+      state.color === "#000000" ? {} : { color: hexToRgb(state.color) }
+    const boxShadowCSS = toBoxShadow(shadowSet, 2, colorOption)
+    const dropShadowCSS = toDropShadow(shadowSet, 2, colorOption)
 
     // Apply to both previews
     previewBox.style.boxShadow = boxShadowCSS
     previewFilter.style.filter = dropShadowCSS
 
     // Update output
+    const hasColor = state.color !== "#000000"
+    const colorRgb = hexToRgb(state.color)
+
     if (state.outputTab === "css") {
       output.textContent = `/* box-shadow */
 box-shadow: ${boxShadowCSS};
@@ -448,15 +436,16 @@ filter: ${dropShadowCSS};`
         null,
         2
       )
+      const colorArg = hasColor ? `, { color: "${colorRgb}" }` : ""
       output.textContent = `import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
 
 const shadow = buildShadow(${config})
 
 // For rectangular elements
-const boxShadow = toBoxShadow(shadow)
+const boxShadow = toBoxShadow(shadow${colorArg})
 
 // For non-rectangular shapes (icons, PNGs)
-const filter = toDropShadow(shadow)`
+const filter = toDropShadow(shadow${colorArg})`
     }
 
     // Re-highlight
@@ -517,6 +506,32 @@ const filter = toDropShadow(shadow)`
 
     controls.appendChild(control)
   })
+
+  // Color picker
+  const colorControl = document.createElement("div")
+  colorControl.className = "control control-color"
+  colorControl.innerHTML = `
+    <label>
+      <span>Color</span>
+      <span class="color-preview" style="background: ${state.color}"></span>
+    </label>
+    <input type="color" value="${state.color}" />
+  `
+  const colorInput = colorControl.querySelector(
+    'input[type="color"]'
+  ) as HTMLInputElement
+  const colorPreview = colorControl.querySelector(
+    ".color-preview"
+  ) as HTMLElement
+
+  colorInput.addEventListener("input", () => {
+    state.color = colorInput.value
+    colorPreview.style.background = colorInput.value
+    presetSelect.value = "custom"
+    updateShadow()
+  })
+
+  controls.appendChild(colorControl)
 
   // Preset selector
   presetSelect.addEventListener("change", () => {
