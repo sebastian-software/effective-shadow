@@ -712,8 +712,9 @@ body {
 
 .comparison-table {
   width: 100%;
+  max-width: 900px;
+  margin: 24px auto;
   border-collapse: collapse;
-  margin: 24px 0;
   font-size: 15px;
 }
 
