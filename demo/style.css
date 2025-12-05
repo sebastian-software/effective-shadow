@@ -350,9 +350,6 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   margin: 40px 0;
-  padding: 40px;
-  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f7 100%);
-  border-radius: var(--radius);
 }
 
 @media (max-width: 600px) {
@@ -374,19 +371,28 @@ body {
   margin-bottom: 16px;
 }
 
+.shadow-demo-panel .demo-icon-wrapper {
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f7 100%);
+  border-radius: var(--radius);
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .shadow-demo-panel .demo-icon {
-  display: inline-block;
-  padding: 20px;
+  display: block;
 }
 
 .shadow-demo-panel .demo-icon svg {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   color: var(--accent);
+  display: block;
 }
 
 .shadow-demo-panel .verdict {
-  margin-top: 12px;
+  margin-top: 16px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -731,6 +737,15 @@ body {
   background: transparent !important;
 }
 
+.code-ellipsis {
+  display: block;
+  color: var(--text-muted);
+  opacity: 0.5;
+  padding: 4px 0;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
 /* Override highlight.js */
 pre code.hljs {
   background: transparent !important;
@@ -741,44 +756,31 @@ pre code.hljs {
    Inspiration
    ============================================================================= */
 
-.inspiration-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+.inspiration-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-@media (max-width: 600px) {
-  .inspiration-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.inspiration-card {
-  display: block;
-  padding: 20px;
-  background: white;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  border: 1px solid #e5e7eb;
-  transition: all 0.2s;
-}
-
-.inspiration-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
-}
-
-.inspiration-card strong {
-  display: block;
-  color: var(--text);
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.inspiration-card span {
+.inspiration-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 16px;
   color: var(--text-muted);
-  font-size: 13px;
-  line-height: 1.4;
+}
+
+.inspiration-list li:last-child {
+  border-bottom: none;
+}
+
+.inspiration-list a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.inspiration-list a:hover {
+  text-decoration: underline;
 }
 
 /* =============================================================================

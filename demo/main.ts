@@ -71,24 +71,28 @@ function renderShadowDemo() {
   const container = document.getElementById("shadow-demo")!
   // Use Level 4 for more visible shadow in demo
   const shadowValue = boxShadow[4]
-  const filterValue = `drop-shadow(0 8px 12px rgba(0,0,0,0.15)) drop-shadow(0 16px 32px rgba(0,0,0,0.12))`
+  const filterValue = `drop-shadow(0 10px 16px rgba(0,0,0,0.18)) drop-shadow(0 20px 40px rgba(0,0,0,0.15))`
 
   container.innerHTML = `
     <div class="shadow-demo-panel">
       <div class="label">box-shadow on a star icon</div>
-      <div class="demo-icon" style="box-shadow: ${shadowValue};">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
+      <div class="demo-icon-wrapper">
+        <div class="demo-icon" style="box-shadow: ${shadowValue};">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
       </div>
       <div class="verdict bad">❌ Shadow follows the bounding box</div>
     </div>
     <div class="shadow-demo-panel">
       <div class="label">filter: drop-shadow on a star icon</div>
-      <div class="demo-icon" style="filter: ${filterValue};">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
+      <div class="demo-icon-wrapper">
+        <div class="demo-icon" style="filter: ${filterValue};">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
       </div>
       <div class="verdict good">✓ Shadow follows the star shape</div>
     </div>
