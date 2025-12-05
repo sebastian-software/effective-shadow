@@ -70,7 +70,7 @@ export const effectivePreset: ShadowPreset = {
     offsetEasing: [0.7, 0.1, 0.9, 0.3],
     blurEasing: [0.7, 0.1, 0.9, 0.3],
     alphaEasing: [0.1, 0.5, 0.9, 0.5],
-    finalAlpha: 0.2,
+    finalAlpha: 0.12, // Matches Tailwind's typical 10-12% opacity
     reverseAlpha: false
   },
   elevations: [
@@ -79,27 +79,27 @@ export const effectivePreset: ShadowPreset = {
 
     // Level 1 (2xs): Barely visible - subtle hover feedback
     // Tailwind shadow-2xs: 0 1px rgb(0 0 0 / 0.05)
-    { finalOffsetY: 1, finalBlur: 1, shadowLayers: 3 },
+    { finalOffsetY: 1, finalBlur: 1, shadowLayers: 3, finalAlpha: 0.08 },
 
     // Level 2 (xs): Minimal - list items, subtle cards
     // Tailwind shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05)
-    { finalOffsetY: 1, finalBlur: 2, shadowLayers: 3 },
+    { finalOffsetY: 1, finalBlur: 2, shadowLayers: 3, finalAlpha: 0.08 },
 
     // Level 3 (sm): Low - cards at rest
     // Tailwind shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 3, finalBlur: 5, shadowLayers: 4 },
+    { finalOffsetY: 3, finalBlur: 5, shadowLayers: 4, finalAlpha: 0.12 },
 
     // Level 4 (md): Medium - hovered cards, buttons
     // Tailwind shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 6, finalBlur: 10, shadowLayers: 4 },
+    { finalOffsetY: 6, finalBlur: 10, shadowLayers: 4, finalAlpha: 0.12 },
 
     // Level 5 (lg): High - dropdowns, popovers
     // Tailwind shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 12, finalBlur: 18, shadowLayers: 5 },
+    { finalOffsetY: 12, finalBlur: 18, shadowLayers: 5, finalAlpha: 0.12 },
 
     // Level 6 (xl): Higher - modals, dialogs
     // Tailwind shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 20, finalBlur: 30, shadowLayers: 6 },
+    { finalOffsetY: 20, finalBlur: 30, shadowLayers: 6, finalAlpha: 0.12 },
 
     // Level 7 (2xl): Highest - critical overlays, full-screen modals
     // Tailwind shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25)

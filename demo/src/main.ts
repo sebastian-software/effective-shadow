@@ -10,15 +10,16 @@ import {
 declare const hljs: { highlightAll: () => void }
 
 // =============================================================================
-// Tailwind CSS shadow values (for comparison only, not part of public API)
+// Tailwind CSS v4 shadow values (for comparison only, not part of public API)
 // Source: https://tailwindcss.com/docs/box-shadow
 // =============================================================================
 
 const TAILWIND_SHADOWS = [
   { name: "none", value: "none" },
-  { name: "sm", value: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
+  { name: "2xs", value: "0 1px rgb(0 0 0 / 0.05)" },
+  { name: "xs", value: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
   {
-    name: "DEFAULT",
+    name: "sm",
     value: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)"
   },
   {
@@ -32,7 +33,8 @@ const TAILWIND_SHADOWS = [
   {
     name: "xl",
     value: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
-  }
+  },
+  { name: "2xl", value: "0 25px 50px -12px rgb(0 0 0 / 0.25)" }
 ]
 
 // =============================================================================
@@ -40,11 +42,11 @@ const TAILWIND_SHADOWS = [
 // =============================================================================
 
 const PRESET_CONFIGS = effectivePreset.elevations.map((elev) => ({
-  layers: effectivePreset.base.shadowLayers ?? 4,
-  offsetX: effectivePreset.base.finalOffsetX ?? 0,
+  layers: elev.shadowLayers ?? effectivePreset.base.shadowLayers ?? 4,
+  offsetX: elev.finalOffsetX ?? effectivePreset.base.finalOffsetX ?? 0,
   offsetY: elev.finalOffsetY ?? 0,
   blur: elev.finalBlur ?? 0,
-  alpha: elev.finalAlpha ?? effectivePreset.base.finalAlpha ?? 0.2
+  alpha: elev.finalAlpha ?? effectivePreset.base.finalAlpha ?? 0.12
 }))
 
 // =============================================================================
@@ -60,7 +62,7 @@ function renderElevationGrid() {
     card.className = "elevation-card"
     card.style.boxShadow = shadow
     card.innerHTML = `
-      <div class="elevation-level">${level}</div>
+      <div class="elevation-level">${LEVEL_NAMES[level]}</div>
       <div class="elevation-label">Level ${level}</div>
     `
     grid.appendChild(card)
@@ -98,8 +100,10 @@ function renderShadowDemo() {
 }
 
 // =============================================================================
-// Comparison (skip "none" entries)
+// Comparison (skip "none" entries, show all levels)
 // =============================================================================
+
+const LEVEL_NAMES = ["none", "2xs", "xs", "sm", "md", "lg", "xl", "2xl"]
 
 function renderComparison() {
   const container = document.getElementById("comparison")!
@@ -107,16 +111,16 @@ function renderComparison() {
   const columns = [
     {
       title: "Effective Shadow",
-      description: "4 layers, Bézier-curved",
-      shadows: boxShadow.slice(1, 6).map((s, i) => ({
-        name: `Level ${i + 1}`,
+      description: "3-8 layers, Bézier-curved",
+      shadows: boxShadow.slice(1).map((s, i) => ({
+        name: LEVEL_NAMES[i + 1],
         value: s
       }))
     },
     {
-      title: "Tailwind CSS",
+      title: "Tailwind CSS v4",
       description: "1-2 layers, linear",
-      shadows: TAILWIND_SHADOWS.slice(1, 6).map((s) => ({
+      shadows: TAILWIND_SHADOWS.slice(1).map((s) => ({
         name: s.name,
         value: s.value
       }))
@@ -164,14 +168,14 @@ function renderPlayground() {
   ) as HTMLSelectElement
   const outputTabs = document.querySelectorAll(".output-tab")
 
-  // Start with Level 3 preset
-  const level3 = PRESET_CONFIGS[3]
+  // Start with Level 4 (md) preset
+  const level4 = PRESET_CONFIGS[4]
   const state: PlaygroundState = {
-    layers: level3.layers,
-    offsetX: level3.offsetX,
-    offsetY: level3.offsetY,
-    blur: level3.blur,
-    alpha: level3.alpha,
+    layers: level4.layers,
+    offsetX: level4.offsetX,
+    offsetY: level4.offsetY,
+    blur: level4.blur,
+    alpha: level4.alpha,
     outputTab: "css"
   }
 
