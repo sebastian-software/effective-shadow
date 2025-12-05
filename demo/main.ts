@@ -1,9 +1,23 @@
 import { boxShadow, buildShadow, toBoxShadow, toDropShadow } from "../src"
+import { effectivePreset } from "../src/presets/effective"
 import { tailwindOriginal } from "../src/presets/tailwind-original"
 import { joshComeauShadows } from "../src/presets/josh-comeau"
 
-// Initialize Lucide icons
+// Declare external libraries
 declare const lucide: { createIcons: () => void }
+declare const hljs: { highlightAll: () => void }
+
+// =============================================================================
+// Preset configurations for the playground
+// =============================================================================
+
+const PRESET_CONFIGS = effectivePreset.elevations.map((elev) => ({
+  layers: effectivePreset.base.shadowLayers ?? 4,
+  offsetX: effectivePreset.base.finalOffsetX ?? 0,
+  offsetY: elev.finalOffsetY ?? 0,
+  blur: elev.finalBlur ?? 0,
+  alpha: elev.finalAlpha ?? effectivePreset.base.finalAlpha ?? 0.2
+}))
 
 // =============================================================================
 // Elevation Grid (skip level 0 = "none")
@@ -12,7 +26,6 @@ declare const lucide: { createIcons: () => void }
 function renderElevationGrid() {
   const grid = document.getElementById("elevation-grid")!
 
-  // Start from 1 to skip "none"
   for (let level = 1; level < boxShadow.length; level++) {
     const shadow = boxShadow[level]
     const card = document.createElement("div")
@@ -84,28 +97,28 @@ interface PlaygroundState {
   offsetY: number
   blur: number
   alpha: number
-  useFilter: boolean
   outputTab: "css" | "js"
 }
 
 function renderPlayground() {
   const controls = document.getElementById("playground-controls")!
-  const card = document.getElementById("playground-card")!
+  const previewBox = document.getElementById("preview-box")!
+  const previewFilter = document.getElementById("preview-filter")!
   const output = document.getElementById("css-output")!
   const copyBtn = document.getElementById("copy-btn")!
-  const typeToggle = document.getElementById(
-    "shadow-type-toggle"
-  ) as HTMLInputElement
-  const toggleOptions = document.querySelectorAll(".toggle-option")
+  const presetSelect = document.getElementById(
+    "preset-select"
+  ) as HTMLSelectElement
   const outputTabs = document.querySelectorAll(".output-tab")
 
+  // Start with Level 3 preset
+  const level3 = PRESET_CONFIGS[3]
   const state: PlaygroundState = {
-    layers: 4,
-    offsetX: 0,
-    offsetY: 10,
-    blur: 20,
-    alpha: 0.2,
-    useFilter: false,
+    layers: level3.layers,
+    offsetX: level3.offsetX,
+    offsetY: level3.offsetY,
+    blur: level3.blur,
+    alpha: level3.alpha,
     outputTab: "css"
   }
 
@@ -119,10 +132,13 @@ function renderPlayground() {
       step: 1,
       unit: "px"
     },
-    { key: "offsetY", label: "Offset Y", min: 0, max: 30, step: 1, unit: "px" },
-    { key: "blur", label: "Blur", min: 0, max: 50, step: 1, unit: "px" },
+    { key: "offsetY", label: "Offset Y", min: 0, max: 40, step: 1, unit: "px" },
+    { key: "blur", label: "Blur", min: 0, max: 60, step: 1, unit: "px" },
     { key: "alpha", label: "Opacity", min: 0, max: 0.5, step: 0.01 }
   ] as const
+
+  const sliderInputs: Map<string, HTMLInputElement> = new Map()
+  const valueSpans: Map<string, HTMLElement> = new Map()
 
   function updateShadow() {
     const shadowSet = buildShadow({
@@ -136,20 +152,17 @@ function renderPlayground() {
     const boxShadowCSS = toBoxShadow(shadowSet, 2)
     const dropShadowCSS = toDropShadow(shadowSet, 2)
 
-    if (state.useFilter) {
-      card.style.boxShadow = "none"
-      card.style.filter = dropShadowCSS
-    } else {
-      card.style.filter = "none"
-      card.style.boxShadow = boxShadowCSS
-    }
+    // Apply to both previews
+    previewBox.style.boxShadow = boxShadowCSS
+    previewFilter.style.filter = dropShadowCSS
 
+    // Update output
     if (state.outputTab === "css") {
-      if (state.useFilter) {
-        output.textContent = `filter: ${dropShadowCSS};`
-      } else {
-        output.textContent = `box-shadow: ${boxShadowCSS};`
-      }
+      output.textContent = `/* box-shadow */
+box-shadow: ${boxShadowCSS};
+
+/* filter (for non-rectangular shapes) */
+filter: ${dropShadowCSS};`
     } else {
       const config = JSON.stringify(
         {
@@ -162,14 +175,36 @@ function renderPlayground() {
         null,
         2
       )
-      const fn = state.useFilter ? "toDropShadow" : "toBoxShadow"
-      output.textContent = `import { buildShadow, ${fn} } from "@effective/shadow"
+      output.textContent = `import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
 
 const shadow = buildShadow(${config})
-const css = ${fn}(shadow)`
+
+// For rectangular elements
+const boxShadow = toBoxShadow(shadow)
+
+// For non-rectangular shapes (icons, PNGs)
+const filter = toDropShadow(shadow)`
     }
+
+    // Re-highlight
+    output.removeAttribute("data-highlighted")
+    hljs.highlightAll()
   }
 
+  function updateSliders() {
+    controlConfigs.forEach((config) => {
+      const input = sliderInputs.get(config.key)
+      const valueSpan = valueSpans.get(config.key)
+      if (input && valueSpan) {
+        const value = state[config.key as keyof PlaygroundState] as number
+        input.value = String(value)
+        const display = config.unit ? `${value}${config.unit}` : value
+        valueSpan.textContent = String(display)
+      }
+    })
+  }
+
+  // Render controls
   controlConfigs.forEach((config) => {
     const control = document.createElement("div")
     control.className = "control"
@@ -195,30 +230,44 @@ const css = ${fn}(shadow)`
     const input = control.querySelector("input")!
     const valueSpan = control.querySelector(".value")!
 
+    sliderInputs.set(config.key, input)
+    valueSpans.set(config.key, valueSpan as HTMLElement)
+
     input.addEventListener("input", () => {
       const newValue = parseFloat(input.value)
       const stateKey = config.key as keyof PlaygroundState
       ;(state[stateKey] as number) = newValue
       const display = config.unit ? `${newValue}${config.unit}` : newValue
       valueSpan.textContent = String(display)
+
+      // Set preset to "Custom" when manually adjusting
+      presetSelect.value = "custom"
+
       updateShadow()
     })
 
     controls.appendChild(control)
   })
 
-  typeToggle.addEventListener("change", () => {
-    state.useFilter = typeToggle.checked
-    toggleOptions.forEach((opt) => {
-      const type = opt.getAttribute("data-type")
-      opt.classList.toggle(
-        "active",
-        type === (state.useFilter ? "filter" : "box")
-      )
-    })
-    updateShadow()
+  // Preset selector
+  presetSelect.addEventListener("change", () => {
+    const value = presetSelect.value
+    if (value === "custom") return
+
+    const level = parseInt(value, 10)
+    const preset = PRESET_CONFIGS[level]
+    if (preset) {
+      state.layers = preset.layers
+      state.offsetX = preset.offsetX
+      state.offsetY = preset.offsetY
+      state.blur = preset.blur
+      state.alpha = preset.alpha
+      updateSliders()
+      updateShadow()
+    }
   })
 
+  // Output tabs (CSS vs JS)
   outputTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const tabType = tab.getAttribute("data-tab") as "css" | "js"
@@ -228,6 +277,7 @@ const css = ${fn}(shadow)`
     })
   })
 
+  // Copy button
   copyBtn.addEventListener("click", async () => {
     const text = output.textContent || ""
     await navigator.clipboard.writeText(text)
@@ -246,6 +296,7 @@ const css = ${fn}(shadow)`
     }, 2000)
   })
 
+  // Initial render
   updateShadow()
 }
 
@@ -258,4 +309,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderComparison()
   renderPlayground()
   lucide.createIcons()
+  hljs.highlightAll()
 })

@@ -11,6 +11,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <!-- Highlight.js for syntax highlighting (GitHub light theme) -->
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github.min.css" />
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
@@ -71,28 +74,47 @@
         </div>
         <p class="section-desc">Experiment with shadow parameters in real-time.</p>
         <div class="playground">
-          <div class="playground-preview">
-            <div class="playground-card" id="playground-card">
-              <i data-lucide="box" class="preview-icon"></i>
-              <span>Preview</span>
+          <div class="playground-previews">
+            <div class="preview-panel">
+              <div class="preview-label">box-shadow</div>
+              <div class="playground-preview">
+                <div class="playground-card" id="preview-box">
+                  <i data-lucide="square" class="preview-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="preview-panel">
+              <div class="preview-label">filter: drop-shadow</div>
+              <div class="playground-preview">
+                <div class="playground-card" id="preview-filter">
+                  <i data-lucide="star" class="preview-icon"></i>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="playground-controls" id="playground-controls">
-            <!-- Filled by JS -->
+          <div class="playground-sidebar">
+            <div class="preset-selector">
+              <label>
+                <i data-lucide="palette"></i>
+                <span>Preset</span>
+              </label>
+              <select id="preset-select">
+                <option value="custom">Custom</option>
+                <option value="1">Level 1 – Subtle</option>
+                <option value="2">Level 2 – Low</option>
+                <option value="3" selected>Level 3 – Medium</option>
+                <option value="4">Level 4 – High</option>
+                <option value="5">Level 5 – Highest</option>
+              </select>
+            </div>
+            <div class="playground-controls" id="playground-controls">
+              <!-- Filled by JS -->
+            </div>
           </div>
           <div class="playground-output">
             <div class="output-tabs">
               <button class="output-tab active" data-tab="css">CSS</button>
               <button class="output-tab" data-tab="js">JavaScript</button>
-            </div>
-            <div class="output-toggle">
-              <label class="toggle-label">
-                <input type="checkbox" id="shadow-type-toggle" />
-                <span class="toggle-text">
-                  <span class="toggle-option active" data-type="box">box-shadow</span>
-                  <span class="toggle-option" data-type="filter">filter</span>
-                </span>
-              </label>
             </div>
             <pre class="output-code"><code id="css-output">box-shadow: none;</code></pre>
             <button class="copy-btn" id="copy-btn">
@@ -110,25 +132,28 @@
           <h2>Quick Start: Presets</h2>
         </div>
         <p class="section-desc">Ready-to-use shadows with zero configuration.</p>
-        <div class="usage-grid">
+        <div class="usage-grid usage-grid-3">
           <div class="usage-card">
             <h3><i data-lucide="file-code"></i> CSS Classes</h3>
-            <pre><code>import "@effective/shadow/shadows.css"
+            <pre><code class="language-javascript">import "@effective/shadow/shadows.css"
 
+// In your HTML/JSX
 &lt;div class="shadow-3"&gt;Card&lt;/div&gt;</code></pre>
           </div>
           <div class="usage-card">
             <h3><i data-lucide="component"></i> CSS Modules</h3>
-            <pre><code>import s from "@effective/shadow/shadows.module.css"
+            <pre><code class="language-javascript">import s from "@effective/shadow/shadows.module.css"
 
+// In your JSX
 &lt;div className={s["shadow-3"]}&gt;Card&lt;/div&gt;</code></pre>
           </div>
           <div class="usage-card">
             <h3><i data-lucide="wind"></i> Tailwind Plugin</h3>
-            <pre><code>// tailwind.config.js
+            <pre><code class="language-javascript">// tailwind.config.js
 import shadow from "@effective/shadow/tailwind"
 export default { plugins: [shadow] }
 
+// In your HTML
 &lt;div class="shadow-effective-3"&gt;Card&lt;/div&gt;</code></pre>
           </div>
         </div>
@@ -141,18 +166,18 @@ export default { plugins: [shadow] }
           <h2>Quick Start: API</h2>
         </div>
         <p class="section-desc">Full control with the JavaScript/TypeScript API.</p>
-        <div class="usage-grid">
+        <div class="usage-grid usage-grid-3">
           <div class="usage-card">
             <h3><i data-lucide="list"></i> Pre-generated Shadows</h3>
-            <pre><code>import { boxShadow, dropShadow } from "@effective/shadow"
+            <pre><code class="language-javascript">import { boxShadow, dropShadow } from "@effective/shadow"
 
-// Apply directly
+// Apply directly to elements
 element.style.boxShadow = boxShadow[3]
 element.style.filter = dropShadow[3]</code></pre>
           </div>
           <div class="usage-card">
             <h3><i data-lucide="settings-2"></i> Custom Shadows</h3>
-            <pre><code>import { buildShadow, toBoxShadow } from "@effective/shadow"
+            <pre><code class="language-javascript">import { buildShadow, toBoxShadow } from "@effective/shadow"
 
 const shadow = buildShadow({
   shadowLayers: 4,
@@ -165,13 +190,13 @@ const css = toBoxShadow(shadow)</code></pre>
           </div>
           <div class="usage-card">
             <h3><i data-lucide="palette"></i> Use Presets</h3>
-            <pre><code>import { generateCSS, effectivePreset } from "@effective/shadow"
+            <pre><code class="language-javascript">import { generateCSS, effectivePreset } from "@effective/shadow"
 
 // Generate CSS from any preset
 const css = generateCSS(effectivePreset)
 
 // Or create your own preset
-const myPreset = { ...effectivePreset, elevations: [...] }</code></pre>
+const myPreset = { ...effectivePreset, ... }</code></pre>
           </div>
         </div>
       </section>
