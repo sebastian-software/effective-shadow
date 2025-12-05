@@ -1573,35 +1573,96 @@ body {
   cursor: pointer;
 }
 
-.control-color {
+/* Color Control - Full width below sliders */
+.color-control {
+  grid-column: 1 / -1;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
   position: relative;
 }
 
-.control-color label {
-  flex: 1;
+.color-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.color-swatch {
-  width: 36px;
-  height: 28px;
-  border: 2px solid #e5e7eb;
-  border-radius: var(--radius-sm);
+.color-presets {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-preset {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid transparent;
   cursor: pointer;
-  transition: border-color 0.15s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.color-swatch:hover {
+.color-preset:hover {
+  transform: scale(1.1);
+}
+
+.color-preset.active {
   border-color: var(--primary);
+  box-shadow:
+    0 0 0 2px white,
+    0 0 0 4px var(--primary);
+}
+
+.color-preset-custom {
+  background: linear-gradient(
+    135deg,
+    #ff6b6b 0%,
+    #feca57 25%,
+    #48dbfb 50%,
+    #ff9ff3 75%,
+    #ff6b6b 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-preset-icon {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.color-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-value-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.color-value-hex {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
 .color-popover {
   position: absolute;
-  right: 0;
-  top: 100%;
-  margin-top: 8px;
+  left: 0;
+  top: calc(100% + 12px);
   z-index: 100;
 }
 
@@ -1611,14 +1672,23 @@ body {
   z-index: -1;
 }
 
+.color-popover-content {
+  background: white;
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 /* react-colorful overrides */
 .color-popover .react-colorful {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 160px;
   border-radius: var(--radius-sm);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .color-popover .react-colorful__saturation {
@@ -1626,16 +1696,32 @@ body {
 }
 
 .color-popover .react-colorful__hue {
-  height: 16px;
+  height: 14px;
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
 .color-popover .react-colorful__saturation-pointer,
 .color-popover .react-colorful__hue-pointer {
-  width: 18px;
-  height: 18px;
-  border: 2px solid white;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.color-hex-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.color-hex-input:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .playground-output {

@@ -90,27 +90,74 @@ interface ColorControlProps {
   onChange: (value: string) => void
 }
 
+const COLOR_PRESETS = [
+  { color: "#000000", name: "Black" },
+  { color: "#3b82f6", name: "Blue" },
+  { color: "#10b981", name: "Green" },
+  { color: "#f59e0b", name: "Amber" },
+  { color: "#ef4444", name: "Red" },
+  { color: "#8b5cf6", name: "Purple" },
+  { color: "#ec4899", name: "Pink" }
+]
+
 function ColorControl({ value, onChange }: ColorControlProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const isDefault = value === "#000000"
+  const isCustomColor = !COLOR_PRESETS.some((p) => p.color === value)
+
+  const handlePresetClick = (color: string) => {
+    onChange(color)
+    setIsOpen(false)
+  }
 
   return (
-    <div className="control control-color">
-      <label>
-        <span>Color</span>
-      </label>
-      <button
-        className="color-swatch"
-        style={{ background: value }}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Pick color"
-      />
+    <div className="color-control">
+      <div className="color-label">Shadow Color</div>
+      <div className="color-presets">
+        {COLOR_PRESETS.map((preset) => (
+          <button
+            key={preset.color}
+            className={`color-preset ${value === preset.color ? "active" : ""}`}
+            style={{ background: preset.color }}
+            onClick={() => handlePresetClick(preset.color)}
+            title={preset.name}
+          />
+        ))}
+        <button
+          className={`color-preset color-preset-custom ${isCustomColor ? "active" : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
+          title="Custom color"
+        >
+          <span className="color-preset-icon">+</span>
+        </button>
+      </div>
+      {!isDefault && (
+        <div className="color-value">
+          <span className="color-value-swatch" style={{ background: value }} />
+          <span className="color-value-hex">{value.toUpperCase()}</span>
+        </div>
+      )}
       {isOpen && (
         <div className="color-popover">
           <div
             className="color-popover-backdrop"
             onClick={() => setIsOpen(false)}
           />
-          <HexColorPicker color={value} onChange={onChange} />
+          <div className="color-popover-content">
+            <HexColorPicker color={value} onChange={onChange} />
+            <input
+              type="text"
+              className="color-hex-input"
+              value={value}
+              onChange={(e) => {
+                const hex = e.target.value
+                if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+                  onChange(hex)
+                }
+              }}
+              placeholder="#000000"
+            />
+          </div>
         </div>
       )}
     </div>
