@@ -954,78 +954,124 @@ body {
   position: relative;
 }
 
-/* Prism code block styling */
+/* =============================================================================
+   Code Block Component
+   ============================================================================= */
+
+.code-block-wrapper {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.code-block-label {
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8b949e;
+  background: #1e2430;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .code-block {
   margin: 0;
-  padding: 20px;
+  padding: 16px 20px;
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: auto;
   border-radius: 0;
+  /* Slightly lighter than Night Owl default */
+  background: #1e2430 !important;
+}
+
+.code-block code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.1);
+  color: #8b949e;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #c9d1d9;
+}
+
+.code-copy-btn.copied {
+  background: var(--accent);
+  color: white;
+}
+
+/* With label, push copy button down */
+.code-block-wrapper:has(.code-block-label) .code-copy-btn {
+  top: 44px;
 }
 
 .output-tabs {
   display: flex;
-  border-bottom: 1px solid var(--code-border);
-  background: white;
+  gap: 4px;
+  padding: 8px 8px 0;
+  background: #161b22;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .output-tab {
-  padding: 8px 16px;
+  padding: 8px 14px;
   background: transparent;
   border: none;
-  color: var(--text-muted);
-  font-size: 13px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: #8b949e;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.output-tab:hover {
+  color: #c9d1d9;
 }
 
 .output-tab.active {
-  color: var(--accent);
-  background: var(--code-bg);
-  border-bottom: 2px solid var(--accent);
-  margin-bottom: -1px;
+  color: #e6edf3;
+  background: #1e2430;
 }
 
-.output-code {
-  padding: 16px;
-  margin: 0;
-  overflow-x: auto;
-  background: var(--code-bg);
+/* CodeBlock inside playground output needs special treatment */
+.playground-output .code-block-wrapper {
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: none;
 }
 
-.output-code code {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text);
-  white-space: pre-wrap;
-  word-break: break-all;
-  background: transparent !important;
+.playground-output .code-block {
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
-.copy-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 16px 16px;
-  padding: 8px 16px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.copy-btn .lucide {
-  width: 14px;
-  height: 14px;
-}
-
-.copy-btn.copied {
-  background: #10b981;
+.playground-output .code-copy-btn {
+  top: 8px;
 }
 
 /* =============================================================================
@@ -1050,12 +1096,6 @@ body {
   color: var(--text);
 }
 
-.usage-section h3 .lucide {
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
-}
-
 .usage-logo {
   width: 24px;
   height: 24px;
@@ -1067,39 +1107,12 @@ body {
   margin-bottom: 16px;
 }
 
-.usage-section pre {
-  background: var(--code-bg);
-  border: 1px solid var(--code-border);
-  border-radius: var(--radius-sm);
-  padding: 16px 20px;
-  overflow-x: auto;
+.usage-section .code-block-wrapper {
   margin-bottom: 12px;
 }
 
-.usage-section pre:last-child {
+.usage-section .code-block-wrapper:last-child {
   margin-bottom: 0;
-}
-
-.usage-section code {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.6;
-  background: transparent !important;
-}
-
-.code-ellipsis {
-  display: block;
-  color: var(--text-muted);
-  opacity: 0.5;
-  padding: 4px 0;
-  font-size: 16px;
-  letter-spacing: 2px;
-}
-
-/* Override highlight.js */
-pre code.hljs {
-  background: transparent !important;
-  padding: 0 !important;
 }
 
 /* =============================================================================

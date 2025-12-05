@@ -18,7 +18,7 @@ interface PlaygroundState {
   color: string
 }
 
-type OutputTab = "css" | "js"
+type OutputTab = "box" | "drop" | "js"
 
 const PRESET_CONFIGS = effectivePreset.elevations.map((elev) => ({
   layers: elev.shadowLayers ?? effectivePreset.base.shadowLayers ?? 4,
@@ -128,9 +128,8 @@ export function Playground() {
     alpha: level4.alpha,
     color: "#000000"
   })
-  const [outputTab, setOutputTab] = useState<OutputTab>("css")
+  const [outputTab, setOutputTab] = useState<OutputTab>("box")
   const [preset, setPreset] = useState("4")
-  const [isCopied, setIsCopied] = useState(false)
 
   // Generate shadow values
   const shadowSet = buildShadow({
@@ -150,34 +149,38 @@ export function Playground() {
   const hasColor = state.color !== "#000000"
   const colorRgb = hexToRgb(state.color)
 
-  const cssOutput = `/* box-shadow */
-box-shadow: ${boxShadowCSS};
+  const boxOutput = `box-shadow: ${boxShadowCSS};`
 
-/* drop-shadow (for non-rectangular shapes) */
-filter: ${dropShadowCSS};`
+  const dropOutput = `filter: ${dropShadowCSS};`
 
   const colorArg = hasColor ? `, { color: "${colorRgb}" }` : ""
   const jsOutput = `import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
 
-const shadow = buildShadow(${JSON.stringify(
-    {
-      shadowLayers: state.layers,
-      finalOffsetX: state.offsetX,
-      finalOffsetY: state.offsetY,
-      finalBlur: state.blur,
-      finalAlpha: state.alpha
-    },
-    null,
-    2
-  )})
+const shadow = buildShadow({
+  shadowLayers: ${state.layers},
+  finalOffsetX: ${state.offsetX},
+  finalOffsetY: ${state.offsetY},
+  finalBlur: ${state.blur},
+  finalAlpha: ${state.alpha}
+})
 
-// For rectangular elements
 const boxShadow = toBoxShadow(shadow${colorArg})
+const dropShadow = toDropShadow(shadow${colorArg})`
 
-// For non-rectangular shapes (icons, PNGs)
-const filter = toDropShadow(shadow${colorArg})`
+  const getOutput = () => {
+    switch (outputTab) {
+      case "box":
+        return boxOutput
+      case "drop":
+        return dropOutput
+      case "js":
+        return jsOutput
+    }
+  }
 
-  const output = outputTab === "css" ? cssOutput : jsOutput
+  const getLanguage = () => {
+    return outputTab === "js" ? "tsx" : "css"
+  }
 
   const updateState = useCallback(
     (key: keyof PlaygroundState, value: number | string) => {
@@ -206,12 +209,6 @@ const filter = toDropShadow(shadow${colorArg})`
       }))
     }
   }, [])
-
-  const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(output)
-    setIsCopied(true)
-    setTimeout(() => setIsCopied(false), 2000)
-  }, [output])
 
   return (
     <div className="playground">
@@ -310,10 +307,16 @@ const filter = toDropShadow(shadow${colorArg})`
       <div className="playground-output">
         <div className="output-tabs">
           <button
-            className={`output-tab ${outputTab === "css" ? "active" : ""}`}
-            onClick={() => setOutputTab("css")}
+            className={`output-tab ${outputTab === "box" ? "active" : ""}`}
+            onClick={() => setOutputTab("box")}
           >
-            CSS
+            Box Shadow
+          </button>
+          <button
+            className={`output-tab ${outputTab === "drop" ? "active" : ""}`}
+            onClick={() => setOutputTab("drop")}
+          >
+            Drop Shadow
           </button>
           <button
             className={`output-tab ${outputTab === "js" ? "active" : ""}`}
@@ -322,17 +325,7 @@ const filter = toDropShadow(shadow${colorArg})`
             JavaScript
           </button>
         </div>
-        <CodeBlock
-          code={output}
-          language={outputTab === "css" ? "css" : "tsx"}
-        />
-        <button
-          className={`copy-btn ${isCopied ? "copied" : ""}`}
-          onClick={handleCopy}
-        >
-          <Icon name={isCopied ? "check" : "copy"} size="sm" />
-          Copy
-        </button>
+        <CodeBlock code={getOutput()} language={getLanguage()} />
       </div>
     </div>
   )
