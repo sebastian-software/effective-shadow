@@ -6,7 +6,6 @@ import {
   effectivePreset
 } from "@effective/shadow"
 import { HexColorPicker } from "react-colorful"
-import { Icon } from "./Icons"
 import { CodeBlock } from "./CodeBlock"
 
 interface PlaygroundState {
@@ -212,6 +211,72 @@ const dropShadow = toDropShadow(shadow${colorArg})`
 
   return (
     <div className="playground">
+      {/* 1. Preset buttons at top */}
+      <div className="playground-presets">
+        {LEVEL_NAMES.slice(1).map((name, i) => (
+          <button
+            key={i + 1}
+            className={`preset-btn ${preset === String(i + 1) ? "active" : ""}`}
+            onClick={() => handlePresetChange(String(i + 1))}
+          >
+            <span className="preset-level">{i + 1}</span>
+            <span className="preset-name">{name}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* 2. Sliders */}
+      <div className="playground-controls">
+        <SliderControl
+          label="Layers"
+          value={state.layers}
+          min={1}
+          max={8}
+          step={1}
+          onChange={(v) => updateState("layers", v)}
+        />
+        <SliderControl
+          label="Offset X"
+          value={state.offsetX}
+          min={-20}
+          max={20}
+          step={1}
+          unit="px"
+          onChange={(v) => updateState("offsetX", v)}
+        />
+        <SliderControl
+          label="Offset Y"
+          value={state.offsetY}
+          min={0}
+          max={40}
+          step={1}
+          unit="px"
+          onChange={(v) => updateState("offsetY", v)}
+        />
+        <SliderControl
+          label="Blur"
+          value={state.blur}
+          min={0}
+          max={60}
+          step={1}
+          unit="px"
+          onChange={(v) => updateState("blur", v)}
+        />
+        <SliderControl
+          label="Opacity"
+          value={state.alpha}
+          min={0}
+          max={0.5}
+          step={0.01}
+          onChange={(v) => updateState("alpha", v)}
+        />
+        <ColorControl
+          value={state.color}
+          onChange={(v) => updateState("color", v)}
+        />
+      </div>
+
+      {/* 3. Preview */}
       <div className="playground-previews">
         <div className="preview-panel">
           <div className="preview-label">box-shadow</div>
@@ -219,91 +284,21 @@ const dropShadow = toDropShadow(shadow${colorArg})`
             <div
               className="playground-card"
               style={{ boxShadow: boxShadowCSS }}
-            >
-              <Icon name="square" size="lg" className="preview-icon" />
-            </div>
+            />
           </div>
         </div>
         <div className="preview-panel">
           <div className="preview-label">drop-shadow</div>
           <div className="playground-preview">
-            <div className="playground-card" style={{ filter: dropShadowCSS }}>
-              <Icon name="star" size="lg" className="preview-icon" />
-            </div>
+            <div
+              className="playground-card"
+              style={{ filter: dropShadowCSS }}
+            />
           </div>
         </div>
       </div>
 
-      <div className="playground-sidebar">
-        <div className="preset-selector">
-          <label>
-            <Icon name="palette" size="sm" />
-            <span>Preset</span>
-          </label>
-          <select
-            value={preset}
-            onChange={(e) => handlePresetChange(e.target.value)}
-          >
-            <option value="custom">Custom</option>
-            {LEVEL_NAMES.slice(1).map((name, i) => (
-              <option key={i + 1} value={i + 1}>
-                Level {i + 1} – {name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="playground-controls">
-          <SliderControl
-            label="Layers"
-            value={state.layers}
-            min={1}
-            max={8}
-            step={1}
-            onChange={(v) => updateState("layers", v)}
-          />
-          <SliderControl
-            label="Offset X"
-            value={state.offsetX}
-            min={-20}
-            max={20}
-            step={1}
-            unit="px"
-            onChange={(v) => updateState("offsetX", v)}
-          />
-          <SliderControl
-            label="Offset Y"
-            value={state.offsetY}
-            min={0}
-            max={40}
-            step={1}
-            unit="px"
-            onChange={(v) => updateState("offsetY", v)}
-          />
-          <SliderControl
-            label="Blur"
-            value={state.blur}
-            min={0}
-            max={60}
-            step={1}
-            unit="px"
-            onChange={(v) => updateState("blur", v)}
-          />
-          <SliderControl
-            label="Opacity"
-            value={state.alpha}
-            min={0}
-            max={0.5}
-            step={0.01}
-            onChange={(v) => updateState("alpha", v)}
-          />
-          <ColorControl
-            value={state.color}
-            onChange={(v) => updateState("color", v)}
-          />
-        </div>
-      </div>
-
+      {/* 4. Code output at bottom */}
       <div className="playground-output">
         <div className="output-tabs">
           <button
