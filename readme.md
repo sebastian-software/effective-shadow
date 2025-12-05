@@ -1,7 +1,7 @@
 # Effective Shadow
 
 <p align="center">
-  <img src="images/default-shadows.png" alt="Shadow elevation examples" width="522"/>
+  <img src="images/default-shadows.png" alt="Shadow elevation examples"/>
 </p>
 
 <p align="center">
