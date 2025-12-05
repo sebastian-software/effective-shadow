@@ -99,6 +99,7 @@ body {
     white 100%
   );
   max-width: none;
+  padding: 100px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -130,6 +131,7 @@ body {
 .section-glow {
   background: linear-gradient(180deg, #f0f7ff 0%, #f8fafc 50%, white 100%);
   max-width: none;
+  padding: 100px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -162,6 +164,7 @@ body {
 .section-dots {
   background: var(--bg-warm);
   max-width: none;
+  padding: 100px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -198,6 +201,7 @@ body {
   background: var(--bg-hero);
   color: var(--text-light);
   max-width: none;
+  padding: 100px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -246,6 +250,7 @@ body {
 .section-mesh {
   background: linear-gradient(135deg, #fefefe 0%, #f8fafc 50%, #f0f9ff 100%);
   max-width: none;
+  padding: 100px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -991,7 +996,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 180px;
-  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f7 100%);
+  background: linear-gradient(145deg, #f0f7ff 0%, #f8fafc 50%, #f0fdfa 100%);
   border-radius: var(--radius-sm);
 }
 
