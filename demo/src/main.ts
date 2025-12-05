@@ -2,9 +2,9 @@ import {
   boxShadow,
   buildShadow,
   toBoxShadow,
-  toDropShadow
+  toDropShadow,
+  effectivePreset
 } from "@effective/shadow"
-import { effectivePreset } from "@effective/shadow/presets/effective"
 
 // Declare external libraries
 declare const lucide: { createIcons: () => void }

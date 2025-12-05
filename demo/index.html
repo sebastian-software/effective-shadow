@@ -138,28 +138,89 @@
       <section class="section">
         <div class="section-header">
           <i data-lucide="image" class="section-icon"></i>
-          <h2>When to Use Which Shadow</h2>
+          <h2>box-shadow vs. filter: drop-shadow</h2>
         </div>
         <div class="prose">
           <p>
-            CSS <code>box-shadow</code> respects <code>border-radius</code> — circles and rounded 
-            rectangles get properly shaped shadows. But for SVG icons, PNGs with transparency, or 
-            elements with <code>clip-path</code>, it falls back to a rectangular bounding box:
+            CSS offers two ways to add shadows. For UI components, here's what matters:
           </p>
+        </div>
+        
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>box-shadow</th>
+              <th>filter: drop-shadow</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Follows border-radius</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+            </tr>
+            <tr>
+              <td>Follows element shape (SVG, PNG)</td>
+              <td class="no">✗</td>
+              <td class="yes">✓</td>
+            </tr>
+            <tr>
+              <td>GPU accelerated</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+            </tr>
+            <tr>
+              <td>Smooth animations</td>
+              <td class="meh">Repaint</td>
+              <td class="yes">Composited</td>
+            </tr>
+            <tr>
+              <td>Creates stacking context</td>
+              <td class="yes">No</td>
+              <td class="meh">Yes</td>
+            </tr>
+            <tr>
+              <td>Text rendering</td>
+              <td class="yes">Normal</td>
+              <td class="yes">Normal*</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="prose" style="margin-top: 24px;">
+          <p>
+            <small>* Text blur was an issue in older browsers but is resolved in modern Chrome, Safari, and Firefox.</small>
+          </p>
+        </div>
+
+        <div class="recommendation">
+          <div class="recommendation-header">
+            <i data-lucide="lightbulb"></i>
+            <strong>Recommendation for UI Components</strong>
+          </div>
+          <p>
+            For cards, buttons, modals, and other rectangular UI elements: both work equally well.
+            <code>filter: drop-shadow()</code> has a slight edge for animations due to GPU compositing.
+            Use <code>box-shadow</code> if you need to avoid creating a new stacking context.
+          </p>
+          <p>
+            For icons, logos, and images: always use <code>filter: drop-shadow()</code> — 
+            it's the only option that follows non-rectangular shapes.
+          </p>
+        </div>
+
+        <div class="prose" style="margin-top: 32px;">
+          <p><strong>Visual difference:</strong></p>
         </div>
         <div class="shadow-demo" id="shadow-demo">
           <!-- Filled by JS -->
         </div>
         <div class="prose">
           <p>
-            <strong>Effective Shadow</strong> generates both <code>box-shadow</code> and
-            <code>filter: drop-shadow()</code> variants. Use <code>box-shadow</code> for cards, 
-            buttons, and rounded elements. Use <code>drop-shadow</code> for icons and images.
-          </p>
-          <p>
-            We automatically compensate for the visual differences between these two CSS
-            properties (drop-shadow uses Gaussian blur, box-shadow uses box blur), so your
-            shadows look consistent regardless of which variant you use.
+            <strong>Effective Shadow</strong> generates both variants with matching visual intensity.
+            We compensate for the algorithm differences (Gaussian vs. box blur) so shadows look 
+            consistent regardless of which you choose.
           </p>
         </div>
       </section>

@@ -416,6 +416,101 @@ body {
 }
 
 /* =============================================================================
+   Comparison Table
+   ============================================================================= */
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 15px;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.comparison-table th {
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg-alt);
+}
+
+.comparison-table th:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.comparison-table th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.comparison-table td:first-child {
+  color: var(--text-muted);
+}
+
+.comparison-table .yes {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.comparison-table .no {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.comparison-table .meh {
+  color: #d97706;
+  font-weight: 500;
+}
+
+/* Recommendation Box */
+.recommendation {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 32px 0;
+}
+
+.recommendation-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #16a34a;
+}
+
+.recommendation-header .lucide {
+  width: 20px;
+  height: 20px;
+}
+
+.recommendation-header strong {
+  color: #166534;
+}
+
+.recommendation p {
+  margin: 0 0 12px;
+  color: #166534;
+  line-height: 1.6;
+}
+
+.recommendation p:last-child {
+  margin-bottom: 0;
+}
+
+.recommendation code {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* =============================================================================
    Comparison
    ============================================================================= */
 
