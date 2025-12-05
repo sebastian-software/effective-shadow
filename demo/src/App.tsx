@@ -352,8 +352,8 @@ function SectionColoredShadows() {
         <h2>Add Some Color</h2>
       </div>
       <p className="section-desc">
-        Black shadows are fine. Colored glows are 🔥. Perfect for CTAs that need
-        to pop.
+        Black shadows are fine. Colored glows are next level. Perfect for CTAs
+        that need to pop.
       </p>
       <ColoredShadows />
     </section>
