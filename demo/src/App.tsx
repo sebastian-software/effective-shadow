@@ -566,17 +566,40 @@ function SectionInspiration() {
 function Footer() {
   return (
     <footer className="footer">
-      <p>
-        <Icon name="heart" size="sm" className="footer-icon" /> Built by{" "}
-        <a href="https://www.sebastian-software.de">Sebastian Software</a>
+      <div className="footer-brand">
+        <div className="footer-logo">
+          <Icon name="layers" size="lg" />
+        </div>
+        <span className="footer-name">Effective Shadow</span>
+      </div>
+
+      <p className="footer-tagline">
+        Beautiful shadows, mathematically precise.
       </p>
+
       <div className="footer-links">
-        <a href="https://github.com/sebastian-software/effective-shadow">
-          <Icon name="github" size="md" /> GitHub
+        <a
+          href="https://github.com/sebastian-software/effective-shadow"
+          className="footer-link"
+        >
+          <Icon name="github" size="md" />
+          <span>GitHub</span>
         </a>
-        <a href="https://www.npmjs.com/package/@effective/shadow">
-          <Icon name="package" size="md" /> npm
+        <a
+          href="https://www.npmjs.com/package/@effective/shadow"
+          className="footer-link"
+        >
+          <Icon name="package" size="md" />
+          <span>npm</span>
         </a>
+        <a href="https://www.sebastian-software.de" className="footer-link">
+          <Icon name="heart" size="md" />
+          <span>Sebastian Software</span>
+        </a>
+      </div>
+
+      <div className="footer-copyright">
+        © {new Date().getFullYear()} Sebastian Software GmbH
       </div>
     </footer>
   )
