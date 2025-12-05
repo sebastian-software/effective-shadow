@@ -87,22 +87,25 @@ export const effectivePreset: ShadowPreset = {
 
     // Level 3 (sm): Low - cards at rest
     // Tailwind shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 3, finalBlur: 5, shadowLayers: 4, finalAlpha: 0.12 },
+    { finalOffsetY: 3, finalBlur: 5, shadowLayers: 4, finalAlpha: 0.1 },
 
     // Level 4 (md): Medium - hovered cards, buttons
     // Tailwind shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 6, finalBlur: 10, shadowLayers: 4, finalAlpha: 0.12 },
+    { finalOffsetY: 6, finalBlur: 10, shadowLayers: 4, finalAlpha: 0.1 },
 
     // Level 5 (lg): High - dropdowns, popovers
     // Tailwind shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 12, finalBlur: 18, shadowLayers: 5, finalAlpha: 0.12 },
+    // Reduced alpha to compensate for 5 layers
+    { finalOffsetY: 12, finalBlur: 18, shadowLayers: 5, finalAlpha: 0.09 },
 
     // Level 6 (xl): Higher - modals, dialogs
     // Tailwind shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 20, finalBlur: 30, shadowLayers: 6, finalAlpha: 0.12 },
+    // Reduced alpha to compensate for 6 layers
+    { finalOffsetY: 20, finalBlur: 30, shadowLayers: 6, finalAlpha: 0.08 },
 
     // Level 7 (2xl): Highest - critical overlays, full-screen modals
     // Tailwind shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25)
-    { finalOffsetY: 32, finalBlur: 48, shadowLayers: 8, finalAlpha: 0.25 }
+    // Reduced alpha to compensate for 8 layers
+    { finalOffsetY: 32, finalBlur: 48, shadowLayers: 8, finalAlpha: 0.18 }
   ]
 }
