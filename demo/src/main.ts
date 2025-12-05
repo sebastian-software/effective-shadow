@@ -1,6 +1,5 @@
 import {
   boxShadow,
-  dropShadow,
   buildShadow,
   toBoxShadow,
   toDropShadow,
@@ -11,10 +10,11 @@ import {
 declare const hljs: { highlightAll: () => void }
 
 // =============================================================================
-// Tailwind CSS v4 shadow values (for comparison only, not part of public API)
-// Source: https://tailwindcss.com/docs/box-shadow
+// Shadow values from various design systems (for comparison)
 // =============================================================================
 
+// Tailwind CSS v4
+// Source: https://tailwindcss.com/docs/box-shadow
 const TAILWIND_SHADOWS = [
   { name: "none", value: "none" },
   { name: "2xs", value: "0 1px rgb(0 0 0 / 0.05)" },
@@ -36,6 +36,81 @@ const TAILWIND_SHADOWS = [
     value: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
   },
   { name: "2xl", value: "0 25px 50px -12px rgb(0 0 0 / 0.25)" }
+]
+
+// Material Design 3 (key shadow + ambient shadow combined)
+// Source: https://m3.material.io/styles/elevation
+// Values approximated from dp to px, combining key (26% opacity) and ambient (8% opacity) shadows
+const MATERIAL_SHADOWS = [
+  { name: "0", value: "none" },
+  {
+    name: "1",
+    value:
+      "0 1px 1px 0 rgb(0 0 0 / 0.14), 0 2px 1px -1px rgb(0 0 0 / 0.12), 0 1px 3px 0 rgb(0 0 0 / 0.2)"
+  },
+  {
+    name: "2",
+    value:
+      "0 2px 2px 0 rgb(0 0 0 / 0.14), 0 3px 1px -2px rgb(0 0 0 / 0.12), 0 1px 5px 0 rgb(0 0 0 / 0.2)"
+  },
+  {
+    name: "3",
+    value:
+      "0 3px 4px 0 rgb(0 0 0 / 0.14), 0 3px 3px -2px rgb(0 0 0 / 0.12), 0 1px 8px 0 rgb(0 0 0 / 0.2)"
+  },
+  {
+    name: "4",
+    value:
+      "0 4px 5px 0 rgb(0 0 0 / 0.14), 0 1px 10px 0 rgb(0 0 0 / 0.12), 0 2px 4px -1px rgb(0 0 0 / 0.2)"
+  },
+  {
+    name: "6",
+    value:
+      "0 6px 10px 0 rgb(0 0 0 / 0.14), 0 1px 18px 0 rgb(0 0 0 / 0.12), 0 3px 5px -1px rgb(0 0 0 / 0.2)"
+  },
+  {
+    name: "8",
+    value:
+      "0 8px 10px 1px rgb(0 0 0 / 0.14), 0 3px 14px 2px rgb(0 0 0 / 0.12), 0 5px 5px -3px rgb(0 0 0 / 0.2)"
+  },
+  {
+    name: "12",
+    value:
+      "0 12px 17px 2px rgb(0 0 0 / 0.14), 0 5px 22px 4px rgb(0 0 0 / 0.12), 0 7px 8px -4px rgb(0 0 0 / 0.2)"
+  }
+]
+
+// Radix UI Themes
+// Source: https://github.com/radix-ui/themes (shadow.css)
+const RADIX_SHADOWS = [
+  { name: "0", value: "none" },
+  {
+    name: "1",
+    value: "0 1px 2px 0 rgb(0 0 0 / 0.05)"
+  },
+  {
+    name: "2",
+    value: "0 1px 2px 0 rgb(0 0 0 / 0.06), 0 1px 3px 0 rgb(0 0 0 / 0.1)"
+  },
+  {
+    name: "3",
+    value: "0 2px 4px -1px rgb(0 0 0 / 0.06), 0 4px 5px -2px rgb(0 0 0 / 0.1)"
+  },
+  {
+    name: "4",
+    value: "0 3px 7px -2px rgb(0 0 0 / 0.08), 0 6px 12px -4px rgb(0 0 0 / 0.14)"
+  },
+  {
+    name: "5",
+    value:
+      "0 8px 20px -6px rgb(0 0 0 / 0.1), 0 12px 28px -8px rgb(0 0 0 / 0.18)"
+  },
+  {
+    name: "6",
+    value:
+      "0 12px 32px -8px rgb(0 0 0 / 0.12), 0 20px 48px -16px rgb(0 0 0 / 0.22)"
+  },
+  { name: "-", value: "none" } // Radix only has 6 levels, padding for alignment
 ]
 
 // =============================================================================
@@ -133,25 +208,33 @@ function renderComparison() {
 
   const columns: ComparisonColumn[] = [
     {
-      title: "Effective Box Shadow",
-      description: "3-7 layers, Bézier-curved",
+      title: "Effective",
+      description: "3-7 layers, Bézier",
       shadows: boxShadow.slice(1).map((s, i) => ({
-        name: `Level ${LEVEL_NAMES[i + 1]}`,
+        name: LEVEL_NAMES[i + 1],
         boxShadow: s
       }))
     },
     {
-      title: "Effective Drop Shadow",
-      description: "Identical appearance",
-      shadows: dropShadow.slice(1).map((s, i) => ({
-        name: `Level ${LEVEL_NAMES[i + 1]}`,
-        filter: s
+      title: "Tailwind v4",
+      description: "1-2 layers",
+      shadows: TAILWIND_SHADOWS.slice(1).map((s) => ({
+        name: s.name,
+        boxShadow: s.value
       }))
     },
     {
-      title: "Tailwind CSS v4",
-      description: "1-2 layers, linear",
-      shadows: TAILWIND_SHADOWS.slice(1).map((s) => ({
+      title: "Material 3",
+      description: "3 layers (key+ambient)",
+      shadows: MATERIAL_SHADOWS.slice(1).map((s) => ({
+        name: s.name,
+        boxShadow: s.value
+      }))
+    },
+    {
+      title: "Radix",
+      description: "1-2 layers",
+      shadows: RADIX_SHADOWS.slice(1).map((s) => ({
         name: s.name,
         boxShadow: s.value
       }))

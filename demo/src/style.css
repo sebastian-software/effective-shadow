@@ -598,11 +598,11 @@ body {
 
 .comparison {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .comparison {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
@@ -612,43 +612,43 @@ body {
 @media (max-width: 600px) {
   .comparison {
     grid-template-columns: 1fr;
-    gap: 56px;
+    gap: 48px;
   }
 }
 
 .comparison-column {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* More space for intense shadows to breathe */
+  gap: 28px; /* Space for shadows to breathe */
 }
 
 .comparison-column h3 {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0;
 }
 
 .comparison-desc {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--text-muted);
-  margin-bottom: 8px;
-  padding-bottom: 12px;
+  margin-bottom: 4px;
+  padding-bottom: 10px;
   border-bottom: 2px solid var(--accent);
 }
 
 .comparison-card {
   background: white;
   border-radius: var(--radius);
-  padding: 28px 32px;
-  min-height: 64px;
+  padding: 20px 16px;
+  min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .comparison-card span {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-muted);
 }
