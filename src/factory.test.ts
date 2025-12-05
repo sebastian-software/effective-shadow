@@ -3,6 +3,7 @@ import {
   buildShadow,
   toBoxShadow,
   toDropShadow,
+  dropShadowModifiers,
   type ShadowConfig,
   type ShadowSet
 } from "./factory"
@@ -99,6 +100,21 @@ describe("toBoxShadow", () => {
     expect(lowPrecision).toContain("1.1px")
     expect(highPrecision).toContain("1.12346px")
   })
+
+  it("supports custom color option", () => {
+    const shadowSet: ShadowSet = [[1, 2, 3, 0.1]]
+    const result = toBoxShadow(shadowSet, 3, { color: "99, 102, 241" })
+
+    expect(result).toContain("rgba(99, 102, 241, 0.100)")
+  })
+
+  it("supports CSS custom property as color", () => {
+    const shadowSet: ShadowSet = [[1, 2, 3, 0.1]]
+    const result = toBoxShadow(shadowSet, 3, { color: "var(--shadow-color)" })
+
+    expect(result).toContain("var(--shadow-color)")
+    expect(result).not.toContain("rgba")
+  })
 })
 
 describe("toDropShadow", () => {
@@ -128,11 +144,19 @@ describe("toDropShadow", () => {
     expect(result).toContain("5.000px")
   })
 
-  it("applies alpha modifier (1.1x)", () => {
+  it("applies alpha modifier from dropShadowModifiers", () => {
     const shadowSet: ShadowSet = [[0, 0, 0, 0.1]]
     const result = toDropShadow(shadowSet)
+    const expectedAlpha = (0.1 * dropShadowModifiers.alpha).toFixed(3)
 
-    expect(result).toContain("0.110")
+    expect(result).toContain(expectedAlpha)
+  })
+
+  it("supports custom color option", () => {
+    const shadowSet: ShadowSet = [[0, 0, 10, 0.1]]
+    const result = toDropShadow(shadowSet, 3, { color: "99, 102, 241" })
+
+    expect(result).toContain("rgba(99, 102, 241,")
   })
 })
 

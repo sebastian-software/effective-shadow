@@ -129,57 +129,138 @@ export function buildShadow(config: Partial<ShadowConfig>): ShadowSet {
 }
 
 /**
+ * Options for shadow color customization.
+ *
+ * @example
+ * // Cyan shadow for a CTA button (like Tailwind's colored shadows)
+ * toBoxShadow(shadows, 3, { color: "0, 200, 255" })
+ *
+ * // Using CSS custom property
+ * toBoxShadow(shadows, 3, { color: "var(--shadow-color)" })
+ */
+export interface ShadowColorOptions {
+  /**
+   * Shadow color as RGB values (e.g., "0, 0, 0" for black, "99, 102, 241" for indigo).
+   * The alpha will be applied from the shadow layer values.
+   *
+   * Can also be a CSS custom property reference like "var(--shadow-color)".
+   * In this case, the alpha is not applied (use rgba in your custom property).
+   */
+  color?: string
+}
+
+/**
  * Converts a shadow set to a CSS `box-shadow` string.
  *
  * @param shadowSet - Array of shadow layer values
  * @param precision - Decimal precision for values (default: 3)
+ * @param options - Optional color customization
  * @returns CSS box-shadow value string
  *
  * @example
  * const css = toBoxShadow(buildShadow({ finalOffsetY: 10, finalBlur: 20 }))
  * // "0.000px 2.891px 5.782px rgba(0, 0, 0, 0.052), ..."
+ *
+ * @example
+ * // Colored shadow for CTA buttons
+ * const coloredShadow = toBoxShadow(shadows, 3, { color: "99, 102, 241" })
+ * // "0.000px 2.891px 5.782px rgba(99, 102, 241, 0.052), ..."
  */
-export function toBoxShadow(shadowSet: ShadowSet, precision = 3): string {
+export function toBoxShadow(
+  shadowSet: ShadowSet,
+  precision = 3,
+  options: ShadowColorOptions = {}
+): string {
+  const { color = "0, 0, 0" } = options
+  const isCustomProperty = color.startsWith("var(")
+
   return shadowSet
-    .map(
-      ([leftOffset, topOffset, blur, alpha]) =>
-        `${leftOffset.toFixed(precision)}px ${topOffset.toFixed(
-          precision
-        )}px ${blur.toFixed(precision)}px rgba(0, 0, 0, ${alpha.toFixed(
-          precision
-        )})`
-    )
+    .map(([leftOffset, topOffset, blur, alpha]) => {
+      const colorValue = isCustomProperty
+        ? color
+        : `rgba(${color}, ${alpha.toFixed(precision)})`
+
+      return `${leftOffset.toFixed(precision)}px ${topOffset.toFixed(
+        precision
+      )}px ${blur.toFixed(precision)}px ${colorValue}`
+    })
     .join(",")
+}
+
+/**
+ * Modifiers to convert box-shadow values to visually matching drop-shadow values.
+ *
+ * The key differences between box-shadow and filter: drop-shadow():
+ *
+ * 1. **Blur algorithm**: box-shadow uses a box blur, while drop-shadow uses
+ *    Gaussian blur. The CSS spec defines Gaussian blur's standard deviation
+ *    as half the blur radius. To match visually, we reduce blur by ~50%.
+ *
+ * 2. **Stacking behavior**: drop-shadow stacks exponentially (2^n - 1 shadows
+ *    for n declarations) because each filter sees the previous result including
+ *    its shadow. We compensate by reducing alpha per layer.
+ *
+ * 3. **Platform consistency**: These factors also help match shadows across
+ *    CSS, Android, iOS, Figma, and Sketch (see bjango.com/articles/matchingdropshadows/).
+ *
+ * References:
+ * - https://css-tricks.com/getting-deep-into-shadows/ (exponential stacking)
+ * - https://bjango.com/articles/matchingdropshadows/ (cross-platform blur matching)
+ * - https://css-tricks.com/breaking-css-box-shadow-vs-drop-shadow/ (comparison)
+ */
+export const dropShadowModifiers = {
+  /**
+   * Blur multiplier: Gaussian blur appears ~2x more spread than box blur
+   * at the same radius, so we halve it.
+   */
+  blur: 0.5,
+
+  /**
+   * Alpha multiplier: Compensates for exponential shadow stacking in filters.
+   * With multiple layers, each layer's shadow is applied to the cumulative
+   * result, making shadows appear darker. We slightly reduce this effect.
+   */
+  alpha: 1.0
 }
 
 /**
  * Converts a shadow set to a CSS `filter: drop-shadow()` string.
  *
- * Applies modifiers to blur (0.5x) and alpha (1.1x) to visually match
- * box-shadow appearance, since drop-shadow uses Gaussian blur while
- * box-shadow uses box blur.
+ * Applies modifiers to blur and alpha to visually match box-shadow appearance.
+ * This ensures both shadow types look identical at the same elevation level —
+ * a key feature of Effective Shadow.
  *
  * @param shadowSet - Array of shadow layer values
  * @param precision - Decimal precision for values (default: 3)
+ * @param options - Optional color customization
  * @returns CSS filter drop-shadow value string
  *
  * @example
  * const css = toDropShadow(buildShadow({ finalOffsetY: 10, finalBlur: 20 }))
- * // "drop-shadow(0.000px 2.891px 2.891px rgba(0, 0, 0, 0.057)) ..."
+ * // "drop-shadow(0.000px 2.891px 2.891px rgba(0, 0, 0, 0.052)) ..."
+ *
+ * @example
+ * // Colored drop shadow
+ * const coloredShadow = toDropShadow(shadows, 3, { color: "99, 102, 241" })
  */
-export function toDropShadow(shadowSet: ShadowSet, precision = 3): string {
-  // Note: Uses a modifier on the `blur` and `opacity` values to make the
-  // drop shadow look more like a box shadow. These differ in their actual
-  // rendering as the drop-shadow is based on gaussian blur and the box-shadow
-  // is based on a box blur. See https://stackoverflow.com/a/60890557/20838
+export function toDropShadow(
+  shadowSet: ShadowSet,
+  precision = 3,
+  options: ShadowColorOptions = {}
+): string {
+  const { color = "0, 0, 0" } = options
+  const isCustomProperty = color.startsWith("var(")
+
   return shadowSet
-    .map(
-      ([leftOffset, topOffset, blur, alpha]) =>
-        `drop-shadow(${leftOffset.toFixed(precision)}px ${topOffset.toFixed(
-          precision
-        )}px ${(blur * 0.5).toFixed(precision)}px rgba(0, 0, 0, ${(
-          alpha * 1.1
-        ).toFixed(precision)}))`
-    )
+    .map(([leftOffset, topOffset, blur, alpha]) => {
+      const adjustedAlpha = alpha * dropShadowModifiers.alpha
+      const colorValue = isCustomProperty
+        ? color
+        : `rgba(${color}, ${adjustedAlpha.toFixed(precision)})`
+
+      return `drop-shadow(${leftOffset.toFixed(precision)}px ${topOffset.toFixed(
+        precision
+      )}px ${(blur * dropShadowModifiers.blur).toFixed(precision)}px ${colorValue})`
+    })
     .join(" ")
 }

@@ -4,4 +4,9 @@
  * Pre-configured shadow styles ready to use.
  */
 
-export { effectivePreset, type ShadowPreset } from "./effective"
+export {
+  effectivePreset,
+  shadowLevelNames,
+  type ShadowPreset,
+  type ShadowLevelName
+} from "./effective"

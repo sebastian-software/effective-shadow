@@ -14,17 +14,24 @@ export {
   buildShadow,
   toBoxShadow,
   toDropShadow,
+  dropShadowModifiers,
   type EasingValue,
   type ShadowConfig,
   type ShadowValues,
-  type ShadowSet
+  type ShadowSet,
+  type ShadowColorOptions
 } from "./factory"
 
 // =============================================================================
 // Presets
 // =============================================================================
 
-export { effectivePreset, type ShadowPreset } from "./presets"
+export {
+  effectivePreset,
+  shadowLevelNames,
+  type ShadowPreset,
+  type ShadowLevelName
+} from "./presets"
 
 // =============================================================================
 // CSS Generation
