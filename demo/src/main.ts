@@ -54,6 +54,17 @@ const PRESET_CONFIGS = effectivePreset.elevations.map((elev) => ({
 // Elevation Grid (skip level 0 = "none")
 // =============================================================================
 
+const LEVEL_DESCRIPTIONS = [
+  "None",
+  "Subtle lift",
+  "Low",
+  "Raised",
+  "Floating",
+  "Overlay",
+  "Modal",
+  "Peak"
+]
+
 function renderElevationGrid() {
   const grid = document.getElementById("elevation-grid")!
 
@@ -63,8 +74,8 @@ function renderElevationGrid() {
     card.className = "elevation-card"
     card.style.boxShadow = shadow
     card.innerHTML = `
-      <div class="elevation-level">${LEVEL_NAMES[level]}</div>
-      <div class="elevation-label">Level ${level}</div>
+      <div class="elevation-level">${level}</div>
+      <div class="elevation-label">${LEVEL_DESCRIPTIONS[level]}</div>
     `
     grid.appendChild(card)
   }
@@ -104,7 +115,8 @@ function renderShadowDemo() {
 // Comparison (skip "none" entries, show all levels)
 // =============================================================================
 
-const LEVEL_NAMES = ["none", "2xs", "xs", "sm", "md", "lg", "xl", "2xl"]
+// Numeric levels (0-7)
+const LEVEL_NAMES = ["0", "1", "2", "3", "4", "5", "6", "7"]
 
 interface ComparisonColumn {
   title: string
@@ -122,9 +134,9 @@ function renderComparison() {
   const columns: ComparisonColumn[] = [
     {
       title: "Effective Box Shadow",
-      description: "3-8 layers, Bézier-curved",
+      description: "3-7 layers, Bézier-curved",
       shadows: boxShadow.slice(1).map((s, i) => ({
-        name: LEVEL_NAMES[i + 1],
+        name: `Level ${LEVEL_NAMES[i + 1]}`,
         boxShadow: s
       }))
     },
@@ -132,7 +144,7 @@ function renderComparison() {
       title: "Effective Drop Shadow",
       description: "Identical appearance",
       shadows: dropShadow.slice(1).map((s, i) => ({
-        name: LEVEL_NAMES[i + 1],
+        name: `Level ${LEVEL_NAMES[i + 1]}`,
         filter: s
       }))
     },

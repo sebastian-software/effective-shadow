@@ -85,20 +85,20 @@ export default {
 
 ## The Eight Elevation Levels
 
-Pre-configured shadow intensities matching [Tailwind CSS naming](https://tailwindcss.com/docs/box-shadow):
+Pre-configured shadow intensities with **harmonic progression** — each level roughly 1.5-2× the previous:
 
-| Level | Name | Use Case          | Example                  |
-| ----- | ---- | ----------------- | ------------------------ |
-| **0** | none | No shadow         | Flat elements            |
-| **1** | 2xs  | Barely visible    | Subtle hover feedback    |
-| **2** | xs   | Minimal lift      | List items, subtle cards |
-| **3** | sm   | Low elevation     | Cards at rest            |
-| **4** | md   | Medium elevation  | Hovered cards, buttons   |
-| **5** | lg   | High elevation    | Dropdowns, popovers      |
-| **6** | xl   | Higher elevation  | Modals, dialogs          |
-| **7** | 2xl  | Highest elevation | Critical overlays        |
+| Level | Name        | Use Case                  | Offset | Blur |
+| ----- | ----------- | ------------------------- | ------ | ---- |
+| **0** | None        | No shadow                 | 0      | 0    |
+| **1** | Subtle lift | Hover feedback, borders   | 1px    | 2px  |
+| **2** | Low         | Cards at rest, list items | 2px    | 4px  |
+| **3** | Raised      | Hovered cards, active     | 3px    | 6px  |
+| **4** | Floating    | Dropdowns, tooltips       | 5px    | 10px |
+| **5** | Overlay     | Popovers, menus           | 8px    | 16px |
+| **6** | Modal       | Dialogs, sidebars         | 14px   | 28px |
+| **7** | Peak        | Critical overlays         | 24px   | 48px |
 
-Higher levels use more shadow layers (up to 8) for smoother, more realistic depth gradients.
+Higher levels use more shadow layers (3-7) for smoother, more realistic depth gradients. Alpha values are calibrated to maintain consistent perceived intensity across all levels.
 
 **[→ Preview all levels interactively](https://sebastian-software.github.io/effective-shadow/#elevation)**
 

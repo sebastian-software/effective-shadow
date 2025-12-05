@@ -34,18 +34,18 @@ export interface ShadowPreset {
 }
 
 /**
- * Tailwind-inspired shadow level names.
- * Maps our numeric levels to semantic names.
+ * Maps numeric elevation levels to Tailwind-compatible class names.
+ * Primarily for the Tailwind plugin; internally we use numeric levels.
  */
 export const shadowLevelNames = {
   0: "none",
-  1: "2xs", // Tailwind: shadow-2xs
-  2: "xs", // Tailwind: shadow-xs
-  3: "sm", // Tailwind: shadow-sm
-  4: "md", // Tailwind: shadow-md (default)
-  5: "lg", // Tailwind: shadow-lg
-  6: "xl", // Tailwind: shadow-xl
-  7: "2xl" // Tailwind: shadow-2xl
+  1: "2xs",
+  2: "xs",
+  3: "sm",
+  4: "md",
+  5: "lg",
+  6: "xl",
+  7: "2xl"
 } as const
 
 export type ShadowLevelName =
@@ -54,11 +54,16 @@ export type ShadowLevelName =
 /**
  * Effective Shadow preset - the default.
  *
- * Uses 4-8 layers with smooth Bézier transitions, scaling layer count
- * with elevation for optimal shadow quality.
+ * Design principles:
+ * 1. **Numeric levels (0-7)**: Clear, unambiguous, like Material Design
+ * 2. **Harmonic progression**: Each level roughly 1.5-2× the previous
+ * 3. **Consistent intensity**: Alpha decreases as layers increase to maintain balance
+ * 4. **Smooth gradients**: More layers at higher elevations for softer shadows
  *
- * Levels now match Tailwind CSS naming (none, 2xs, xs, sm, md, lg, xl, 2xl)
- * while providing multi-layered depth that Tailwind's defaults lack.
+ * Progression formula (approximate):
+ * - Offset Y: 0 → 1 → 2 → 3 → 5 → 8 → 14 → 24 (exponential growth)
+ * - Blur: ~1.5× offset for natural shadow spread
+ * - Alpha: Decreases with layer count to maintain consistent perceived intensity
  */
 export const effectivePreset: ShadowPreset = {
   name: "Effective",
@@ -70,42 +75,32 @@ export const effectivePreset: ShadowPreset = {
     offsetEasing: [0.7, 0.1, 0.9, 0.3],
     blurEasing: [0.7, 0.1, 0.9, 0.3],
     alphaEasing: [0.1, 0.5, 0.9, 0.5],
-    finalAlpha: 0.12, // Matches Tailwind's typical 10-12% opacity
+    finalAlpha: 0.1,
     reverseAlpha: false
   },
   elevations: [
-    // Level 0 (none): No shadow
+    // Level 0: No shadow
     { finalOffsetY: 0, finalBlur: 0, finalAlpha: 0 },
 
-    // Level 1 (2xs): Barely visible - subtle hover feedback
-    // Tailwind shadow-2xs: 0 1px rgb(0 0 0 / 0.05)
-    { finalOffsetY: 1, finalBlur: 1, shadowLayers: 3, finalAlpha: 0.08 },
+    // Level 1: Subtle lift - hover feedback, subtle borders
+    { finalOffsetY: 1, finalBlur: 2, shadowLayers: 3, finalAlpha: 0.07 },
 
-    // Level 2 (xs): Minimal - list items, subtle cards
-    // Tailwind shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05)
-    { finalOffsetY: 1, finalBlur: 2, shadowLayers: 3, finalAlpha: 0.08 },
+    // Level 2: Low - cards at rest, list items
+    { finalOffsetY: 2, finalBlur: 4, shadowLayers: 3, finalAlpha: 0.08 },
 
-    // Level 3 (sm): Low - cards at rest
-    // Tailwind shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 3, finalBlur: 5, shadowLayers: 4, finalAlpha: 0.1 },
+    // Level 3: Raised - hovered cards, active elements
+    { finalOffsetY: 3, finalBlur: 6, shadowLayers: 4, finalAlpha: 0.09 },
 
-    // Level 4 (md): Medium - hovered cards, buttons
-    // Tailwind shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)
-    { finalOffsetY: 6, finalBlur: 10, shadowLayers: 4, finalAlpha: 0.1 },
+    // Level 4: Floating - dropdowns, tooltips
+    { finalOffsetY: 5, finalBlur: 10, shadowLayers: 4, finalAlpha: 0.09 },
 
-    // Level 5 (lg): High - dropdowns, popovers
-    // Tailwind shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)
-    // Reduced alpha to compensate for 5 layers
-    { finalOffsetY: 12, finalBlur: 18, shadowLayers: 5, finalAlpha: 0.09 },
+    // Level 5: Overlay - popovers, menus
+    { finalOffsetY: 8, finalBlur: 16, shadowLayers: 5, finalAlpha: 0.09 },
 
-    // Level 6 (xl): Higher - modals, dialogs
-    // Tailwind shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)
-    // Reduced alpha to compensate for 6 layers
-    { finalOffsetY: 20, finalBlur: 30, shadowLayers: 6, finalAlpha: 0.08 },
+    // Level 6: Modal - dialogs, sidebars
+    { finalOffsetY: 14, finalBlur: 28, shadowLayers: 6, finalAlpha: 0.09 },
 
-    // Level 7 (2xl): Highest - critical overlays, full-screen modals
-    // Tailwind shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25)
-    // Reduced alpha to compensate for 8 layers
-    { finalOffsetY: 32, finalBlur: 48, shadowLayers: 8, finalAlpha: 0.18 }
+    // Level 7: Peak - critical overlays, full-screen modals
+    { finalOffsetY: 24, finalBlur: 48, shadowLayers: 7, finalAlpha: 0.1 }
   ]
 }
