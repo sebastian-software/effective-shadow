@@ -598,21 +598,41 @@ body {
 
 .comparison {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
+  .comparison {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 800px) {
   .comparison {
     grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .comparison {
+    grid-template-columns: 1fr;
     gap: 40px;
   }
 }
 
+.comparison-narrow {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
+  margin: 0 auto;
+  gap: 48px;
+}
+
 @media (max-width: 600px) {
-  .comparison {
+  .comparison-narrow {
     grid-template-columns: 1fr;
-    gap: 48px;
   }
 }
 

@@ -1,5 +1,6 @@
 import {
   boxShadow,
+  dropShadow,
   buildShadow,
   toBoxShadow,
   toDropShadow,
@@ -113,6 +114,35 @@ const RADIX_SHADOWS = [
   { name: "-", value: "none" } // Radix only has 6 levels, padding for alignment
 ]
 
+// ShadCN (has its own shadow values, slightly different from Tailwind)
+// Source: https://ui.shadcn.com/themes
+const SHADCN_SHADOWS = [
+  { name: "none", value: "none" },
+  { name: "2xs", value: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
+  {
+    name: "xs",
+    value: "0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px 0 rgb(0 0 0 / 0.04)"
+  },
+  {
+    name: "sm",
+    value: "0 2px 4px 0 rgb(0 0 0 / 0.06), 0 1px 2px 0 rgb(0 0 0 / 0.04)"
+  },
+  {
+    name: "md",
+    value: "0 4px 8px -1px rgb(0 0 0 / 0.08), 0 2px 4px -1px rgb(0 0 0 / 0.04)"
+  },
+  {
+    name: "lg",
+    value: "0 8px 16px -2px rgb(0 0 0 / 0.1), 0 4px 6px -1px rgb(0 0 0 / 0.05)"
+  },
+  {
+    name: "xl",
+    value:
+      "0 16px 32px -4px rgb(0 0 0 / 0.12), 0 6px 12px -2px rgb(0 0 0 / 0.06)"
+  },
+  { name: "2xl", value: "0 24px 48px -8px rgb(0 0 0 / 0.18)" }
+]
+
 // =============================================================================
 // Preset configurations for the playground
 // =============================================================================
@@ -203,8 +233,29 @@ interface ComparisonColumn {
   }>
 }
 
-function renderComparison() {
-  const container = document.getElementById("comparison")!
+function renderComparisonColumn(container: HTMLElement, col: ComparisonColumn) {
+  const column = document.createElement("div")
+  column.className = "comparison-column"
+  column.innerHTML = `<h3>${col.title}</h3><p class="comparison-desc">${col.description}</p>`
+
+  col.shadows.forEach(({ name, boxShadow: bs, filter }) => {
+    const card = document.createElement("div")
+    card.className = "comparison-card"
+    if (bs) {
+      card.style.boxShadow = bs
+    }
+    if (filter) {
+      card.style.filter = filter
+    }
+    card.innerHTML = `<span>${name}</span>`
+    column.appendChild(card)
+  })
+
+  container.appendChild(column)
+}
+
+function renderComparisonSystems() {
+  const container = document.getElementById("comparison-systems")!
 
   const columns: ComparisonColumn[] = [
     {
@@ -224,8 +275,16 @@ function renderComparison() {
       }))
     },
     {
+      title: "ShadCN",
+      description: "2 layers",
+      shadows: SHADCN_SHADOWS.slice(1).map((s) => ({
+        name: s.name,
+        boxShadow: s.value
+      }))
+    },
+    {
       title: "Material 3",
-      description: "3 layers (key+ambient)",
+      description: "3 layers",
       shadows: MATERIAL_SHADOWS.slice(1).map((s) => ({
         name: s.name,
         boxShadow: s.value
@@ -241,26 +300,32 @@ function renderComparison() {
     }
   ]
 
-  columns.forEach((col) => {
-    const column = document.createElement("div")
-    column.className = "comparison-column"
-    column.innerHTML = `<h3>${col.title}</h3><p class="comparison-desc">${col.description}</p>`
+  columns.forEach((col) => renderComparisonColumn(container, col))
+}
 
-    col.shadows.forEach(({ name, boxShadow: bs, filter }) => {
-      const card = document.createElement("div")
-      card.className = "comparison-card"
-      if (bs) {
-        card.style.boxShadow = bs
-      }
-      if (filter) {
-        card.style.filter = filter
-      }
-      card.innerHTML = `<span>${name}</span>`
-      column.appendChild(card)
-    })
+function renderComparisonBoxDrop() {
+  const container = document.getElementById("comparison-box-drop")!
 
-    container.appendChild(column)
-  })
+  const columns: ComparisonColumn[] = [
+    {
+      title: "Effective Box Shadow",
+      description: "For rectangular elements",
+      shadows: boxShadow.slice(1).map((s, i) => ({
+        name: `Level ${LEVEL_NAMES[i + 1]}`,
+        boxShadow: s
+      }))
+    },
+    {
+      title: "Effective Drop Shadow",
+      description: "For transparent/irregular shapes",
+      shadows: dropShadow.slice(1).map((s, i) => ({
+        name: `Level ${LEVEL_NAMES[i + 1]}`,
+        filter: s
+      }))
+    }
+  ]
+
+  columns.forEach((col) => renderComparisonColumn(container, col))
 }
 
 // =============================================================================
@@ -479,7 +544,8 @@ const filter = toDropShadow(shadow)`
 document.addEventListener("DOMContentLoaded", () => {
   renderElevationGrid()
   renderShadowDemo()
-  renderComparison()
+  renderComparisonSystems()
+  renderComparisonBoxDrop()
   renderPlayground()
   hljs.highlightAll()
 })
