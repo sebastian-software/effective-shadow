@@ -1,0 +1,417 @@
+/* =============================================================================
+   Base & Variables
+   ============================================================================= */
+
+:root {
+  --font: "DM Sans", system-ui, sans-serif;
+  --bg: #fafafa;
+  --bg-alt: #f0f0f0;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --accent: #6366f1;
+  --accent-light: #818cf8;
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =============================================================================
+   Layout
+   ============================================================================= */
+
+.page {
+  min-height: 100vh;
+}
+
+.section {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-alt {
+  background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+  max-width: none;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.section-alt > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* =============================================================================
+   Hero
+   ============================================================================= */
+
+.hero {
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0f0f0 50%, #fce7f3 100%);
+  padding: 120px 40px 100px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--accent) 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 22px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow:
+    0px 1px 2px rgba(99, 102, 241, 0.3),
+    0px 4px 8px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow:
+    0px 2px 4px rgba(99, 102, 241, 0.3),
+    0px 8px 16px rgba(99, 102, 241, 0.2);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--text);
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* =============================================================================
+   Elevation Grid
+   ============================================================================= */
+
+.elevation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 32px;
+}
+
+.elevation-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.elevation-card:hover {
+  transform: translateY(-4px);
+}
+
+.elevation-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+.elevation-level {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* =============================================================================
+   Comparison
+   ============================================================================= */
+
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+@media (max-width: 800px) {
+  .comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comparison-column h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.comparison-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-card span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* =============================================================================
+   Playground
+   ============================================================================= */
+
+.playground {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto auto;
+  gap: 32px;
+  background: white;
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.04),
+    0px 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 800px) {
+  .playground {
+    grid-template-columns: 1fr;
+  }
+}
+
+.playground-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f7 100%);
+  border-radius: var(--radius-sm);
+}
+
+.playground-card {
+  width: 180px;
+  height: 120px;
+  background: white;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: box-shadow 0.3s ease;
+}
+
+.playground-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+.control input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+  appearance: none;
+  cursor: pointer;
+}
+
+.control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
+}
+
+.playground-output {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #1e1e2e;
+  border-radius: var(--radius-sm);
+}
+
+.playground-output code {
+  flex: 1;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 13px;
+  color: #cdd6f4;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.copy-btn {
+  padding: 8px 16px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copy-btn:hover {
+  background: var(--accent-light);
+}
+
+.copy-btn.copied {
+  background: #10b981;
+}
+
+/* =============================================================================
+   Usage
+   ============================================================================= */
+
+.usage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.usage-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.04),
+    0px 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.usage-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.usage-card pre {
+  background: #1e1e2e;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.usage-card code {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 13px;
+  color: #cdd6f4;
+  line-height: 1.6;
+}
+
+/* =============================================================================
+   Footer
+   ============================================================================= */
+
+.footer {
+  padding: 48px 40px;
+  text-align: center;
+  background: var(--bg-alt);
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .credits {
+  margin-top: 8px;
+  font-size: 13px;
+}

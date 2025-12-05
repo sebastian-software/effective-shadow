@@ -1,4 +1,4 @@
-name: Deploy Storybook to GitHub Pages
+name: Deploy Demo to GitHub Pages
 
 on:
   push:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build Storybook
+    name: Build Demo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,12 +30,14 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm run build-storybook
+      - run: pnpm run build
+
+      - run: pnpm run build:demo
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: storybook-static
+          path: demo-dist
 
   deploy:
     name: Deploy to GitHub Pages
