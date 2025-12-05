@@ -324,7 +324,7 @@ function renderColoredGlow() {
   // Drop Shadow
   const dropColumn = document.createElement("div")
   dropColumn.className = "glow-column"
-  dropColumn.innerHTML = `<h3>Drop Shadow</h3><p class="comparison-desc">filter: drop-shadow with color</p>`
+  dropColumn.innerHTML = `<h3>Drop Shadow</h3><p class="comparison-desc">drop-shadow with color</p>`
 
   const dropBtn = document.createElement("button")
   dropBtn.className = "glow-btn"
