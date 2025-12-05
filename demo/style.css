@@ -3,8 +3,10 @@
    ============================================================================= */
 
 :root {
-  --font: "DM Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "SF Mono", monospace;
+  --font:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono:
+    ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
   --bg: #fafafa;
   --bg-alt: #f5f5f5;
   --text: #1a1a1a;
@@ -164,7 +166,7 @@ body {
 
 .hero {
   background: linear-gradient(135deg, #e0e7ff 0%, #f0f0f0 50%, #fce7f3 100%);
-  padding: 100px 40px 80px;
+  padding: 80px 40px 60px;
   text-align: center;
 }
 
@@ -172,11 +174,11 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   background: white;
-  border-radius: 20px;
-  margin-bottom: 24px;
+  border-radius: 18px;
+  margin-bottom: 20px;
   color: var(--accent);
   box-shadow:
     0px 2px 4px rgba(99, 102, 241, 0.1),
@@ -196,10 +198,18 @@ body {
 .tagline {
   font-size: 20px;
   color: var(--text-muted);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.hero-prose {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 28px;
 }
 
 .hero-actions {
@@ -207,6 +217,44 @@ body {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+/* Integration Logos */
+.integrations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.integrations-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.integration-logos {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.integration-logo {
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.integration-logo:hover {
+  opacity: 1;
+}
+
+.integration-logo svg {
+  width: 100%;
+  height: 100%;
 }
 
 .btn {
@@ -639,7 +687,7 @@ body {
 .usage-section h3 {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 12px;
@@ -650,6 +698,12 @@ body {
   width: 20px;
   height: 20px;
   color: var(--accent);
+}
+
+.usage-logo {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
 .usage-section > p {

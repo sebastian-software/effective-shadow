@@ -4,12 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Effective Shadow – Beautiful CSS Shadows</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="./style.css" />
     <!-- Highlight.js for syntax highlighting (GitHub light theme) -->
     <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github.min.css" />
@@ -29,6 +23,12 @@
           <p class="tagline">
             Beautiful, multi-layered CSS shadows using Bézier curves.
           </p>
+          <p class="hero-prose">
+            Shadows are essential for creating depth and hierarchy in modern interfaces. 
+            But most CSS shadows look flat and artificial. Effective Shadow generates 
+            natural-looking, multi-layered shadows that mimic real-world light — 
+            giving your UI that polished, professional feel.
+          </p>
           <div class="hero-actions">
             <a href="https://www.npmjs.com/package/@effective/shadow" class="btn btn-primary">
               <i data-lucide="package"></i>
@@ -39,6 +39,48 @@
               GitHub
             </a>
           </div>
+          
+          <!-- Integration Logos -->
+          <div class="integrations">
+            <span class="integrations-label">Works with</span>
+            <div class="integration-logos">
+              <!-- React -->
+              <div class="integration-logo" title="React">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="2.5" fill="#61DAFB"/>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1" fill="none"/>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1" fill="none" transform="rotate(60 12 12)"/>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1" fill="none" transform="rotate(120 12 12)"/>
+                </svg>
+              </div>
+              <!-- Vue -->
+              <div class="integration-logo" title="Vue">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 3h4l6 10.5L18 3h4L12 21 2 3z" fill="#42B883"/>
+                  <path d="M6.5 3H12l0 0 5.5 0L12 13 6.5 3z" fill="#35495E"/>
+                </svg>
+              </div>
+              <!-- Tailwind CSS -->
+              <div class="integration-logo" title="Tailwind CSS">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 6c-2.4 0-3.9 1.2-4.5 3.6.9-1.2 1.95-1.65 3.15-1.35.686.171 1.176.666 1.719 1.215C13.194 10.298 14.126 11.25 16.5 11.25c2.4 0 3.9-1.2 4.5-3.6-.9 1.2-1.95 1.65-3.15 1.35-.686-.171-1.176-.666-1.719-1.215C15.306 6.952 14.374 6 12 6zM7.5 11.25c-2.4 0-3.9 1.2-4.5 3.6.9-1.2 1.95-1.65 3.15-1.35.686.171 1.176.666 1.719 1.215.825.833 1.757 1.785 4.131 1.785 2.4 0 3.9-1.2 4.5-3.6-.9 1.2-1.95 1.65-3.15 1.35-.686-.171-1.176-.666-1.719-1.215C10.806 12.202 9.874 11.25 7.5 11.25z" fill="#06B6D4"/>
+                </svg>
+              </div>
+              <!-- CSS/CSS Modules -->
+              <div class="integration-logo" title="CSS Modules">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 3l-.65 3.34h13.59L17.5 9H3.87l-.65 3.33h13.59l-.76 3.81-5.48 1.81-4.75-1.81.33-1.64H2.16l-.72 3.63 7.89 3.01 9.09-3.01L21 3H5z" fill="#264DE4"/>
+                </svg>
+              </div>
+              <!-- Vanilla JS -->
+              <div class="integration-logo" title="Vanilla JavaScript">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="20" height="20" rx="2" fill="#F7DF1E"/>
+                  <path d="M13.5 18.5c.4.7 1 1.2 2 1.2.8 0 1.4-.4 1.4-1 0-.7-.6-1-1.5-1.4l-.5-.2c-1.5-.6-2.5-1.4-2.5-3.1 0-1.5 1.2-2.7 3-2.7 1.3 0 2.3.5 2.9 1.7l-1.6 1c-.4-.6-.7-.9-1.4-.9-.6 0-1 .4-1 .9 0 .6.4.9 1.3 1.3l.5.2c1.8.8 2.8 1.5 2.8 3.3 0 1.9-1.5 2.9-3.4 2.9-1.9 0-3.2-.9-3.8-2.1l1.8-1.1zM6.5 18.7c.3.5.5 1 1.2 1 .6 0 1-.2 1-1.2v-6.3h2v6.4c0 2-1.2 2.9-2.9 2.9-1.5 0-2.4-.8-2.9-1.7l1.6-1.1z" fill="#000"/>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -48,7 +90,17 @@
           <i data-lucide="sunrise" class="section-icon"></i>
           <h2>Elevation Levels</h2>
         </div>
-        <p class="section-desc">5 pre-defined shadow levels for consistent depth across your UI.</p>
+        <div class="prose" style="margin-bottom: 32px;">
+          <p>
+            These are <strong>pre-generated, ready-to-use shadow levels</strong> — carefully tuned 
+            for visual harmony and optimized for performance. For most projects, these five levels 
+            provide all the depth you need: from subtle card shadows to dramatic modal overlays.
+          </p>
+          <p>
+            Need something custom? The <a href="#api">JavaScript API</a> lets you create your own 
+            shadows with full control over layers, blur, offset, and opacity curves.
+          </p>
+        </div>
         <div class="elevation-grid" id="elevation-grid">
           <!-- Filled by JS -->
         </div>
@@ -62,13 +114,13 @@
         </div>
         <div class="prose">
           <p>
-            Most shadow generators use <strong>linear interpolation</strong> between layers —
-            each step increases blur and offset by the same amount. This creates shadows that
+            Most shadow generators use <strong>linear interpolation</strong> between layers — 
+            each step increases blur and offset by the same amount. This creates shadows that 
             feel mechanical and artificial.
           </p>
           <p>
-            <strong>Effective Shadow</strong> uses <strong>Bézier curves</strong> to control how
-            shadow properties change across layers. Just like easing functions make animations
+            <strong>Effective Shadow</strong> uses <strong>Bézier curves</strong> to control how 
+            shadow properties change across layers. Just like easing functions make animations 
             feel natural, Bézier-curved shadows create depth that mimics real-world light behavior:
           </p>
           <ul>
@@ -90,8 +142,8 @@
         </div>
         <div class="prose">
           <p>
-            CSS <code>box-shadow</code> only works on rectangular boxes. For icons, PNGs with
-            transparency, or any non-rectangular element, it creates an ugly rectangular shadow
+            CSS <code>box-shadow</code> only works on rectangular boxes. For icons, PNGs with 
+            transparency, or any non-rectangular element, it creates an ugly rectangular shadow 
             around the bounding box:
           </p>
         </div>
@@ -100,13 +152,13 @@
         </div>
         <div class="prose">
           <p>
-            <strong>Effective Shadow</strong> generates both <code>box-shadow</code> and
-            <code>filter: drop-shadow()</code> variants. The filter version follows the actual
+            <strong>Effective Shadow</strong> generates both <code>box-shadow</code> and 
+            <code>filter: drop-shadow()</code> variants. The filter version follows the actual 
             shape of your element — perfect for icons, logos, and images.
           </p>
           <p>
-            We automatically compensate for the visual differences between these two CSS
-            properties (drop-shadow uses Gaussian blur, box-shadow uses box blur), so your
+            We automatically compensate for the visual differences between these two CSS 
+            properties (drop-shadow uses Gaussian blur, box-shadow uses box blur), so your 
             shadows look consistent regardless of which variant you use.
           </p>
         </div>
@@ -118,7 +170,7 @@
           <i data-lucide="git-compare" class="section-icon"></i>
           <h2>Shadow Comparison</h2>
         </div>
-        <p class="section-desc">How our shadows compare to popular alternatives.</p>
+        <p class="section-desc">How our shadows compare to Tailwind's defaults.</p>
         <div class="comparison" id="comparison">
           <!-- Filled by JS -->
         </div>
@@ -184,14 +236,19 @@
       </section>
 
       <!-- Quick Start -->
-      <section class="section section-alt">
+      <section class="section section-alt" id="api">
         <div class="section-header">
           <i data-lucide="zap" class="section-icon"></i>
           <h2>Quick Start</h2>
         </div>
-
+        
         <div class="usage-section">
-          <h3><i data-lucide="file-code"></i> CSS Classes</h3>
+          <h3>
+            <svg class="usage-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 3l-.65 3.34h13.59L17.5 9H3.87l-.65 3.33h13.59l-.76 3.81-5.48 1.81-4.75-1.81.33-1.64H2.16l-.72 3.63 7.89 3.01 9.09-3.01L21 3H5z" fill="#264DE4"/>
+            </svg>
+            CSS Classes
+          </h3>
           <p>The simplest approach — import our CSS and use class names directly:</p>
           <pre><code class="language-javascript">import "@effective/shadow/shadows.css"</code></pre>
           <pre><code class="language-html">&lt;div class="shadow-3"&gt;Elevated card&lt;/div&gt;
@@ -199,14 +256,24 @@
         </div>
 
         <div class="usage-section">
-          <h3><i data-lucide="component"></i> CSS Modules</h3>
+          <h3>
+            <svg class="usage-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 3l-.65 3.34h13.59L17.5 9H3.87l-.65 3.33h13.59l-.76 3.81-5.48 1.81-4.75-1.81.33-1.64H2.16l-.72 3.63 7.89 3.01 9.09-3.01L21 3H5z" fill="#264DE4"/>
+            </svg>
+            CSS Modules
+          </h3>
           <p>For scoped styles with automatic class name hashing:</p>
           <pre><code class="language-javascript">import shadows from "@effective/shadow/shadows.module.css"</code></pre>
           <pre><code class="language-jsx">&lt;div className={shadows["shadow-3"]}&gt;Elevated card&lt;/div&gt;</code></pre>
         </div>
 
         <div class="usage-section">
-          <h3><i data-lucide="wind"></i> Tailwind Plugin</h3>
+          <h3>
+            <svg class="usage-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 6c-2.4 0-3.9 1.2-4.5 3.6.9-1.2 1.95-1.65 3.15-1.35.686.171 1.176.666 1.719 1.215C13.194 10.298 14.126 11.25 16.5 11.25c2.4 0 3.9-1.2 4.5-3.6-.9 1.2-1.95 1.65-3.15 1.35-.686-.171-1.176-.666-1.719-1.215C15.306 6.952 14.374 6 12 6zM7.5 11.25c-2.4 0-3.9 1.2-4.5 3.6.9-1.2 1.95-1.65 3.15-1.35.686.171 1.176.666 1.719 1.215.825.833 1.757 1.785 4.131 1.785 2.4 0 3.9-1.2 4.5-3.6-.9 1.2-1.95 1.65-3.15 1.35-.686-.171-1.176-.666-1.719-1.215C10.806 12.202 9.874 11.25 7.5 11.25z" fill="#06B6D4"/>
+            </svg>
+            Tailwind CSS Plugin
+          </h3>
           <p>Extend Tailwind with our shadow utilities:</p>
           <pre><code class="language-javascript">// tailwind.config.js
 import effectiveShadow from "@effective/shadow/tailwind"
@@ -219,7 +286,13 @@ export default {
         </div>
 
         <div class="usage-section">
-          <h3><i data-lucide="code-2"></i> JavaScript API</h3>
+          <h3>
+            <svg class="usage-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="2" fill="#F7DF1E"/>
+              <path d="M13.5 18.5c.4.7 1 1.2 2 1.2.8 0 1.4-.4 1.4-1 0-.7-.6-1-1.5-1.4l-.5-.2c-1.5-.6-2.5-1.4-2.5-3.1 0-1.5 1.2-2.7 3-2.7 1.3 0 2.3.5 2.9 1.7l-1.6 1c-.4-.6-.7-.9-1.4-.9-.6 0-1 .4-1 .9 0 .6.4.9 1.3 1.3l.5.2c1.8.8 2.8 1.5 2.8 3.3 0 1.9-1.5 2.9-3.4 2.9-1.9 0-3.2-.9-3.8-2.1l1.8-1.1zM6.5 18.7c.3.5.5 1 1.2 1 .6 0 1-.2 1-1.2v-6.3h2v6.4c0 2-1.2 2.9-2.9 2.9-1.5 0-2.4-.8-2.9-1.7l1.6-1.1z" fill="#000"/>
+            </svg>
+            JavaScript API
+          </h3>
           <p>For full control, use the TypeScript/JavaScript API:</p>
           <pre><code class="language-javascript">import { boxShadow, dropShadow } from "@effective/shadow"
 
