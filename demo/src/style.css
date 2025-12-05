@@ -1988,12 +1988,12 @@ body {
 .footer-link svg {
   width: 18px;
   height: 18px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+  color: var(--text-muted-light);
+  transition: all 0.2s ease;
 }
 
 .footer-link:hover svg {
-  opacity: 1;
+  color: white;
 }
 
 /* Special styling for heart icon */
