@@ -148,7 +148,7 @@ function Integrations() {
 
 function SectionElevation() {
   return (
-    <section className="section" id="elevation">
+    <section className="section section-glow" id="elevation">
       <div className="section-header">
         <Icon name="sunrise" size="lg" className="section-icon" />
         <h2>Pick Your Altitude</h2>
@@ -171,7 +171,7 @@ function SectionElevation() {
 
 function SectionWhyBezier() {
   return (
-    <section className="section section-alt" id="why-bezier">
+    <section className="section section-dots" id="why-bezier">
       <div className="section-header">
         <Icon name="spline" size="lg" className="section-icon" />
         <h2>The Math That Makes It Real</h2>
@@ -208,7 +208,7 @@ function SectionWhyBezier() {
 
 function SectionBoxVsDrop() {
   return (
-    <section className="section" id="box-vs-drop">
+    <section className="section section-mesh" id="box-vs-drop">
       <div className="section-header">
         <Icon name="image" size="lg" className="section-icon" />
         <h2>box-shadow vs. drop-shadow</h2>
@@ -310,7 +310,7 @@ function SectionBoxVsDrop() {
 
 function SectionComparisonSystems() {
   return (
-    <section className="section section-alt">
+    <section className="section section-glow">
       <div className="section-header">
         <Icon name="git-compare" size="lg" className="section-icon" />
         <h2>How We Stack Up</h2>
@@ -325,7 +325,7 @@ function SectionComparisonSystems() {
 
 function SectionComparisonTechniques() {
   return (
-    <section className="section">
+    <section className="section section-alt">
       <div className="section-header">
         <Icon name="copy" size="lg" className="section-icon" />
         <h2>One Shadow, Two Flavors</h2>
@@ -341,7 +341,7 @@ function SectionComparisonTechniques() {
 
 function SectionColoredShadows() {
   return (
-    <section className="section section-alt" id="colored-shadows">
+    <section className="section section-dark" id="colored-shadows">
       <div className="section-header">
         <Icon name="paintbrush" size="lg" className="section-icon" />
         <h2>Add Some Color</h2>
@@ -357,7 +357,7 @@ function SectionColoredShadows() {
 
 function SectionPlayground() {
   return (
-    <section className="section" id="playground">
+    <section className="section section-mesh" id="playground">
       <div className="section-header">
         <Icon name="sliders" size="lg" className="section-icon" />
         <h2>Build Your Own</h2>
@@ -372,7 +372,7 @@ function SectionPlayground() {
 
 function SectionQuickStart() {
   return (
-    <section className="section section-alt" id="quick-start">
+    <section className="section section-dots" id="quick-start">
       <div className="section-header">
         <Icon name="zap" size="lg" className="section-icon" />
         <h2>Get Started in 30 Seconds</h2>
@@ -510,7 +510,7 @@ function JsLogo() {
 
 function SectionInspiration() {
   return (
-    <section className="section">
+    <section className="section section-alt">
       <div className="section-header">
         <Icon name="lightbulb" size="lg" className="section-icon" />
         <h2>Standing on Shoulders</h2>
