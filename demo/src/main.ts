@@ -1,5 +1,6 @@
 import {
   boxShadow,
+  dropShadow,
   buildShadow,
   toBoxShadow,
   toDropShadow,
@@ -105,16 +106,34 @@ function renderShadowDemo() {
 
 const LEVEL_NAMES = ["none", "2xs", "xs", "sm", "md", "lg", "xl", "2xl"]
 
+interface ComparisonColumn {
+  title: string
+  description: string
+  shadows: Array<{
+    name: string
+    boxShadow?: string
+    filter?: string
+  }>
+}
+
 function renderComparison() {
   const container = document.getElementById("comparison")!
 
-  const columns = [
+  const columns: ComparisonColumn[] = [
     {
-      title: "Effective Shadow",
+      title: "Effective Box Shadow",
       description: "3-8 layers, Bézier-curved",
       shadows: boxShadow.slice(1).map((s, i) => ({
         name: LEVEL_NAMES[i + 1],
-        value: s
+        boxShadow: s
+      }))
+    },
+    {
+      title: "Effective Drop Shadow",
+      description: "Identical appearance",
+      shadows: dropShadow.slice(1).map((s, i) => ({
+        name: LEVEL_NAMES[i + 1],
+        filter: s
       }))
     },
     {
@@ -122,7 +141,7 @@ function renderComparison() {
       description: "1-2 layers, linear",
       shadows: TAILWIND_SHADOWS.slice(1).map((s) => ({
         name: s.name,
-        value: s.value
+        boxShadow: s.value
       }))
     }
   ]
@@ -132,10 +151,15 @@ function renderComparison() {
     column.className = "comparison-column"
     column.innerHTML = `<h3>${col.title}</h3><p class="comparison-desc">${col.description}</p>`
 
-    col.shadows.forEach(({ name, value }) => {
+    col.shadows.forEach(({ name, boxShadow: bs, filter }) => {
       const card = document.createElement("div")
       card.className = "comparison-card"
-      card.style.boxShadow = value
+      if (bs) {
+        card.style.boxShadow = bs
+      }
+      if (filter) {
+        card.style.filter = filter
+      }
       card.innerHTML = `<span>${name}</span>`
       column.appendChild(card)
     })
