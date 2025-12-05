@@ -1904,6 +1904,36 @@ body {
   margin-bottom: 0;
 }
 
+.demo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+  background: linear-gradient(
+    135deg,
+    rgba(188, 9, 94, 0.08),
+    rgba(59, 130, 246, 0.08)
+  );
+  border: 1px solid rgba(188, 9, 94, 0.2);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.demo-link:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(188, 9, 94, 0.15),
+    rgba(59, 130, 246, 0.15)
+  );
+  border-color: var(--primary);
+  transform: translateX(4px);
+}
+
 /* =============================================================================
    Inspiration
    ============================================================================= */

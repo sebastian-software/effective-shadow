@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effective Shadow – Tailwind CSS Plugin Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style rel="stylesheet" crossorigin>*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content: ""}html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mx-auto{margin-left:auto;margin-right:auto}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-16{margin-top:4rem}.block{display:block}.flex{display:flex}.grid{display:grid}.h-12{height:3rem}.h-16{height:4rem}.h-20{height:5rem}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-16{width:4rem}.w-20{width:5rem}.max-w-2xl{max-width:42rem}.max-w-4xl{max-width:56rem}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.gap-3{gap:.75rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.bg-amber-100{--tw-bg-opacity: 1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-emerald-100{--tw-bg-opacity: 1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity: 1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity: 1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity: 1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity: 1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-blue-500{--tw-gradient-from: #3b82f6 var(--tw-gradient-from-position);--tw-gradient-to: rgb(59 130 246 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-600{--tw-gradient-from: #2563eb var(--tw-gradient-from-position);--tw-gradient-to: rgb(37 99 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.from-slate-50{--tw-gradient-from: #f8fafc var(--tw-gradient-from-position);--tw-gradient-to: rgb(248 250 252 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to: #22d3ee var(--tw-gradient-to-position)}.to-cyan-500{--tw-gradient-to: #06b6d4 var(--tw-gradient-to-position)}.to-slate-100{--tw-gradient-to: #f1f5f9 var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-16{padding-top:4rem;padding-bottom:4rem}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-amber-400{--tw-text-opacity: 1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-amber-700{--tw-text-opacity: 1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity: 1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-cyan-400{--tw-text-opacity: 1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity: 1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity: 1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-slate-100{--tw-text-opacity: 1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity: 1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity: 1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity: 1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity: 1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity: 1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.transition-shadow{transition-property:box-shadow;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.shadow-effective-1{box-shadow:0 .067px .133px #00000007,0 .223px .447px #0000000b,0 1px 2px #00000012}.shadow-effective-2{box-shadow:0 .133px .266px #00000008,0 .447px .893px #0000000c,0 2px 4px #00000014}.shadow-effective-3{box-shadow:0 .136px .272px #00000008,0 .376px .751px #0000000b,0 .904px 1.809px #0000000f,0 3px 6px #00000017}.shadow-effective-4{box-shadow:0 .226px .453px #00000008,0 .626px 1.252px #0000000b,0 1.507px 3.015px #0000000f,0 5px 10px #00000017}.shadow-effective-5{box-shadow:0 .275px .55px #00000007,0 .695px 1.39px #0000000a,0 1.418px 2.835px #0000000d,0 2.92px 5.84px #00000010,0 8px 16px #00000017}.shadow-effective-6{box-shadow:0 .387px .775px #00000006,0 .931px 1.862px #00000009,0 1.753px 3.506px #0000000b,0 3.127px 6.254px #0000000e,0 5.849px 11.698px #0001,0 14px 28px #00000017}.shadow-effective-7{box-shadow:0 .556px 1.112px #00000007,0 1.293px 2.586px #00000009,0 2.322px 4.644px #0000000c,0 3.854px 7.707px #0000000e,0 6.349px 12.698px #00000010,0 11.096px 22.192px #00000013,0 24px 48px #0000001a}.drop-shadow-effective-1{filter:drop-shadow(0px .067px .067px rgba(0,0,0,.028)) drop-shadow(0px .223px .223px rgba(0,0,0,.042)) drop-shadow(0px 1px 1px rgba(0,0,0,.07))}.drop-shadow-effective-2{filter:drop-shadow(0px .133px .133px rgba(0,0,0,.032)) drop-shadow(0px .447px .447px rgba(0,0,0,.048)) drop-shadow(0px 2px 2px rgba(0,0,0,.08))}.drop-shadow-effective-3{filter:drop-shadow(0px .136px .136px rgba(0,0,0,.031)) drop-shadow(0px .376px .376px rgba(0,0,0,.045)) drop-shadow(0px .904px .904px rgba(0,0,0,.059)) drop-shadow(0px 3px 3px rgba(0,0,0,.09))}.drop-shadow-effective-4{filter:drop-shadow(0px .226px .226px rgba(0,0,0,.031)) drop-shadow(0px .626px .626px rgba(0,0,0,.045)) drop-shadow(0px 1.507px 1.507px rgba(0,0,0,.059)) drop-shadow(0px 5px 5px rgba(0,0,0,.09))}.drop-shadow-effective-5{filter:drop-shadow(0px .275px .275px rgba(0,0,0,.028)) drop-shadow(0px .695px .695px rgba(0,0,0,.04)) drop-shadow(0px 1.418px 1.418px rgba(0,0,0,.05)) drop-shadow(0px 2.92px 2.92px rgba(0,0,0,.062)) drop-shadow(0px 8px 8px rgba(0,0,0,.09))}.drop-shadow-effective-6{filter:drop-shadow(0px .387px .387px rgba(0,0,0,.025)) drop-shadow(0px .931px .931px rgba(0,0,0,.036)) drop-shadow(0px 1.753px 1.753px rgba(0,0,0,.045)) drop-shadow(0px 3.127px 3.127px rgba(0,0,0,.054)) drop-shadow(0px 5.849px 5.849px rgba(0,0,0,.065)) drop-shadow(0px 14px 14px rgba(0,0,0,.09))}.drop-shadow-effective-7{filter:drop-shadow(0px .556px .556px rgba(0,0,0,.026)) drop-shadow(0px 1.293px 1.293px rgba(0,0,0,.037)) drop-shadow(0px 2.322px 2.322px rgba(0,0,0,.046)) drop-shadow(0px 3.854px 3.854px rgba(0,0,0,.054)) drop-shadow(0px 6.349px 6.349px rgba(0,0,0,.063)) drop-shadow(0px 11.096px 11.096px rgba(0,0,0,.074)) drop-shadow(0px 24px 24px rgba(0,0,0,.1))}body{font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}.hover\:underline:hover{text-decoration-line:underline}.hover\:shadow-effective-6:hover{box-shadow:0 .387px .775px #00000006,0 .931px 1.862px #00000009,0 1.753px 3.506px #0000000b,0 3.127px 6.254px #0000000e,0 5.849px 11.698px #0001,0 14px 28px #00000017}@media(min-width:768px){.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(min-width:1024px){.lg\:grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}}</style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <header class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-slate-900 mb-4">
+          @effective/shadow
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+            Tailwind Plugin
+          </span>
+        </h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Beautiful, mathematically precise shadows as Tailwind utilities.
+          Just add the plugin and use
+          <code class="bg-slate-200 px-2 py-1 rounded text-sm font-mono">shadow-effective-{1-7}</code>
+          or
+          <code class="bg-slate-200 px-2 py-1 rounded text-sm font-mono">drop-shadow-effective-{1-7}</code>
+        </p>
+      </header>
+
+      <!-- Box Shadow Demo -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-slate-800 mb-6">Box Shadows</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-1"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-1</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-2"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-2</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-3"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-3</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-4"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-4</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-5"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-5</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-6"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-6</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-7"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-7</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drop Shadow Demo -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-slate-800 mb-6">Drop Shadows</h2>
+        <p class="text-slate-600 mb-6">
+          Perfect for non-rectangular elements like icons, badges, or clipped shapes.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-1</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-2" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-2</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-3" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-3</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-4</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-5</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-6</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-7" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-7</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example Card -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-slate-800 mb-6">In Action</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl p-6 shadow-effective-4 hover:shadow-effective-6 transition-shadow duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl mb-4 drop-shadow-effective-3"></div>
+            <h3 class="text-lg font-semibold text-slate-900 mb-2">Hover me!</h3>
+            <p class="text-slate-600">
+              Cards with <code class="text-sm bg-slate-100 px-1 rounded">shadow-effective-4</code>
+              that transitions to <code class="text-sm bg-slate-100 px-1 rounded">shadow-effective-6</code> on hover.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-effective-3">
+            <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium drop-shadow-effective-1">
+                Active
+              </span>
+              <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium drop-shadow-effective-1">
+                Pending
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 mb-2">Status Badges</h3>
+            <p class="text-slate-600">
+              Badges with subtle <code class="text-sm bg-slate-100 px-1 rounded">drop-shadow-effective-1</code>
+              for that extra pop.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Setup Instructions -->
+      <section class="bg-slate-900 rounded-2xl p-8 shadow-effective-6">
+        <h2 class="text-2xl font-semibold text-white mb-6">Quick Setup</h2>
+        <div class="space-y-4">
+          <div>
+            <p class="text-slate-400 text-sm mb-2">1. Install the package</p>
+            <code class="block bg-slate-800 text-emerald-400 p-4 rounded-lg font-mono text-sm">
+              npm install @effective/shadow
+            </code>
+          </div>
+          <div>
+            <p class="text-slate-400 text-sm mb-2">2. Add to tailwind.config.js</p>
+            <pre class="bg-slate-800 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto"><code><span class="text-cyan-400">import</span> effectiveShadow <span class="text-cyan-400">from</span> <span class="text-emerald-400">"@effective/shadow/tailwind"</span>
+
+<span class="text-cyan-400">export default</span> {
+  plugins: [effectiveShadow]
+}</code></pre>
+          </div>
+          <div>
+            <p class="text-slate-400 text-sm mb-2">3. Use the classes</p>
+            <code class="block bg-slate-800 text-slate-100 p-4 rounded-lg font-mono text-sm">
+              &lt;div class="<span class="text-amber-400">shadow-effective-4</span>"&gt;...&lt;/div&gt;
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-16 text-center text-slate-500 text-sm">
+        <p>
+          <a href="https://github.com/sebastian-software/effective-shadow" class="text-blue-600 hover:underline">
+            @effective/shadow
+          </a>
+          · Made by
+          <a href="https://sebastian-software.de" class="text-blue-600 hover:underline">
+            Sebastian Software
+          </a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+

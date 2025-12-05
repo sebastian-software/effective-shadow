@@ -429,6 +429,14 @@ export default {
 <div class="shadow-effective-3">Card</div>
 <img class="drop-shadow-effective-2" src="icon.svg" />`}
         />
+        <a
+          href="https://sebastian-software.github.io/effective-shadow/tailwind/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="demo-link"
+        >
+          → See Tailwind Demo
+        </a>
       </div>
 
       <div className="usage-section">

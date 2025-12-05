@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effective Shadow – Tailwind CSS Plugin Demo</title>
+    <link rel="stylesheet" href="/src/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <header class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-slate-900 mb-4">
+          @effective/shadow
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+            Tailwind Plugin
+          </span>
+        </h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Beautiful, mathematically precise shadows as Tailwind utilities.
+          Just add the plugin and use
+          <code class="bg-slate-200 px-2 py-1 rounded text-sm font-mono">shadow-effective-{1-7}</code>
+          or
+          <code class="bg-slate-200 px-2 py-1 rounded text-sm font-mono">drop-shadow-effective-{1-7}</code>
+        </p>
+      </header>
+
+      <!-- Box Shadow Demo -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-slate-800 mb-6">Box Shadows</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-1"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-1</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-2"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-2</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-3"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-3</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-4"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-4</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-5"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-5</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-6"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-6</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-20 h-20 bg-white rounded-xl shadow-effective-7"></div>
+            <span class="text-xs font-mono text-slate-500">shadow-effective-7</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drop Shadow Demo -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-slate-800 mb-6">Drop Shadows</h2>
+        <p class="text-slate-600 mb-6">
+          Perfect for non-rectangular elements like icons, badges, or clipped shapes.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-1</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-2" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-2</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-3" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-3</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-4</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-5</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-6</span>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="w-16 h-16 text-blue-500 drop-shadow-effective-7" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span class="text-xs font-mono text-slate-500">drop-shadow-effective-7</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example Card -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-slate-800 mb-6">In Action</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl p-6 shadow-effective-4 hover:shadow-effective-6 transition-shadow duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl mb-4 drop-shadow-effective-3"></div>
+            <h3 class="text-lg font-semibold text-slate-900 mb-2">Hover me!</h3>
+            <p class="text-slate-600">
+              Cards with <code class="text-sm bg-slate-100 px-1 rounded">shadow-effective-4</code>
+              that transitions to <code class="text-sm bg-slate-100 px-1 rounded">shadow-effective-6</code> on hover.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-effective-3">
+            <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium drop-shadow-effective-1">
+                Active
+              </span>
+              <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium drop-shadow-effective-1">
+                Pending
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 mb-2">Status Badges</h3>
+            <p class="text-slate-600">
+              Badges with subtle <code class="text-sm bg-slate-100 px-1 rounded">drop-shadow-effective-1</code>
+              for that extra pop.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Setup Instructions -->
+      <section class="bg-slate-900 rounded-2xl p-8 shadow-effective-6">
+        <h2 class="text-2xl font-semibold text-white mb-6">Quick Setup</h2>
+        <div class="space-y-4">
+          <div>
+            <p class="text-slate-400 text-sm mb-2">1. Install the package</p>
+            <code class="block bg-slate-800 text-emerald-400 p-4 rounded-lg font-mono text-sm">
+              npm install @effective/shadow
+            </code>
+          </div>
+          <div>
+            <p class="text-slate-400 text-sm mb-2">2. Add to tailwind.config.js</p>
+            <pre class="bg-slate-800 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto"><code><span class="text-cyan-400">import</span> effectiveShadow <span class="text-cyan-400">from</span> <span class="text-emerald-400">"@effective/shadow/tailwind"</span>
+
+<span class="text-cyan-400">export default</span> {
+  plugins: [effectiveShadow]
+}</code></pre>
+          </div>
+          <div>
+            <p class="text-slate-400 text-sm mb-2">3. Use the classes</p>
+            <code class="block bg-slate-800 text-slate-100 p-4 rounded-lg font-mono text-sm">
+              &lt;div class="<span class="text-amber-400">shadow-effective-4</span>"&gt;...&lt;/div&gt;
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-16 text-center text-slate-500 text-sm">
+        <p>
+          <a href="https://github.com/sebastian-software/effective-shadow" class="text-blue-600 hover:underline">
+            @effective/shadow
+          </a>
+          · Made by
+          <a href="https://sebastian-software.de" class="text-blue-600 hover:underline">
+            Sebastian Software
+          </a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+
