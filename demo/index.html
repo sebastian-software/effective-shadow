@@ -19,13 +19,13 @@
           </div>
           <h1>Effective Shadow</h1>
           <p class="tagline">
-            Beautiful, multi-layered CSS shadows using Bézier curves.
+            Calculated shadows, not guesswork.
           </p>
           <p class="hero-prose">
-            Shadows are essential for creating depth and hierarchy in modern interfaces.
-            But most CSS shadows look flat and artificial. Effective Shadow generates
-            natural-looking, multi-layered shadows that mimic real-world light —
-            giving your UI that polished, professional feel.
+            Most shadow values are copied from tutorials or tweaked until "it looks okay".
+            Effective Shadow uses <strong>Bézier curves</strong> to mathematically distribute
+            multiple layers — creating the smooth falloff of real-world light. Use our presets,
+            or build your own system with the calculation engine.
           </p>
           <div class="hero-actions">
             <a href="https://www.npmjs.com/package/@effective/shadow" class="btn btn-primary">
@@ -90,13 +90,12 @@
         </div>
         <div class="prose" style="margin-bottom: 32px;">
           <p>
-            These are <strong>pre-generated, ready-to-use shadow levels</strong> — carefully tuned
-            for visual harmony and optimized for performance. For most projects, these five levels
-            provide all the depth you need: from subtle card shadows to dramatic modal overlays.
+            Seven levels with <strong>harmonic progression</strong> — each roughly 1.5-2× the previous.
+            Layer count increases with elevation for smoother gradients at higher depths.
           </p>
           <p>
-            Need something custom? The <a href="#quick-start">JavaScript API</a> lets you create your own
-            shadows with full control over layers, blur, offset, and opacity curves.
+            These aren't arbitrary values. The <a href="#playground">playground</a> exposes the full
+            calculation engine if you need to build your own scale.
           </p>
         </div>
         <div class="elevation-grid" id="elevation-grid">
@@ -227,9 +226,9 @@
       <section class="section section-alt">
         <div class="section-header">
           <span class="icon icon-git-compare icon-lg section-icon"></span>
-          <h2>Design Systems Comparison</h2>
+          <h2>Across Design Systems</h2>
         </div>
-        <p class="section-desc">How Effective Shadow compares to popular design systems.</p>
+        <p class="section-desc">Same elevation concept, different implementations. Notice the layer smoothness.</p>
         <div class="comparison" id="comparison-systems">
           <!-- Filled by JS -->
         </div>
@@ -239,9 +238,9 @@
       <section class="section">
         <div class="section-header">
           <span class="icon icon-copy icon-lg section-icon"></span>
-          <h2>Box Shadow vs Drop Shadow</h2>
+          <h2>Technique Consistency</h2>
         </div>
-        <p class="section-desc">Our unique selling point: identical appearance between both shadow types.</p>
+        <p class="section-desc">Same calculated values, different rendering engines. The math accounts for both.</p>
         <div class="comparison comparison-narrow" id="comparison-box-drop">
           <!-- Filled by JS -->
         </div>
