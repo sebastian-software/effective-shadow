@@ -13,15 +13,25 @@
       "types": "./dist/factory.d.ts",
       "import": "./dist/factory.js"
     },
+    "./presets": {
+      "types": "./dist/presets/index.d.ts",
+      "import": "./dist/presets/index.js"
+    },
+    "./generate": {
+      "types": "./dist/generate.d.ts",
+      "import": "./dist/generate.js"
+    },
     "./shadows.css": "./dist/shadows.css",
     "./shadows.module.css": "./dist/shadows.module.css",
+    "./shadows-effective.css": "./dist/shadows-effective.css",
+    "./shadows-vars.css": "./dist/shadows-vars.css",
     "./tailwind": {
       "types": "./dist/tailwind.d.ts",
       "import": "./dist/tailwind.js"
     }
   },
   "scripts": {
-    "build": "rimraf dist && tsc && cp src/*.css dist/",
+    "build": "rimraf dist && tsc && tsx scripts/build-css.ts",
     "check": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -92,6 +102,7 @@
     "rimraf": "^6.1.2",
     "storybook": "^10.1.4",
     "tailwindcss": "^4.1.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1",
     "vite": "^7.2.6",

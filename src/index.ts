@@ -1,116 +1,78 @@
 /**
- * @effective/shadow - Generate harmonious CSS shadows using Bézier curves
+ * @effective/shadow
+ *
+ * Generate beautiful, multi-layered CSS shadows using Bézier curves.
+ *
  * @packageDocumentation
  */
 
-import { buildShadow, toBoxShadow, toDropShadow } from "./factory"
+// =============================================================================
+// Core Factory API
+// =============================================================================
 
-// Re-export factory functions and types for convenience
-export { buildShadow, toBoxShadow, toDropShadow } from "./factory"
-export type {
-  EasingValue,
-  ShadowConfig,
-  ShadowValues,
-  ShadowSet
+export {
+  buildShadow,
+  toBoxShadow,
+  toDropShadow,
+  type EasingValue,
+  type ShadowConfig,
+  type ShadowValues,
+  type ShadowSet
 } from "./factory"
 
-/**
- * Predefined box-shadow values at various elevation levels.
- * Index 0 is "none", indices 1-5 represent increasing elevation.
- *
- * @example
- * // Use in CSS-in-JS
- * const style = { boxShadow: boxShadow[2] }
- *
- * // Use in Tailwind arbitrary values
- * <div className={`shadow-[${boxShadow[3]}]`}>
- */
-export const boxShadow = [
-  "none",
+// =============================================================================
+// Presets
+// =============================================================================
 
-  toBoxShadow(
-    buildShadow({
-      finalOffsetY: 1,
-      finalBlur: 2
-    })
-  ),
+export {
+  effectivePreset,
+  tailwindOriginal,
+  joshComeauShadows,
+  presets,
+  type ShadowPreset,
+  type PresetName
+} from "./presets"
 
-  toBoxShadow(
-    buildShadow({
-      finalOffsetY: 3,
-      finalBlur: 4
-    })
-  ),
+// =============================================================================
+// CSS Generation
+// =============================================================================
 
-  toBoxShadow(
-    buildShadow({
-      finalOffsetY: 6,
-      finalBlur: 10
-    })
-  ),
+export {
+  generateCSS,
+  generateCSSModule,
+  generateFromPreset,
+  type GenerateCSSOptions,
+  type GeneratedShadow
+} from "./generate"
 
-  toBoxShadow(
-    buildShadow({
-      finalOffsetY: 10,
-      finalBlur: 16
-    })
-  ),
+// =============================================================================
+// Convenience: Pre-generated shadow strings (using Effective preset)
+// =============================================================================
 
-  toBoxShadow(
-    buildShadow({
-      finalOffsetY: 14,
-      finalBlur: 24
-    })
-  )
-]
+import { generateFromPreset } from "./generate"
+import { effectivePreset } from "./presets"
+
+const defaultShadows = generateFromPreset(effectivePreset)
 
 /**
- * Predefined drop-shadow filter values at various elevation levels.
- * Index 0 is empty string, indices 1-5 represent increasing elevation.
- * Use with CSS `filter` property.
+ * Pre-generated box-shadow CSS strings using the Effective preset.
+ * Index corresponds to elevation level (0 = none, 5 = highest).
  *
  * @example
- * // Use in CSS-in-JS
- * const style = { filter: dropShadow[2] }
- *
- * // Useful for non-rectangular elements like icons or text
- * <svg style={{ filter: dropShadow[1] }}>
+ * import { boxShadow } from "@effective/shadow"
+ * element.style.boxShadow = boxShadow[2]
  */
-export const dropShadow = [
-  "",
+export const boxShadow: string[] = defaultShadows.map((s) => s.boxShadow)
 
-  toDropShadow(
-    buildShadow({
-      finalOffsetY: 1,
-      finalBlur: 2
-    })
-  ),
-
-  toDropShadow(
-    buildShadow({
-      finalOffsetY: 3,
-      finalBlur: 4
-    })
-  ),
-
-  toDropShadow(
-    buildShadow({
-      finalOffsetY: 6,
-      finalBlur: 10
-    })
-  ),
-
-  toDropShadow(
-    buildShadow({
-      finalOffsetY: 10,
-      finalBlur: 16
-    })
-  ),
-
-  toDropShadow(
-    buildShadow({
-      finalOffsetY: 14,
-      finalBlur: 24
-    })
-  )
-]
+/**
+ * Pre-generated drop-shadow CSS strings using the Effective preset.
+ * Index corresponds to elevation level (0 = none, 5 = highest).
+ * Use with the CSS `filter` property.
+ *
+ * @example
+ * import { dropShadow } from "@effective/shadow"
+ * element.style.filter = dropShadow[2]
+ */
+export const dropShadow: string[] = defaultShadows.map((s) =>
+  s.dropShadow === "none" ? "" : s.dropShadow
+)
