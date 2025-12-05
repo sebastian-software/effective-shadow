@@ -1,8 +1,34 @@
 {
   "git": {
-    "commitMessage": "chore: release v${version}"
+    "commitMessage": "chore: release v${version}",
+    "tagName": "v${version}"
   },
   "github": {
-    "release": true
+    "release": true,
+    "releaseName": "v${version}"
+  },
+  "npm": {
+    "publish": true
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          { "type": "feat", "section": "Features" },
+          { "type": "fix", "section": "Bug Fixes" },
+          { "type": "docs", "section": "Documentation" },
+          { "type": "refactor", "section": "Refactoring" },
+          { "type": "perf", "section": "Performance" },
+          { "type": "test", "section": "Tests" },
+          { "type": "chore", "hidden": true }
+        ]
+      },
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog\n\nAll notable changes to this project will be documented in this file."
+    }
+  },
+  "hooks": {
+    "before:init": ["npm run lint", "npm run typecheck", "npm test"]
   }
 }
