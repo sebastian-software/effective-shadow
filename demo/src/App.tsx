@@ -13,13 +13,12 @@ function Hero() {
           <span className="icon icon-layers icon-xl" />
         </div>
         <h1>Effective Shadow</h1>
-        <p className="tagline">Calculated shadows, not guesswork.</p>
+        <p className="tagline">Shadows that actually make sense.</p>
         <p className="hero-prose">
-          Most shadow values are copied from tutorials or tweaked until "it
-          looks okay". Effective Shadow uses <strong>Bézier curves</strong> to
-          mathematically distribute multiple layers — creating the smooth
-          falloff of real-world light. Use our presets, or build your own system
-          with the calculation engine.
+          Stop copying random shadow values from Stack Overflow.{" "}
+          <strong>Effective Shadow</strong> uses <strong>Bézier curves</strong>{" "}
+          to distribute multiple layers like real light does — smooth, natural,
+          and mathematically precise. Grab a preset or roll your own.
         </p>
         <div className="hero-actions">
           <a
@@ -150,18 +149,17 @@ function SectionElevation() {
     <section className="section" id="elevation">
       <div className="section-header">
         <span className="icon icon-sunrise icon-lg section-icon" />
-        <h2>Elevation Levels</h2>
+        <h2>Pick Your Altitude</h2>
       </div>
       <div className="prose" style={{ marginBottom: 32 }}>
         <p>
-          Seven levels with <strong>harmonic progression</strong> — each roughly
-          1.5-2× the previous. Layer count increases with elevation for smoother
-          gradients at higher depths.
+          Seven levels, each roughly <strong>1.5–2× bigger</strong> than the
+          last. The higher you go, the more layers we add for that buttery
+          smooth falloff.
         </p>
         <p>
-          These aren't arbitrary values. The{" "}
-          <a href="#playground">playground</a> exposes the full calculation
-          engine if you need to build your own scale.
+          Not just nice numbers — there's actual math behind this. Curious? The{" "}
+          <a href="#playground">playground</a> lets you poke at the guts.
         </p>
       </div>
       <ElevationGrid />
@@ -174,37 +172,32 @@ function SectionWhyBezier() {
     <section className="section section-alt" id="why-bezier">
       <div className="section-header">
         <span className="icon icon-spline icon-lg section-icon" />
-        <h2>Why Bézier Curves?</h2>
+        <h2>The Math That Makes It Real</h2>
       </div>
       <div className="prose">
         <p>
-          Most shadow generators use <strong>linear interpolation</strong>{" "}
-          between layers — each step increases blur and offset by the same
-          amount. This creates shadows that feel mechanical and artificial.
+          Most shadow tools just divide values linearly. Add 2px blur per layer,
+          done. Looks robotic, feels flat.
         </p>
         <p>
-          <strong>Effective Shadow</strong> uses <strong>Bézier curves</strong>{" "}
-          to control how shadow properties change across layers. Just like
-          easing functions make animations feel natural, Bézier-curved shadows
-          create depth that mimics real-world light behavior:
+          We use <strong>Bézier curves</strong> instead — the same math that
+          makes CSS animations feel smooth. Applied to shadows, you get:
         </p>
         <ul>
           <li>
-            <strong>Sharp near the surface</strong> — early layers have minimal
-            blur
+            <strong>Crisp edges up close</strong> — tight blur near the surface
           </li>
           <li>
-            <strong>Soft further away</strong> — outer layers diffuse more
+            <strong>Soft diffusion at distance</strong> — outer layers spread
             naturally
           </li>
           <li>
-            <strong>Consistent opacity falloff</strong> — no harsh transitions
-            between layers
+            <strong>No visible steps</strong> — smooth transitions all the way
           </li>
         </ul>
         <p>
-          The result? Shadows that feel like they belong in physical space, not
-          painted on.
+          It's the difference between a shadow that looks <em>drawn on</em> and
+          one that looks like it <em>belongs there</em>.
         </p>
       </div>
     </section>
@@ -318,11 +311,10 @@ function SectionComparisonSystems() {
     <section className="section section-alt">
       <div className="section-header">
         <span className="icon icon-git-compare icon-lg section-icon" />
-        <h2>Across Design Systems</h2>
+        <h2>How We Stack Up</h2>
       </div>
       <p className="section-desc">
-        Same elevation concept, different implementations. Notice the layer
-        smoothness.
+        Same concept, wildly different results. Spot the smoothness gap.
       </p>
       <ComparisonSystems />
     </section>
@@ -334,11 +326,11 @@ function SectionComparisonTechniques() {
     <section className="section">
       <div className="section-header">
         <span className="icon icon-copy icon-lg section-icon" />
-        <h2>Technique Consistency</h2>
+        <h2>One Shadow, Two Flavors</h2>
       </div>
       <p className="section-desc">
-        Same calculated values, different rendering engines. The math accounts
-        for both.
+        box-shadow for rectangles, drop-shadow for everything else. We make them
+        match.
       </p>
       <ComparisonTechniques />
     </section>
@@ -350,12 +342,11 @@ function SectionColoredShadows() {
     <section className="section section-alt" id="colored-shadows">
       <div className="section-header">
         <span className="icon icon-sun icon-lg section-icon" />
-        <h2>Colored Shadows</h2>
+        <h2>Add Some Color</h2>
       </div>
       <p className="section-desc">
-        Shadows don't have to be black. For CTAs and interactive elements,
-        color-matched glows create visual emphasis and reinforce brand identity.
-        Both techniques produce identical results.
+        Black shadows are fine. Colored glows are 🔥. Perfect for CTAs that need
+        to pop.
       </p>
       <ColoredShadows />
     </section>
@@ -367,10 +358,10 @@ function SectionPlayground() {
     <section className="section" id="playground">
       <div className="section-header">
         <span className="icon icon-sliders icon-lg section-icon" />
-        <h2>Playground</h2>
+        <h2>Build Your Own</h2>
       </div>
       <p className="section-desc">
-        Experiment with shadow parameters in real-time.
+        Tweak the knobs. See what happens. Copy the result.
       </p>
       <Playground />
     </section>
@@ -382,7 +373,7 @@ function SectionQuickStart() {
     <section className="section section-alt" id="quick-start">
       <div className="section-header">
         <span className="icon icon-zap icon-lg section-icon" />
-        <h2>Quick Start</h2>
+        <h2>Get Started in 30 Seconds</h2>
       </div>
 
       <div className="usage-section">
@@ -520,9 +511,11 @@ function SectionInspiration() {
     <section className="section">
       <div className="section-header">
         <span className="icon icon-lightbulb icon-lg section-icon" />
-        <h2>Inspired By</h2>
+        <h2>Standing on Shoulders</h2>
       </div>
-      <p className="section-desc">Standing on the shoulders of giants.</p>
+      <p className="section-desc">
+        The folks who figured this stuff out before us.
+      </p>
       <ul className="inspiration-list">
         <li>
           <a
