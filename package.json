@@ -39,9 +39,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "dev": "vite demo",
-    "build:demo": "vite build demo --outDir ../demo-dist --emptyOutDir --base ./ && tsx scripts/inline-assets.ts",
-    "preview": "vite preview demo",
+    "dev": "vite --config demo/vite.config.ts demo",
+    "build:demo": "vite build --config demo/vite.config.ts demo",
+    "preview": "vite preview --config demo/vite.config.ts demo",
     "release": "release-it",
     "prepare": "husky",
     "clean:dist": "git clean -fXd",
@@ -96,7 +96,7 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1",
     "vite": "^7.2.6",
-    "vite-tsconfig-paths": "^5.1.4",
+    "vite-plugin-singlefile": "^2.3.0",
     "vitest": "^4.0.15"
   }
 }
