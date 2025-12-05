@@ -3,7 +3,7 @@ import tsconfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig({
   plugins: [tsconfigPaths()],
-  base: "/effective-shadow/",
+  // Base is set via CLI: --base ./ (local) or --base /effective-shadow/ (GitHub Pages)
   build: {
     outDir: "demo-dist"
   }

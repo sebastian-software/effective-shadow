@@ -32,7 +32,8 @@ jobs:
 
       - run: pnpm run build
 
-      - run: pnpm run build:demo
+      # Override base path for GitHub Pages (repo is served at /effective-shadow/)
+      - run: pnpm vite build demo --outDir ../demo-dist --emptyOutDir --base /effective-shadow/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
