@@ -293,6 +293,12 @@ function SectionBoxVsDrop() {
           <code>filter: drop-shadow()</code> — it's the only option that follows
           non-rectangular shapes.
         </p>
+        <p>
+          <strong>Safari tip:</strong> Add <code>will-change: filter</code> to
+          elements using <code>drop-shadow()</code> to prevent rendering
+          glitches during scroll. This promotes the element to its own
+          compositing layer.
+        </p>
       </div>
 
       <div className="prose" style={{ marginTop: 32 }}>

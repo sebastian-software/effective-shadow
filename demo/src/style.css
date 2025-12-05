@@ -1332,6 +1332,7 @@ body {
 .glow-btn-filter {
   box-shadow: none;
   filter: var(--btn-filter);
+  will-change: filter; /* Safari: stabilizes drop-shadow during scroll */
 }
 
 .glow-btn:hover {

@@ -28,7 +28,9 @@ function ComparisonColumn({
           className="comparison-card"
           style={{
             boxShadow: item.boxShadow,
-            filter: item.filter
+            filter: item.filter,
+            // Safari: stabilizes drop-shadow during scroll
+            willChange: item.filter ? "filter" : undefined
           }}
         >
           <span>{item.name}</span>

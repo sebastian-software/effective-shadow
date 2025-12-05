@@ -339,7 +339,10 @@ const dropShadow = toDropShadow(shadow${colorArg})`
           <div className="playground-preview">
             <div
               className="playground-card"
-              style={{ filter: dropShadowCSS }}
+              style={{
+                filter: dropShadowCSS,
+                willChange: "filter" // Safari: stabilizes drop-shadow during scroll
+              }}
             />
           </div>
         </div>

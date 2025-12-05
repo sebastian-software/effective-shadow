@@ -10,3 +10,8 @@ body {
     "Segoe UI",
     sans-serif;
 }
+
+/* Safari: stabilize drop-shadow during scroll */
+[class*="drop-shadow-effective"] {
+  will-change: filter;
+}
