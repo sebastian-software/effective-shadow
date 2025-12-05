@@ -1,10 +1,35 @@
 import { boxShadow, buildShadow, toBoxShadow, toDropShadow } from "../src"
 import { effectivePreset } from "../src/presets/effective"
-import { tailwindOriginal } from "../src/presets/tailwind-original"
 
 // Declare external libraries
 declare const lucide: { createIcons: () => void }
 declare const hljs: { highlightAll: () => void }
+
+// =============================================================================
+// Tailwind CSS shadow values (for comparison only, not part of public API)
+// Source: https://tailwindcss.com/docs/box-shadow
+// =============================================================================
+
+const TAILWIND_SHADOWS = [
+  { name: "none", value: "none" },
+  { name: "sm", value: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
+  {
+    name: "DEFAULT",
+    value: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)"
+  },
+  {
+    name: "md",
+    value: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
+  },
+  {
+    name: "lg",
+    value: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
+  },
+  {
+    name: "xl",
+    value: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
+  }
+]
 
 // =============================================================================
 // Preset configurations for the playground
@@ -39,13 +64,14 @@ function renderElevationGrid() {
 }
 
 // =============================================================================
-// Shadow Demo (box-shadow vs filter problem)
+// Shadow Demo (box-shadow vs filter problem) - using Level 4 for visibility
 // =============================================================================
 
 function renderShadowDemo() {
   const container = document.getElementById("shadow-demo")!
-  const shadowValue = boxShadow[3]
-  const filterValue = `drop-shadow(0 4px 6px rgba(0,0,0,0.15)) drop-shadow(0 10px 20px rgba(0,0,0,0.1))`
+  // Use Level 4 for more visible shadow in demo
+  const shadowValue = boxShadow[4]
+  const filterValue = `drop-shadow(0 8px 12px rgba(0,0,0,0.15)) drop-shadow(0 16px 32px rgba(0,0,0,0.12))`
 
   container.innerHTML = `
     <div class="shadow-demo-panel">
@@ -88,9 +114,9 @@ function renderComparison() {
     {
       title: "Tailwind CSS",
       description: "1-2 layers, linear",
-      shadows: tailwindOriginal.levels.slice(1, 6).map((l) => ({
-        name: l.name,
-        value: l.boxShadow
+      shadows: TAILWIND_SHADOWS.slice(1, 6).map((s) => ({
+        name: s.name,
+        value: s.value
       }))
     }
   ]

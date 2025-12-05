@@ -24,14 +24,7 @@ export {
 // Presets
 // =============================================================================
 
-export {
-  effectivePreset,
-  tailwindOriginal,
-  joshComeauShadows,
-  presets,
-  type ShadowPreset,
-  type PresetName
-} from "./presets"
+export { effectivePreset, type ShadowPreset } from "./presets"
 
 // =============================================================================
 // CSS Generation
