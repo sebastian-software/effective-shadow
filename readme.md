@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Beautiful, harmonious shadows for modern web interfaces.</strong><br/>
-  Generate multi-layered CSS shadows using Bézier curves — framework-agnostic, zero dependencies.
+  Multi-layered CSS shadows with natural depth — framework-agnostic, zero dependencies.
 </p>
 
 <p align="center">
@@ -14,82 +14,43 @@
   <a href="https://www.npmjs.com/package/@effective/shadow"><img src="https://img.shields.io/npm/dm/@effective/shadow?style=flat-square" alt="npm downloads"/></a>
   <a href="https://github.com/sebastian-software/effective-shadow/actions"><img src="https://img.shields.io/github/actions/workflow/status/sebastian-software/effective-shadow/ci.yml?style=flat-square" alt="CI status"/></a>
   <a href="https://github.com/sebastian-software/effective-shadow/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@effective/shadow?style=flat-square" alt="license"/></a>
-  <img src="https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square" alt="TypeScript"/>
 </p>
 
 <p align="center">
-  <a href="https://sebastian-software.github.io/effective-shadow/">📖 Live Demo</a> ·
-  <a href="#installation">Installation</a> ·
-  <a href="#usage">Usage</a> ·
-  <a href="#why-layered-shadows">Why Layered Shadows?</a>
+  <a href="https://sebastian-software.github.io/effective-shadow/"><strong>🎨 Interactive Demo →</strong></a>
 </p>
 
 ---
 
-## Why Effective Shadow?
+## What's the Problem?
 
-Single-layer shadows look flat and artificial. Real-world shadows are complex — they're softer near the object and more diffuse further away. **Effective Shadow** generates multiple shadow layers with mathematically smooth transitions, creating depth that feels natural.
+Most CSS shadows look flat and artificial — they use a single layer with uniform blur. Real shadows are different: they're sharper near the object and softer further away.
 
-✨ **Ready-to-use presets** — 5 elevation levels, zero configuration
-🎨 **Fully customizable** — control layers, blur, offset, opacity with Bézier easing
-🔄 **Two output formats** — `box-shadow` and `drop-shadow` with automatic visual matching
-📦 **Tiny footprint** — ~1KB gzipped, single dependency
-🛠️ **Framework-agnostic** — works with React, Vue, Svelte, vanilla CSS-in-JS, or plain CSS
+**Effective Shadow** generates multiple shadow layers with smooth Bézier-curved transitions, creating depth that looks natural and polished.
+
+**[→ See the visual comparison in our demo](https://sebastian-software.github.io/effective-shadow/#comparison)**
 
 ---
 
-## Installation
+## Quick Start
+
+### Using CSS Classes
 
 ```bash
 npm install @effective/shadow
 ```
 
-```bash
-pnpm add @effective/shadow
-```
-
-```bash
-yarn add @effective/shadow
-```
-
----
-
-## Usage
-
-Choose your preferred integration method:
-
-### Option 1: CSS Classes (Recommended)
-
-The simplest approach — import CSS and use class names:
-
 ```tsx
-// Global CSS import
 import "@effective/shadow/shadows.css"
 
+// 5 elevation levels: shadow-1 (subtle) to shadow-5 (dramatic)
 <div className="shadow-3">Elevated card</div>
+
+// For icons and transparent images, use drop-shadow
 <img className="drop-shadow-2" src="icon.svg" />
 ```
 
-### Option 2: CSS Modules
-
-For scoped styles with automatic class name hashing:
-
-```tsx
-import shadows from "@effective/shadow/shadows.module.css"
-;<div className={shadows["shadow-3"]}>Elevated card</div>
-```
-
-Works great with `clsx`:
-
-```tsx
-import clsx from "clsx"
-import s from "@effective/shadow/shadows.module.css"
-;<div className={clsx("rounded-lg p-4", s["shadow-2"])}>Card</div>
-```
-
-### Option 3: Tailwind Plugin
-
-Native Tailwind integration with IDE autocomplete:
+### Using Tailwind
 
 ```js
 // tailwind.config.js
@@ -100,196 +61,118 @@ export default {
 }
 ```
 
-Then use the utilities:
-
 ```tsx
-<div className="shadow-effective-3">Elevated card</div>
-<img className="drop-shadow-effective-2" src="icon.svg" />
+<div className="shadow-effective-3">Card with natural shadow</div>
 ```
 
-### Option 4: JavaScript API
+**[→ More integration options in our demo](https://sebastian-software.github.io/effective-shadow/#quick-start)**
 
-For dynamic shadows or custom configurations:
+---
 
-```typescript
-import { boxShadow, dropShadow } from "@effective/shadow"
+## The Five Elevation Levels
 
-// Apply inline (less recommended)
-element.style.boxShadow = boxShadow[2]
-```
+Pre-configured shadow intensities for common UI patterns:
 
-### Custom Shadows
+| Level | Use Case          | Example                   |
+| ----- | ----------------- | ------------------------- |
+| **1** | Subtle lift       | Hover states, list items  |
+| **2** | Low elevation     | Cards, sections           |
+| **3** | Medium elevation  | Dropdowns, popovers       |
+| **4** | High elevation    | Modals, dialogs           |
+| **5** | Highest elevation | Toasts, critical overlays |
 
-Need more control? Generate your own shadow configurations:
-
-```typescript
-import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
-
-const shadow = buildShadow({
-  shadowLayers: 4, // Number of stacked shadow layers
-  finalOffsetY: 12, // Vertical offset of the deepest layer
-  finalBlur: 24, // Blur radius of the deepest layer
-  finalAlpha: 0.25 // Opacity of the deepest layer
-})
-
-// Convert to CSS
-const css = toBoxShadow(shadow)
-const filterCss = toDropShadow(shadow)
-```
+**[→ Preview all levels interactively](https://sebastian-software.github.io/effective-shadow/#elevation)**
 
 ---
 
 ## Box Shadow vs Drop Shadow
 
-This library supports both CSS shadow techniques. They look nearly identical but work differently under the hood:
+We provide both shadow types because they serve different purposes:
 
-| Feature         | `box-shadow`               | `filter: drop-shadow()`         |
-| --------------- | -------------------------- | ------------------------------- |
-| **Shape**       | Always rectangular         | Follows element shape           |
-| **Use case**    | Cards, buttons, containers | Icons, SVGs, transparent images |
-| **Algorithm**   | Box blur                   | Gaussian blur                   |
-| **Performance** | Faster                     | Slightly slower                 |
+|                 | `box-shadow`               | `drop-shadow`                      |
+| --------------- | -------------------------- | ---------------------------------- |
+| **Shape**       | Always rectangular         | Follows element contours           |
+| **Best for**    | Cards, buttons, containers | Icons, SVGs, PNG with transparency |
+| **Performance** | Slightly faster            | GPU-accelerated                    |
 
-### Why the math differs
+The library automatically adjusts the math so both types look visually identical at the same level.
 
-The same blur value looks different between the two:
+**[→ See the difference with our circle vs star demo](https://sebastian-software.github.io/effective-shadow/#box-vs-drop)**
 
-- **Box blur** averages pixels equally within the radius
-- **Gaussian blur** weights center pixels more heavily → appears ~2× softer
+---
 
-To make both outputs visually match, `toDropShadow()` automatically adjusts:
+## Custom Shadows
 
-- Blur reduced to **50%** (compensates for softer Gaussian)
-- Opacity increased by **10%** (compensates for spread)
+Need something beyond the presets? Use the JavaScript API:
 
-**Result:** You can switch between `boxShadow[2]` and `dropShadow[2]` and get the same visual appearance.
+```typescript
+import { buildShadow, toBoxShadow } from "@effective/shadow"
+
+const shadow = buildShadow({
+  shadowLayers: 4,
+  finalOffsetY: 12,
+  finalBlur: 24,
+  finalAlpha: 0.25
+})
+
+element.style.boxShadow = toBoxShadow(shadow)
+```
+
+**[→ Experiment with the interactive playground](https://sebastian-software.github.io/effective-shadow/#playground)**
 
 ---
 
 ## Why Layered Shadows?
 
-A single shadow layer can only approximate real lighting. Multiple layers with decreasing intensity create more realistic depth:
+Single shadows look "stamped on". Multiple layers with decreasing intensity mimic how light actually works:
 
 ```
-Layer 1: ░░░░░░░░░░  (subtle, close)
+Layer 1: ░░░░░░░░░░  (subtle, close to element)
 Layer 2: ░░░░░░░░    (medium)
 Layer 3: ░░░░░░      (stronger)
 Layer 4: ░░░░        (deepest, most diffuse)
-━━━━━━━━━━━━━━━━━━━━━━━━
-Combined: Natural, soft shadow with depth
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Combined: Natural shadow with realistic depth
 ```
 
-Effective Shadow uses **Bézier curves** to interpolate between layers, ensuring smooth, harmonious transitions that would be tedious to craft by hand.
+Effective Shadow uses **Bézier curves** to distribute layers smoothly — no manual tweaking required.
 
----
-
-## API Reference
-
-### Predefined Shadows
-
-```typescript
-import { boxShadow, dropShadow } from "@effective/shadow"
-
-boxShadow[0] // "none"
-boxShadow[1] // Subtle elevation
-boxShadow[2] // Low elevation
-boxShadow[3] // Medium elevation
-boxShadow[4] // High elevation
-boxShadow[5] // Highest elevation
-
-dropShadow[0 - 5] // Same levels, for filter property
-```
-
-### Custom Generation
-
-```typescript
-import { buildShadow, toBoxShadow, toDropShadow } from "@effective/shadow"
-
-// Generate shadow layers
-const shadow = buildShadow({
-  shadowLayers: 4, // Number of layers (default: 4)
-  finalOffsetX: 0, // Horizontal offset in px (default: 0)
-  finalOffsetY: 10, // Vertical offset in px (default: 0)
-  finalBlur: 20, // Blur radius in px (default: 0)
-  finalAlpha: 0.2, // Opacity 0-1 (default: 0.2)
-  offsetEasing: [0.7, 0.1, 0.9, 0.3], // Bézier curve for offset
-  blurEasing: [0.7, 0.1, 0.9, 0.3], // Bézier curve for blur
-  alphaEasing: [0.1, 0.5, 0.9, 0.5], // Bézier curve for opacity
-  reverseAlpha: false // Reverse opacity order (default: false)
-})
-
-// Convert to CSS strings
-toBoxShadow(shadow) // → "0px 2.9px 5.8px rgba(0,0,0,0.05), ..."
-toDropShadow(shadow) // → "drop-shadow(0px 2.9px 2.9px rgba(0,0,0,0.06)) ..."
-```
-
-### Types
-
-```typescript
-type EasingValue = [number, number, number, number] // Bézier control points
-type ShadowValues = [number, number, number, number] // [offsetX, offsetY, blur, alpha]
-type ShadowSet = ShadowValues[] // Array of shadow layers
-```
-
----
-
-## Demo
-
-Explore all shadow levels and configurations in our interactive demo:
-
-**[📖 Storybook Demo →](https://sebastian-software.github.io/effective-shadow/)**
+**[→ Learn more about the math](https://sebastian-software.github.io/effective-shadow/#why-bezier)**
 
 ---
 
 ## Comparison with Tailwind
 
-Tailwind's built-in shadows use 1-2 layers with linear distribution:
+|                   | Tailwind Default     | Effective Shadow           |
+| ----------------- | -------------------- | -------------------------- |
+| **Layers**        | 1–2                  | 4 (configurable)           |
+| **Distribution**  | Linear steps         | Bézier curves              |
+| **Visual result** | Good for prototyping | Polished, production-ready |
 
-```css
-/* Tailwind's shadow-lg */
-box-shadow:
-  0 10px 15px -3px rgb(0 0 0 / 0.1),
-  0 4px 6px -4px rgb(0 0 0 / 0.1);
-```
-
-Effective Shadow generates 4+ layers with Bézier-curved transitions for more natural depth:
-
-| Feature           | Tailwind Shadows  | Effective Shadow     |
-| ----------------- | ----------------- | -------------------- |
-| **Layers**        | 1-2               | 4+ (configurable)    |
-| **Transitions**   | Linear            | Bézier curves        |
-| **Realism**       | Basic             | Natural depth        |
-| **Customization** | Presets or manual | Mathematical control |
-
-Use Tailwind's shadows for quick prototyping. Use Effective Shadow when you want that extra polish.
+**[→ Side-by-side visual comparison](https://sebastian-software.github.io/effective-shadow/#comparison)**
 
 ---
 
 ## Inspired By
 
-This library builds on ideas and tools from the community:
-
-- [**Designing Beautiful Shadows in CSS**](https://www.joshwcomeau.com/css/designing-shadows/) by Josh W. Comeau — foundational article on layered shadow techniques
-- [**Shadow Palette Generator**](https://www.joshwcomeau.com/shadow-palette/) by Josh W. Comeau — interactive tool for coordinated shadow sets
-- [**Smooth Shadow Generator**](https://shadows.brumm.af/) by Philipp Brumm — smooth easing-based shadow tool
-- [**Material Design 3 Elevation**](https://m3.material.io/styles/elevation/overview) — Google's elevation system and shadow principles
+- [Designing Beautiful Shadows in CSS](https://www.joshwcomeau.com/css/designing-shadows/) — Josh Comeau's foundational article
+- [Shadow Palette Generator](https://www.joshwcomeau.com/shadow-palette/) — Interactive tool by Josh Comeau
+- [Smooth Shadow Generator](https://shadows.brumm.af/) — Philipp Brumm's easing-based tool
+- [Material Design 3 Elevation](https://m3.material.io/styles/elevation/overview) — Google's elevation principles
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) first.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ```bash
-# Clone and install
 git clone https://github.com/sebastian-software/effective-shadow.git
 cd effective-shadow
 pnpm install
-
-# Development
-pnpm dev          # Start Storybook
-pnpm test         # Run tests
-pnpm build        # Build library
+pnpm dev      # Start demo
+pnpm test     # Run tests
+pnpm build    # Build library
 ```
 
 ---
@@ -301,12 +184,5 @@ pnpm build        # Build library
 ---
 
 <p align="center">
-  <a href="https://www.sebastian-software.de">
-    <img src="https://cdn.rawgit.com/sebastian-software/sebastian-software-brand/0d4ec9d6/sebastiansoftware-en.svg" alt="Sebastian Software GmbH" width="400"/>
-  </a>
-</p>
-
-<p align="center">
-  Built with ❤️ by <a href="https://www.sebastian-software.de">Sebastian Software</a><br/>
-  Copyright 2024–2025
+  Built with ❤️ by <a href="https://www.sebastian-software.de">Sebastian Software</a>
 </p>

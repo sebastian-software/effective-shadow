@@ -34,36 +34,116 @@ body {
 }
 
 /* =============================================================================
-   Icons
+   Icons (using mask-image for color flexibility)
    ============================================================================= */
 
-.lucide {
+.icon {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.icon-layers {
+  -webkit-mask-image: url(./icons/layers.svg);
+  mask-image: url(./icons/layers.svg);
+}
+.icon-package {
+  -webkit-mask-image: url(./icons/package.svg);
+  mask-image: url(./icons/package.svg);
+}
+.icon-github {
+  -webkit-mask-image: url(./icons/github.svg);
+  mask-image: url(./icons/github.svg);
+}
+.icon-sunrise {
+  -webkit-mask-image: url(./icons/sunrise.svg);
+  mask-image: url(./icons/sunrise.svg);
+}
+.icon-spline {
+  -webkit-mask-image: url(./icons/spline.svg);
+  mask-image: url(./icons/spline.svg);
+}
+.icon-image {
+  -webkit-mask-image: url(./icons/image.svg);
+  mask-image: url(./icons/image.svg);
+}
+.icon-git-compare {
+  -webkit-mask-image: url(./icons/git-compare.svg);
+  mask-image: url(./icons/git-compare.svg);
+}
+.icon-sliders {
+  -webkit-mask-image: url(./icons/sliders.svg);
+  mask-image: url(./icons/sliders.svg);
+}
+.icon-palette {
+  -webkit-mask-image: url(./icons/palette.svg);
+  mask-image: url(./icons/palette.svg);
+}
+.icon-copy {
+  -webkit-mask-image: url(./icons/copy.svg);
+  mask-image: url(./icons/copy.svg);
+}
+.icon-check {
+  -webkit-mask-image: url(./icons/check.svg);
+  mask-image: url(./icons/check.svg);
+}
+.icon-square {
+  -webkit-mask-image: url(./icons/square.svg);
+  mask-image: url(./icons/square.svg);
+}
+.icon-star {
+  -webkit-mask-image: url(./icons/star.svg);
+  mask-image: url(./icons/star.svg);
+}
+.icon-zap {
+  -webkit-mask-image: url(./icons/zap.svg);
+  mask-image: url(./icons/zap.svg);
+}
+.icon-lightbulb {
+  -webkit-mask-image: url(./icons/lightbulb.svg);
+  mask-image: url(./icons/lightbulb.svg);
+}
+.icon-heart {
+  -webkit-mask-image: url(./icons/heart.svg);
+  mask-image: url(./icons/heart.svg);
+}
+
+/* Icon sizes */
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-md {
   width: 20px;
   height: 20px;
-  stroke-width: 2;
 }
 
-.icon-large {
-  width: 48px;
-  height: 48px;
-  stroke-width: 1.5;
-}
-
-.section-icon {
+.icon-lg {
   width: 28px;
   height: 28px;
+}
+
+.icon-xl {
+  width: 48px;
+  height: 48px;
+}
+
+/* Contextual icon colors */
+.section-icon {
   color: var(--accent);
 }
 
 .preview-icon {
-  width: 32px;
-  height: 32px;
   color: #999;
 }
 
 .footer-icon {
-  width: 16px;
-  height: 16px;
   color: #e11d48;
   vertical-align: middle;
 }

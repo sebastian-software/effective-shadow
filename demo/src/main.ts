@@ -330,14 +330,16 @@ const filter = toDropShadow(shadow)`
   copyBtn.addEventListener("click", async () => {
     const text = output.textContent || ""
     await navigator.clipboard.writeText(text)
-    const useEl = copyBtn.querySelector("use")
-    if (useEl) {
-      useEl.setAttribute("href", "#icon-check")
+    const iconEl = copyBtn.querySelector(".icon")
+    if (iconEl) {
+      iconEl.classList.remove("icon-copy")
+      iconEl.classList.add("icon-check")
     }
     copyBtn.classList.add("copied")
     setTimeout(() => {
-      if (useEl) {
-        useEl.setAttribute("href", "#icon-copy")
+      if (iconEl) {
+        iconEl.classList.remove("icon-check")
+        iconEl.classList.add("icon-copy")
       }
       copyBtn.classList.remove("copied")
     }, 2000)

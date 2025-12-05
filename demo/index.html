@@ -10,63 +10,12 @@
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
   </head>
   <body>
-    <!-- SVG Icon Sprite (hidden) -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-      <symbol id="icon-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
-      </symbol>
-      <symbol id="icon-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/>
-      </symbol>
-      <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>
-      </symbol>
-      <symbol id="icon-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v8"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m8 6 4-4 4 4"/><path d="M16 18a4 4 0 0 0-8 0"/>
-      </symbol>
-      <symbol id="icon-spline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><path d="M5 17A12 12 0 0 1 17 5"/>
-      </symbol>
-      <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-      </symbol>
-      <symbol id="icon-git-compare" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/>
-      </symbol>
-      <symbol id="icon-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/>
-      </symbol>
-      <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/>
-      </symbol>
-      <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-      </symbol>
-      <symbol id="icon-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect width="18" height="18" x="3" y="3" rx="2"/>
-      </symbol>
-      <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-      </symbol>
-      <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
-      </symbol>
-      <symbol id="icon-lightbulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
-      </symbol>
-      <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-      </symbol>
-      <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 6 9 17l-5-5"/>
-      </symbol>
-    </svg>
     <div class="page">
       <!-- Hero -->
       <header class="hero">
         <div class="hero-content">
           <div class="hero-icon">
-            <svg class="icon-large"><use href="#icon-layers"/></svg>
+            <span class="icon icon-layers icon-xl"></span>
           </div>
           <h1>Effective Shadow</h1>
           <p class="tagline">
@@ -80,11 +29,11 @@
           </p>
           <div class="hero-actions">
             <a href="https://www.npmjs.com/package/@effective/shadow" class="btn btn-primary">
-              <svg class="lucide"><use href="#icon-package"/></svg>
+              <span class="icon icon-package icon-md"></span>
               npm install @effective/shadow
             </a>
             <a href="https://github.com/sebastian-software/effective-shadow" class="btn btn-secondary">
-              <svg class="lucide"><use href="#icon-github"/></svg>
+              <span class="icon icon-github icon-md"></span>
               GitHub
             </a>
           </div>
@@ -134,9 +83,9 @@
       </header>
 
       <!-- Elevation Showcase -->
-      <section class="section">
+      <section class="section" id="elevation">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-sunrise"/></svg>
+          <span class="icon icon-sunrise icon-lg section-icon"></span>
           <h2>Elevation Levels</h2>
         </div>
         <div class="prose" style="margin-bottom: 32px;">
@@ -146,7 +95,7 @@
             provide all the depth you need: from subtle card shadows to dramatic modal overlays.
           </p>
           <p>
-            Need something custom? The <a href="#api">JavaScript API</a> lets you create your own
+            Need something custom? The <a href="#quick-start">JavaScript API</a> lets you create your own
             shadows with full control over layers, blur, offset, and opacity curves.
           </p>
         </div>
@@ -156,9 +105,9 @@
       </section>
 
       <!-- Why Bézier Curves -->
-      <section class="section section-alt">
+      <section class="section section-alt" id="why-bezier">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-spline"/></svg>
+          <span class="icon icon-spline icon-lg section-icon"></span>
           <h2>Why Bézier Curves?</h2>
         </div>
         <div class="prose">
@@ -184,9 +133,9 @@
       </section>
 
       <!-- Why drop-shadow -->
-      <section class="section">
+      <section class="section" id="box-vs-drop">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-image"/></svg>
+          <span class="icon icon-image icon-lg section-icon"></span>
           <h2>box-shadow vs. drop-shadow</h2>
         </div>
         <div class="prose">
@@ -245,7 +194,7 @@
 
         <div class="recommendation">
           <div class="recommendation-header">
-            <svg class="lucide"><use href="#icon-lightbulb"/></svg>
+            <span class="icon icon-lightbulb icon-md"></span>
             <strong>Recommendation for UI Components</strong>
           </div>
           <p>
@@ -277,7 +226,7 @@
       <!-- Comparison -->
       <section class="section section-alt">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-git-compare"/></svg>
+          <span class="icon icon-git-compare icon-lg section-icon"></span>
           <h2>Shadow Comparison</h2>
         </div>
         <p class="section-desc">How our shadows compare to Tailwind's defaults.</p>
@@ -287,9 +236,9 @@
       </section>
 
       <!-- Playground -->
-      <section class="section">
+      <section class="section" id="playground">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-sliders"/></svg>
+          <span class="icon icon-sliders icon-lg section-icon"></span>
           <h2>Playground</h2>
         </div>
         <p class="section-desc">Experiment with shadow parameters in real-time.</p>
@@ -299,7 +248,7 @@
               <div class="preview-label">box-shadow</div>
               <div class="playground-preview">
                 <div class="playground-card" id="preview-box">
-                  <svg class="preview-icon"><use href="#icon-square"/></svg>
+                  <span class="icon icon-square icon-lg preview-icon"></span>
                 </div>
               </div>
             </div>
@@ -307,7 +256,7 @@
               <div class="preview-label">drop-shadow</div>
               <div class="playground-preview">
                 <div class="playground-card" id="preview-filter">
-                  <svg class="preview-icon"><use href="#icon-star"/></svg>
+                  <span class="icon icon-star icon-lg preview-icon"></span>
                 </div>
               </div>
             </div>
@@ -315,7 +264,7 @@
           <div class="playground-sidebar">
             <div class="preset-selector">
               <label>
-                <svg class="lucide"><use href="#icon-palette"/></svg>
+                <span class="icon icon-palette icon-sm"></span>
                 <span>Preset</span>
               </label>
               <select id="preset-select">
@@ -338,7 +287,7 @@
             </div>
             <pre class="output-code"><code id="css-output">box-shadow: none;</code></pre>
             <button class="copy-btn" id="copy-btn">
-              <svg class="lucide"><use href="#icon-copy"/></svg>
+              <span class="icon icon-copy icon-sm"></span>
               Copy
             </button>
           </div>
@@ -346,9 +295,9 @@
       </section>
 
       <!-- Quick Start -->
-      <section class="section section-alt" id="api">
+      <section class="section section-alt" id="quick-start">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-zap"/></svg>
+          <span class="icon icon-zap icon-lg section-icon"></span>
           <h2>Quick Start</h2>
         </div>
 
@@ -431,7 +380,7 @@ const filter = toDropShadow(shadow)</code></pre>
       <!-- Inspired By -->
       <section class="section">
         <div class="section-header">
-          <svg class="section-icon"><use href="#icon-lightbulb"/></svg>
+          <span class="icon icon-lightbulb icon-lg section-icon"></span>
           <h2>Inspired By</h2>
         </div>
         <p class="section-desc">Standing on the shoulders of giants.</p>
@@ -446,12 +395,12 @@ const filter = toDropShadow(shadow)</code></pre>
       <!-- Footer -->
       <footer class="footer">
         <p>
-          <svg class="footer-icon"><use href="#icon-heart"/></svg>
+          <span class="icon icon-heart icon-sm footer-icon"></span>
           Built by <a href="https://www.sebastian-software.de">Sebastian Software</a>
         </p>
         <div class="footer-links">
-          <a href="https://github.com/sebastian-software/effective-shadow"><svg class="lucide"><use href="#icon-github"/></svg> GitHub</a>
-          <a href="https://www.npmjs.com/package/@effective/shadow"><svg class="lucide"><use href="#icon-package"/></svg> npm</a>
+          <a href="https://github.com/sebastian-software/effective-shadow"><span class="icon icon-github icon-md"></span> GitHub</a>
+          <a href="https://www.npmjs.com/package/@effective/shadow"><span class="icon icon-package icon-md"></span> npm</a>
         </div>
       </footer>
     </div>
