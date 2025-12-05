@@ -5,6 +5,7 @@ import {
   toDropShadow,
   effectivePreset
 } from "@effective/shadow"
+import { Icon } from "./Icons"
 
 // Declare external highlight.js
 declare const hljs: { highlightAll: () => void }
@@ -221,7 +222,7 @@ const filter = toDropShadow(shadow${colorArg})`
               className="playground-card"
               style={{ boxShadow: boxShadowCSS }}
             >
-              <span className="icon icon-square icon-lg preview-icon" />
+              <Icon name="square" size="lg" className="preview-icon" />
             </div>
           </div>
         </div>
@@ -229,7 +230,7 @@ const filter = toDropShadow(shadow${colorArg})`
           <div className="preview-label">drop-shadow</div>
           <div className="playground-preview">
             <div className="playground-card" style={{ filter: dropShadowCSS }}>
-              <span className="icon icon-star icon-lg preview-icon" />
+              <Icon name="star" size="lg" className="preview-icon" />
             </div>
           </div>
         </div>
@@ -238,7 +239,7 @@ const filter = toDropShadow(shadow${colorArg})`
       <div className="playground-sidebar">
         <div className="preset-selector">
           <label>
-            <span className="icon icon-palette icon-sm" />
+            <Icon name="palette" size="sm" />
             <span>Preset</span>
           </label>
           <select
@@ -327,9 +328,7 @@ const filter = toDropShadow(shadow${colorArg})`
           className={`copy-btn ${isCopied ? "copied" : ""}`}
           onClick={handleCopy}
         >
-          <span
-            className={`icon ${isCopied ? "icon-check" : "icon-copy"} icon-sm`}
-          />
+          <Icon name={isCopied ? "check" : "copy"} size="sm" />
           Copy
         </button>
       </div>

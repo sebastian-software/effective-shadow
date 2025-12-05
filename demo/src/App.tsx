@@ -4,18 +4,19 @@ import { ComparisonSystems } from "./components/ComparisonSystems"
 import { ComparisonTechniques } from "./components/ComparisonTechniques"
 import { ColoredShadows } from "./components/ColoredShadows"
 import { Playground } from "./components/Playground"
+import { Icon } from "./components/Icons"
 
 function Hero() {
   return (
     <header className="hero">
       <div className="hero-content">
         <div className="hero-icon">
-          <span className="icon icon-layers icon-xl" />
+          <Icon name="layers" size="xl" />
         </div>
         <h1>Effective Shadow</h1>
         <p className="tagline">Shadows that actually make sense.</p>
         <p className="hero-prose">
-          Stop copying random shadow values from Stack Overflow.{" "}
+          Stop copying random shadow values from Stack Overflow or ChatGPT.{" "}
           <strong>Effective Shadow</strong> uses <strong>Bézier curves</strong>{" "}
           to distribute multiple layers like real light does — smooth, natural,
           and mathematically precise. Grab a preset or roll your own.
@@ -25,14 +26,14 @@ function Hero() {
             href="https://www.npmjs.com/package/@effective/shadow"
             className="btn btn-primary"
           >
-            <span className="icon icon-package icon-md" />
+            <Icon name="package" size="md" />
             npm install @effective/shadow
           </a>
           <a
             href="https://github.com/sebastian-software/effective-shadow"
             className="btn btn-secondary"
           >
-            <span className="icon icon-github icon-md" />
+            <Icon name="github" size="md" />
             GitHub
           </a>
         </div>
@@ -148,7 +149,7 @@ function SectionElevation() {
   return (
     <section className="section" id="elevation">
       <div className="section-header">
-        <span className="icon icon-sunrise icon-lg section-icon" />
+        <Icon name="sunrise" size="lg" className="section-icon" />
         <h2>Pick Your Altitude</h2>
       </div>
       <div className="prose" style={{ marginBottom: 32 }}>
@@ -171,7 +172,7 @@ function SectionWhyBezier() {
   return (
     <section className="section section-alt" id="why-bezier">
       <div className="section-header">
-        <span className="icon icon-spline icon-lg section-icon" />
+        <Icon name="spline" size="lg" className="section-icon" />
         <h2>The Math That Makes It Real</h2>
       </div>
       <div className="prose">
@@ -208,7 +209,7 @@ function SectionBoxVsDrop() {
   return (
     <section className="section" id="box-vs-drop">
       <div className="section-header">
-        <span className="icon icon-image icon-lg section-icon" />
+        <Icon name="image" size="lg" className="section-icon" />
         <h2>box-shadow vs. drop-shadow</h2>
       </div>
       <div className="prose">
@@ -271,7 +272,7 @@ function SectionBoxVsDrop() {
 
       <div className="recommendation">
         <div className="recommendation-header">
-          <span className="icon icon-lightbulb icon-md" />
+          <Icon name="lightbulb" size="md" />
           <strong>Recommendation for UI Components</strong>
         </div>
         <p>
@@ -310,7 +311,7 @@ function SectionComparisonSystems() {
   return (
     <section className="section section-alt">
       <div className="section-header">
-        <span className="icon icon-git-compare icon-lg section-icon" />
+        <Icon name="git-compare" size="lg" className="section-icon" />
         <h2>How We Stack Up</h2>
       </div>
       <p className="section-desc">
@@ -325,7 +326,7 @@ function SectionComparisonTechniques() {
   return (
     <section className="section">
       <div className="section-header">
-        <span className="icon icon-copy icon-lg section-icon" />
+        <Icon name="copy" size="lg" className="section-icon" />
         <h2>One Shadow, Two Flavors</h2>
       </div>
       <p className="section-desc">
@@ -341,7 +342,7 @@ function SectionColoredShadows() {
   return (
     <section className="section section-alt" id="colored-shadows">
       <div className="section-header">
-        <span className="icon icon-sun icon-lg section-icon" />
+        <Icon name="paintbrush" size="lg" className="section-icon" />
         <h2>Add Some Color</h2>
       </div>
       <p className="section-desc">
@@ -357,7 +358,7 @@ function SectionPlayground() {
   return (
     <section className="section" id="playground">
       <div className="section-header">
-        <span className="icon icon-sliders icon-lg section-icon" />
+        <Icon name="sliders" size="lg" className="section-icon" />
         <h2>Build Your Own</h2>
       </div>
       <p className="section-desc">
@@ -372,7 +373,7 @@ function SectionQuickStart() {
   return (
     <section className="section section-alt" id="quick-start">
       <div className="section-header">
-        <span className="icon icon-zap icon-lg section-icon" />
+        <Icon name="zap" size="lg" className="section-icon" />
         <h2>Get Started in 30 Seconds</h2>
       </div>
 
@@ -510,7 +511,7 @@ function SectionInspiration() {
   return (
     <section className="section">
       <div className="section-header">
-        <span className="icon icon-lightbulb icon-lg section-icon" />
+        <Icon name="lightbulb" size="lg" className="section-icon" />
         <h2>Standing on Shoulders</h2>
       </div>
       <p className="section-desc">
@@ -566,16 +567,16 @@ function Footer() {
   return (
     <footer className="footer">
       <p>
-        <span className="icon icon-heart icon-sm footer-icon" />
+        <Icon name="heart" size="sm" className="footer-icon" />
         Built by{" "}
         <a href="https://www.sebastian-software.de">Sebastian Software</a>
       </p>
       <div className="footer-links">
         <a href="https://github.com/sebastian-software/effective-shadow">
-          <span className="icon icon-github icon-md" /> GitHub
+          <Icon name="github" size="md" /> GitHub
         </a>
         <a href="https://www.npmjs.com/package/@effective/shadow">
-          <span className="icon icon-package icon-md" /> npm
+          <Icon name="package" size="md" /> npm
         </a>
       </div>
     </footer>
@@ -589,8 +590,8 @@ export function App() {
       <SectionElevation />
       <SectionWhyBezier />
       <SectionBoxVsDrop />
-      <SectionComparisonSystems />
       <SectionComparisonTechniques />
+      <SectionComparisonSystems />
       <SectionColoredShadows />
       <SectionPlayground />
       <SectionQuickStart />
