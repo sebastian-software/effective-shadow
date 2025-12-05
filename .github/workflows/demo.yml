@@ -34,6 +34,17 @@ jobs:
 
       - run: pnpm run build:demo
 
+      - name: Build Tailwind demo
+        run: |
+          cd demo-tailwind
+          pnpm install --frozen-lockfile
+          pnpm run build
+
+      - name: Combine demos
+        run: |
+          mkdir -p demo-dist/tailwind
+          cp demo-tailwind-dist/index.html demo-dist/tailwind/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
