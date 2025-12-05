@@ -325,6 +325,9 @@ body {
   font-size: 17px;
   line-height: 1.8;
   color: var(--text);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .prose p {
@@ -640,7 +643,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  margin: 40px 0;
+  margin: 40px auto;
+  max-width: 900px;
 }
 
 @media (max-width: 600px) {
@@ -764,7 +768,8 @@ body {
   border: 1px solid #bbf7d0;
   border-radius: var(--radius);
   padding: 24px;
-  margin: 32px 0;
+  margin: 32px auto;
+  max-width: 900px;
 }
 
 .recommendation-header {
