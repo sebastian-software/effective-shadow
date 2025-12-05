@@ -114,35 +114,6 @@ const RADIX_SHADOWS = [
   { name: "-", value: "none" } // Radix only has 6 levels, padding for alignment
 ]
 
-// ShadCN (has its own shadow values, slightly different from Tailwind)
-// Source: https://ui.shadcn.com/themes
-const SHADCN_SHADOWS = [
-  { name: "none", value: "none" },
-  { name: "2xs", value: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
-  {
-    name: "xs",
-    value: "0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px 0 rgb(0 0 0 / 0.04)"
-  },
-  {
-    name: "sm",
-    value: "0 2px 4px 0 rgb(0 0 0 / 0.06), 0 1px 2px 0 rgb(0 0 0 / 0.04)"
-  },
-  {
-    name: "md",
-    value: "0 4px 8px -1px rgb(0 0 0 / 0.08), 0 2px 4px -1px rgb(0 0 0 / 0.04)"
-  },
-  {
-    name: "lg",
-    value: "0 8px 16px -2px rgb(0 0 0 / 0.1), 0 4px 6px -1px rgb(0 0 0 / 0.05)"
-  },
-  {
-    name: "xl",
-    value:
-      "0 16px 32px -4px rgb(0 0 0 / 0.12), 0 6px 12px -2px rgb(0 0 0 / 0.06)"
-  },
-  { name: "2xl", value: "0 24px 48px -8px rgb(0 0 0 / 0.18)" }
-]
-
 // =============================================================================
 // Preset configurations for the playground
 // =============================================================================
@@ -275,14 +246,6 @@ function renderComparisonSystems() {
       }))
     },
     {
-      title: "ShadCN",
-      description: "2 layers",
-      shadows: SHADCN_SHADOWS.slice(1).map((s) => ({
-        name: s.name,
-        boxShadow: s.value
-      }))
-    },
-    {
       title: "Material 3",
       description: "3 layers",
       shadows: MATERIAL_SHADOWS.slice(1).map((s) => ({
@@ -326,6 +289,75 @@ function renderComparisonBoxDrop() {
   ]
 
   columns.forEach((col) => renderComparisonColumn(container, col))
+}
+
+// =============================================================================
+// Colored Glow CTAs
+// =============================================================================
+
+interface CtaColor {
+  name: string
+  bg: string
+  rgb: string // For shadow color
+}
+
+const CTA_COLORS: CtaColor[] = [
+  { name: "Indigo", bg: "#6366f1", rgb: "99, 102, 241" },
+  { name: "Cyan", bg: "#06b6d4", rgb: "6, 182, 212" },
+  { name: "Rose", bg: "#f43f5e", rgb: "244, 63, 94" },
+  { name: "Amber", bg: "#f59e0b", rgb: "245, 158, 11" }
+]
+
+function renderColoredGlow() {
+  const container = document.getElementById("colored-glow")!
+
+  // Generate colored shadows using our API
+  const glowShadow = buildShadow({
+    shadowLayers: 4,
+    finalOffsetY: 8,
+    finalBlur: 20,
+    finalAlpha: 0.5
+  })
+
+  // Box Shadow column
+  const boxColumn = document.createElement("div")
+  boxColumn.className = "glow-column"
+  boxColumn.innerHTML = `<h3>Box Shadow</h3><p class="comparison-desc">Colored glow using box-shadow</p>`
+
+  const boxButtons = document.createElement("div")
+  boxButtons.className = "glow-buttons"
+
+  CTA_COLORS.forEach((color) => {
+    const btn = document.createElement("button")
+    btn.className = "glow-btn"
+    btn.style.backgroundColor = color.bg
+    btn.style.boxShadow = toBoxShadow(glowShadow, 2, { color: color.rgb })
+    btn.textContent = color.name
+    boxButtons.appendChild(btn)
+  })
+
+  boxColumn.appendChild(boxButtons)
+  container.appendChild(boxColumn)
+
+  // Drop Shadow column
+  const dropColumn = document.createElement("div")
+  dropColumn.className = "glow-column"
+  dropColumn.innerHTML = `<h3>Drop Shadow</h3><p class="comparison-desc">Colored glow using filter</p>`
+
+  const dropButtons = document.createElement("div")
+  dropButtons.className = "glow-buttons"
+
+  CTA_COLORS.forEach((color) => {
+    const btn = document.createElement("button")
+    btn.className = "glow-btn"
+    btn.style.backgroundColor = color.bg
+    btn.style.filter = toDropShadow(glowShadow, 2, { color: color.rgb })
+    btn.textContent = color.name
+    dropButtons.appendChild(btn)
+  })
+
+  dropColumn.appendChild(dropButtons)
+  container.appendChild(dropColumn)
 }
 
 // =============================================================================
@@ -546,6 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderShadowDemo()
   renderComparisonSystems()
   renderComparisonBoxDrop()
+  renderColoredGlow()
   renderPlayground()
   hljs.highlightAll()
 })

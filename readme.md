@@ -131,12 +131,12 @@ element.style.filter = toDropShadow(shadow) // Automatically calibrated
 
 We've analyzed the shadow implementations of major design systems:
 
-|                       | Effective | Tailwind | ShadCN | Material 3 | Radix  |
-| --------------------- | --------- | -------- | ------ | ---------- | ------ |
-| **Layers**            | 3-7       | 1-2      | 2      | 3          | 1-2    |
-| **Distribution**      | Bézier    | Linear   | Linear | Stepped    | Linear |
-| **Calculation basis** | Formula   | Manual   | Manual | Spec-based | Manual |
-| **Customizable**      | Full API  | Config   | Config | Tokens     | CSS    |
+|                       | Effective | Tailwind | Material 3 | Radix  |
+| --------------------- | --------- | -------- | ---------- | ------ |
+| **Layers**            | 3-7       | 1-2      | 3          | 1-2    |
+| **Distribution**      | Bézier    | Linear   | Stepped    | Linear |
+| **Calculation basis** | Formula   | Manual   | Spec-based | Manual |
+| **Customizable**      | Full API  | Config   | Tokens     | CSS    |
 
 **[→ Visual side-by-side comparison](https://sebastian-software.github.io/effective-shadow/#comparison)**
 

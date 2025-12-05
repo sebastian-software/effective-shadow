@@ -598,18 +598,11 @@ body {
 
 .comparison {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
 }
 
-@media (max-width: 1200px) {
-  .comparison {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-}
-
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .comparison {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
@@ -665,6 +658,50 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.subsection-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 64px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Glow buttons */
+.glow-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.glow-column h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+.glow-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.glow-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.glow-btn:hover {
+  transform: translateY(-2px);
 }
 
 .comparison-card span {
