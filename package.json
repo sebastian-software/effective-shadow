@@ -40,7 +40,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "dev": "vite demo",
-    "build:demo": "vite build demo --outDir ../demo-dist --emptyOutDir --base ./",
+    "build:demo": "vite build demo --outDir ../demo-dist --emptyOutDir --base ./ && tsx scripts/inline-assets.ts",
     "preview": "vite preview demo",
     "release": "release-it",
     "prepare": "husky",
